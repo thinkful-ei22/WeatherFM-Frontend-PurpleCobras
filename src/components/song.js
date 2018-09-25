@@ -72,11 +72,6 @@ export class Song extends React.Component {
        <ReactPlayer 
        ref={this.ref}
        url={this.props.url} 
-       config={{
-        youtube: {
-          playerVars: { showinfo: 1 }
-        }
-       }}
        playing={playing}
        onPlay={this.onPlay}
        onPause={this.onPause}
