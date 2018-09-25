@@ -7,9 +7,10 @@ export class Song extends React.Component {
     super(props);
     this.state = {
       url: null,
-      playing: true,
+      playing: false,
       volume: 0.8,
-    muted: false,
+      muted: false,
+      played: 0
     }
   }
   playPause = () => {
@@ -30,11 +31,21 @@ export class Song extends React.Component {
   toggleMuted = () => {
     this.setState({ muted: !this.state.muted })
   }
+  onSeekMouseDown = e => {
+    this.setState({ seeking: true })
+  }
+  onSeekChange = e => {
+    this.setState({ played: parseFloat(e.target.value) })
+  }
+  onSeekMouseUp = e => {
+    this.setState({ seeking: false })
+    this.player.seekTo(parseFloat(e.target.value))
+  }
 
   render(){
-    const { url, playing, volume, muted} = this.state;
+    const { url, playing, volume, muted, played} = this.state;
     return(
-      <div class="song-container">
+      <div className="song-container">
 
        <ReactPlayer 
        url={this.props.url} 
@@ -45,7 +56,7 @@ export class Song extends React.Component {
        muted={muted}
        height='0%'
        width='0%'
-
+       onSeek={e => console.log('onSeek', e)}
        />
 <section>
        <table><tbody>
@@ -54,6 +65,19 @@ export class Song extends React.Component {
               <td>
                 {/* <button onClick={this.stop}>Stop</button> */}
                 <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
+              </td>
+            </tr>
+
+            <tr>
+              <th>Seek</th>
+              <td>
+                <input
+                  type='range' min={0} max={1} step='any'
+                  value={played}
+                  onMouseDown={this.onSeekMouseDown}
+                  onChange={this.onSeekChange}
+                  onMouseUp={this.onSeekMouseUp}
+                />
               </td>
             </tr>
             
