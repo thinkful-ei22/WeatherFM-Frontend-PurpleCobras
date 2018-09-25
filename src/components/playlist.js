@@ -1,4 +1,5 @@
 import React from 'react';
+import Song from './song';
 // import {connect} from 'react-redux';
 // import requiresLogin from './requires-login';
 
@@ -31,6 +32,7 @@ export class Playlist extends React.Component {
     return (
       <div>
         {loopedSongs()}
+        <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/>
       </div>
     )
   }
