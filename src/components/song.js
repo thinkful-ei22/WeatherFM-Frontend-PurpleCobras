@@ -65,11 +65,12 @@ export class Song extends React.Component {
 
   render(){
     const { url, playing, volume, muted, played } = this.state;
-    
+
     return(
       <div className="song-container">
 
        <ReactPlayer 
+       ref={this.ref}
        url={this.props.url} 
        config={{
         youtube: {
