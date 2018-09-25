@@ -13,6 +13,7 @@ export class Song extends React.Component {
       played: 0
     }
   }
+
   playPause = () => {
     this.setState({ playing: !this.state.playing })
   }
@@ -31,32 +32,59 @@ export class Song extends React.Component {
   toggleMuted = () => {
     this.setState({ muted: !this.state.muted })
   }
+
+  // seeking 
+
   onSeekMouseDown = e => {
-    this.setState({ seeking: true })
+    this.setState({ seeking: true });
+    console.log(e.target.value)
   }
   onSeekChange = e => {
     this.setState({ played: parseFloat(e.target.value) })
   }
+
   onSeekMouseUp = e => {
-    this.setState({ seeking: false })
-    this.player.seekTo(parseFloat(e.target.value))
+    if (this.player) {
+      console.log('seeking');
+      this.setState({ seeking: false });
+      this.player.seekTo(parseFloat(e.target.value));
+    }
+  }
+
+  onProgress = state => {
+    // console.log('onProgress', state)
+    // We only want to update time slider if we are not currently seeking
+    if (!this.state.seeking) {
+      this.setState(state)
+    }
+  }
+
+  ref = player => {
+    this.player = player
   }
 
   render(){
-    const { url, playing, volume, muted, played} = this.state;
+    const { url, playing, volume, muted, played } = this.state;
+    
     return(
       <div className="song-container">
 
        <ReactPlayer 
        url={this.props.url} 
+       config={{
+        youtube: {
+          playerVars: { showinfo: 1 }
+        }
+       }}
        playing={playing}
        onPlay={this.onPlay}
        onPause={this.onPause}
        volume={volume}
        muted={muted}
-       height='0%'
-       width='0%'
+       height='20%'
+       width='30%'
        onSeek={e => console.log('onSeek', e)}
+       onProgress={this.onProgress}
        />
 <section>
        <table><tbody>
