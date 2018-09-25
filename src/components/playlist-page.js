@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-// import {connect} from 'react-redux';
-// import requiresLogin from './requires-login';
+import {connect} from 'react-redux';
+import requiresLogin from './requires-login';
 
 export class PlaylistPage extends React.Component {
 
@@ -32,14 +32,12 @@ export class PlaylistPage extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   const {currentUser} = state.auth;
-//   return {
-//       username: state.auth.currentUser.username,
-//       name: `${currentUser.firstName}`,
-//   };
-// };
+const mapStateToProps = state => {
+  const {currentUser} = state.auth;
+  return {
+      username: state.auth.currentUser.username,
+      name: `${currentUser.firstName}`,
+  };
+};
 
-// export default requiresLogin()(connect(mapStateToProps)(Playlists));
-
-export default PlaylistPage;
+export default requiresLogin()(connect(mapStateToProps)(PlaylistPage));
