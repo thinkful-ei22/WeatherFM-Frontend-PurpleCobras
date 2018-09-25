@@ -8,6 +8,7 @@ import Dashboard from './dashboard';
 import RegistrationPage from './registration-page';
 import Discover from './discover';
 import {refreshAuthToken} from '../actions/auth';
+import { Playlists } from './playlists';
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -42,11 +43,14 @@ export class App extends React.Component {
     render() {
         return (
             <div className="app">
+                <Link to={'/'}>Home</Link>
                 <Link to={'/discover'}>Discover</Link>
+                <Link to={'/playlists'}>Playlists</Link>
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/discover" component={Discover} />
+                <Route exact path="/playlists" component={Playlists} />
                 <Route exact path="/register" component={RegistrationPage} />
             </div>
         );
