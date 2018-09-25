@@ -1,12 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, withRouter, Link} from 'react-router-dom';
 
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard';
 import RegistrationPage from './registration-page';
+import Discover from './discover';
 import {refreshAuthToken} from '../actions/auth';
+import PlaylistPage from './playlist-page';
+import Playlist from './playlist';
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -41,9 +44,15 @@ export class App extends React.Component {
     render() {
         return (
             <div className="app">
+                <Link to={'/'}>Home</Link>
+                <Link to={'/discover'}>Discover</Link>
+                <Link to={'/playlists'}>Playlist Page</Link>
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/discover" component={Discover} />
+                <Route exact path="/playlists" component={PlaylistPage} />
+                <Route path="/playlist/:name" component={Playlist} />
                 <Route exact path="/register" component={RegistrationPage} />
             </div>
         );
