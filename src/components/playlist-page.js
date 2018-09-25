@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 // import {connect} from 'react-redux';
 // import requiresLogin from './requires-login';
 
-export class Playlists extends React.Component {
+export class PlaylistPage extends React.Component {
 
   render() {
     let userPlaylist = [
@@ -13,7 +13,6 @@ export class Playlists extends React.Component {
     ];
 
     // code to loop through user's playlist object and make a link for each one
-    
     let links = [];
 
     let loopedLinks = function () {
@@ -21,7 +20,6 @@ export class Playlists extends React.Component {
         let name = userPlaylist[i].name;
         console.log(name);
       links.push(<Link key={name} to={`/playlist/${name}`} className="playlistLink">{name} Playlist</Link>);
-        // return links.push(<Link to={`/playlist/${name}`} className="playlistLink">{name} Playlist</Link>)
       }
       return links;
     }
@@ -44,4 +42,4 @@ export class Playlists extends React.Component {
 
 // export default requiresLogin()(connect(mapStateToProps)(Playlists));
 
-export default Playlists;
+export default PlaylistPage;
