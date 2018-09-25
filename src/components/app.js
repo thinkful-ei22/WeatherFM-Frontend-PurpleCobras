@@ -46,6 +46,7 @@ export class App extends React.Component {
             <div className="app">
                 <Link to={'/'}>Home</Link>
                 <Link to={'/discover'}>Discover</Link>
+                <Link to={'/dashboard'}>Dashboard</Link>
                 <Link to={'/playlists'}>Playlist Page</Link>
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
