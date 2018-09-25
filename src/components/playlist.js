@@ -21,7 +21,7 @@ export class Playlist extends React.Component {
         let artist = playlist[i].artist;
         let albumArt = playlist[i].albumArt;
       songs.push(
-        <div>
+        <div key={title}>
           <img src={albumArt}></img>, {title}, by {artist}
         </div>
       );
