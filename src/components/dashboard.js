@@ -7,13 +7,15 @@ import {fetchWeather} from '../actions/weather';
 
 export class Dashboard extends React.Component {
     // api/users/weather
+    
     componentDidMount() {
         let location;
+        let latitude, longitude;
         if ("geolocation" in navigator) {
           /* geolocation is available */
     
           function geo_success(position) {
-            console.log(position.coords.latitude, position.coords.longitude);
+            console.log(position.coords.latitude,',', position.coords.longitude);
           }
           
           function geo_error() {
@@ -21,17 +23,19 @@ export class Dashboard extends React.Component {
           }
     
         location = navigator.geolocation.watchPosition(geo_success, geo_error);
-          console.log(location);
-    
-          // dispatch(fdsfdsgdsf(location))
+          
+        // console.log(latitude, longitude + '<<<outside of geo success');
+
           
         } else {
           /* geolocation IS NOT available */
           console.log('geolocation is not available')
         }
-        this.props.dispatch(fetchWeather(location));
+          // this.props.dispatch(fetchWeather(lat, long));
+        
       }
-
+      
+      
     render() {
         let weatherMessage;
         if (this.props.weather) {
@@ -64,7 +68,7 @@ const mapStateToProps = state => {
         username: state.auth.currentUser.username,
         name: `${currentUser.firstName}`,
         protectedData: state.protectedData.data,
-        weather: state.weather
+        weather: state.weather.weather
     };
 };
 

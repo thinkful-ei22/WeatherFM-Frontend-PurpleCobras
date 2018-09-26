@@ -2,9 +2,10 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
 export const FETCH_WEATHER_SUCCESS = 'FETCH_WEATHER_SUCCESS';
-export const fetchWeatherSuccess = location => ({
+export const fetchWeatherSuccess = (latitude, longitude) => ({
   type: FETCH_WEATHER_SUCCESS,
-  location
+  latitude, 
+  longitude
 })
 
 export const FETCH_WEATHER_ERROR = 'FETCH_WEATHER_ERROR';
@@ -13,12 +14,10 @@ export const fetchWeatherError = error => ({
   error
 })
 
-export const fetchWeather = (location) => (dispatch, getState) => {
+export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  let newLocation = location.toString();
-  let splitLoc = newLocation.split('');
-  let latitude = splitLoc[0];
-  let longitude = splitLoc[1];
+
+  console.log(latitude);
   console.log('latitude', latitude, 'and longitude', longitude);
   return fetch(`${API_BASE_URL}/users/weather/${latitude}/${longitude}`, {
     method: 'GET',
