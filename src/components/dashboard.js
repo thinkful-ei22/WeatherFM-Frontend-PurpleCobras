@@ -6,14 +6,6 @@ import {fetchWeather} from '../actions/weather';
 
 
 export class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.state = {
-    //   latitude: 0,
-    //   longitude:0
-    // }
-  }    
 
   getLocation = () => {
     console.log('geoloc running');
@@ -33,39 +25,16 @@ export class Dashboard extends React.Component {
         console.log('at the end of function');
       });
 
-
-    //   function geo_success(position) {
-    //     console.log(position.coords.latitude,',', position.coords.longitude);
-    //   }
-      
-    //   function geo_error() {
-    //     alert("Sorry, no position available.");
-    //   }
-
-    // location = navigator.geolocation.watchPosition(geo_success, geo_error);
-      
-    // console.log(latitude, longitude + '<<<outside of geo success');
-
     } else {
       /* geolocation IS NOT available */
       console.log('geolocation is not available')
-    }
-      // 
-     
-        //console.log('latitude received');
-      
+    }      
   }
-  
+
       
     render() {
+  
       this.getLocation();
-
-        let weatherMessage;
-        if (this.props.weather) {
-          weatherMessage = <div>Right now it is {this.props.weather}!</div>
-        } else {
-          console.log('not working');
-        }
 
         console.log(this.props);
         return (
@@ -76,7 +45,7 @@ export class Dashboard extends React.Component {
                 </div>
                 <div className="dashboard-name">Name: {this.props.name}</div>
 
-                {weatherMessage}
+                <div>Right now it is {this.props.weather}!</div>
             
                 <Link to={'/discover'}>Discover</Link>
                 <Link to={'/playlists'}>Playlist Page</Link>
