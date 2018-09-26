@@ -2,11 +2,45 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
+import {fetchWeather} from '../actions/weather';
 
 
 export class Dashboard extends React.Component {
+    // api/users/weather
+    componentDidMount() {
+        let location;
+        if ("geolocation" in navigator) {
+          /* geolocation is available */
+    
+          function geo_success(position) {
+            console.log(position.coords.latitude, position.coords.longitude);
+          }
+          
+          function geo_error() {
+            alert("Sorry, no position available.");
+          }
+    
+        location = navigator.geolocation.watchPosition(geo_success, geo_error);
+          console.log(location);
+    
+          // dispatch(fdsfdsgdsf(location))
+          
+        } else {
+          /* geolocation IS NOT available */
+          console.log('geolocation is not available')
+        }
+        this.props.dispatch(fetchWeather(location));
+      }
 
     render() {
+        let weatherMessage;
+        if (this.props.weather) {
+          weatherMessage = <div>Right now it is {this.props.weather}!</div>
+        } else {
+          console.log('not working');
+        }
+
+        console.log(this.props);
         return (
             <div className="dashboard">
 
@@ -15,6 +49,8 @@ export class Dashboard extends React.Component {
                 </div>
                 <div className="dashboard-name">Name: {this.props.name}</div>
 
+                {weatherMessage}
+            
                 <Link to={'/discover'}>Discover</Link>
                 <Link to={'/playlists'}>Playlist Page</Link>
             </div>
@@ -27,7 +63,8 @@ const mapStateToProps = state => {
     return {
         username: state.auth.currentUser.username,
         name: `${currentUser.firstName}`,
-        protectedData: state.protectedData.data
+        protectedData: state.protectedData.data,
+        weather: state.weather
     };
 };
 

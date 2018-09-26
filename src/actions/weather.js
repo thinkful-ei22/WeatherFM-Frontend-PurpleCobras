@@ -15,14 +15,19 @@ export const fetchWeatherError = error => ({
 
 export const fetchWeather = (location) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/users/weather`, {
+  let newLocation = location.toString();
+  let splitLoc = newLocation.split('');
+  let latitude = splitLoc[0];
+  let longitude = splitLoc[1];
+  console.log('latitude', latitude, 'and longitude', longitude);
+  return fetch(`${API_BASE_URL}/users/weather/${latitude}/${longitude}`, {
     method: 'GET',
     headers: {
       // auth as credentials
       Authorization: `Bearer ${authToken}`
     },
     body: 
-      JSON.stringify({location: location})
+      JSON.stringify({latitude: latitude, longitude: longitude})
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())

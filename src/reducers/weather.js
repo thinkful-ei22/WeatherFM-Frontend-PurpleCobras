@@ -12,7 +12,8 @@ export default function reducer(state = initialState, action) {
   if (action.type === FETCH_WEATHER_SUCCESS) {
     console.log('FETCH WEATHER SUCCESSFUL');
     return Object.assign({}, state, {
-      weather: action.weather
+      // weather: action.weather
+      weather: 'cloudy'
     })
   } else if (action.type === FETCH_WEATHER_ERROR) {
     return Object.assign({}, state, {
