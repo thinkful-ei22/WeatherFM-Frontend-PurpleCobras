@@ -2,31 +2,39 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
+import { fetchPlaylists } from '../actions/playlists';
 
 export class PlaylistPage extends React.Component {
+  componentDidMount() {
+    console.log('Component Mounted');
+    this.props.dispatch(fetchPlaylists());
+
+
+  }
 
   render() {
-    let userPlaylist = [
-      {name: 'Sunny', songs: [1111, 2222, 3333, 4444]},
-      {name: 'Rainy', songs: [1111, 2222, 3333, 4444]},
-      {name: 'Stormy', songs: [1111, 2222, 3333, 4444]}
-    ];
+    console.log(this.props.playlists);
+    let userPlaylists;
+    userPlaylists = this.props.playlists;
 
-    // code to loop through user's playlist object and make a link for each one
-    let links = [];
-
-    let loopedLinks = function () {
-      for (let i = 0; i < userPlaylist.length; i++ ) {
-        let name = userPlaylist[i].name;
-        console.log(name);
-      links.push(<Link key={name} to={`/playlist/${name}`} className="playlistLink">{name} Playlist</Link>);
-      }
+    let links = []
+    let userPlaylistArray;
+    if (this.props.playlists) {
+      userPlaylistArray = Object.keys(userPlaylists);
+      let i = 0;
+      userPlaylistArray.map(() => {
+        let name = userPlaylistArray[i];
+        links.push(<Link key={name} to={`/playlist/${name}`} className="playlistLink">{name} Playlist <br /></Link>);
+        i++;
+      });
       return links;
     }
 
+    console.log(userPlaylistArray);
+
     return (
       <div>
-        {loopedLinks()}
+        {links}
       </div>
     )
   }
@@ -37,6 +45,7 @@ const mapStateToProps = state => {
   return {
       username: state.auth.currentUser.username,
       name: `${currentUser.firstName}`,
+      playlists: state.playlists.playlists
   };
 };
 
