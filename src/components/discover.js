@@ -1,47 +1,59 @@
 import React from 'react';
+import Song from './song';
 import {connect} from 'react-redux';
-// import requiresLogin from './requires-login';
+import requiresLogin from './requires-login';
+import { fetchWeather } from '../actions/weather';
 
 export class Discover extends React.Component {
-  componentDidMount() {
-    if ("geolocation" in navigator) {
-      /* geolocation is available */
+  
+  
+  // componentDidMount = () => {
+  //   console.log(this, '1st this');
+  //   const {dispatch} = this.props;
+  //   // if ("geolocation" in navigator) {
+  //   //   /* geolocation is available */
+  //   //   navigator.geolocation.getCurrentPosition(function(position) {
+  //   //     console.log(position.coords.latitude, position.coords.longitude);
 
-      function geo_success(position) {
-        console.log(position.coords.latitude, position.coords.longitude);
-      }
-      
-      function geo_error() {
-        alert("Sorry, no position available.");
-      }
+  //   //     dispatch(fetchWeather(position.coords.latitude, position.coords.longitude));
+  //   //   });
+           
+  //   // } else {
+  //   //   /* geolocation IS NOT available */
+  //   //   console.log('geolocation is not available')
+  //   // }
+  // }
 
-      const location = navigator.geolocation.watchPosition(geo_success, geo_error);
-      console.log(location);
-
-      // dispatch(fdsfdsgdsf(location))
-      
-    } else {
-      /* geolocation IS NOT available */
-      console.log('geolocation is not available')
+  returnSong = (weather) => {
+    if (weather === 'Rain'){
+      console.log('raining');
+      return <Song url="https://www.youtube.com/watch?v=J3eUw5ApueY" />
+    }
+    else if (weather ==='Drizzle'){
+      return <Song url="https://www.youtube.com/watch?v=wYkl_fPs6P4" />
     }
   }
   render() {
     return (
       <div>
-        This is the Discover!
+        Right now it is {this.props.weather}! <br /><br />
+
+        {this.props.weather} Radio
+
+        {this.returnSong('Rain')}
       </div>
     )
   }
 }
 
-// const mapStateToProps = state => {
-//   const {currentUser} = state.auth;
-//   return {
-//       username: state.auth.currentUser.username,
-//       name: `${currentUser.firstName}`,
-//   };
-// };
+const mapStateToProps = state => {
+  const {currentUser} = state.auth;
+  return {
+      username: state.auth.currentUser.username,
+      name: `${currentUser.firstName}`,
+      protectedData: state.protectedData.data,
+      weather: state.weather.weather
+  };
+};
 
-// export default requiresLogin()(connect(mapStateToProps)(Discover));
-
-export default Discover;
+export default requiresLogin()(connect(mapStateToProps)(Discover));
