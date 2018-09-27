@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists } from '../actions/playlists';
 
+
+// send '{title} + {artist}' as 'song
+
 export class Playlist extends React.Component {
   componentDidMount() {
     console.log('Playlist Component Mounted');
@@ -27,13 +30,17 @@ export class Playlist extends React.Component {
           let title = currentPlaylist[i].songTitle;
           let artist = currentPlaylist[i].artist;
           let albumArt = currentPlaylist[i].thumbnail;
-        songs.push(
-          <div key={title}>
-            <img src={albumArt}></img>, {title}, by {artist}
-          </div>
-        );
+
+          // dispatch API call to get youtube url & set it to a variable
+          let url = "https://www.youtube.com/watch?v=9egDNv987DU";
+
+          songs.push(
+            <div key={title}>
+              <img src={albumArt}></img>, {title}, by {artist}, <Song url = {url}/><hr />
+            </div>
+          );
+        }
       }
-    }
       return songs;
     }
 
@@ -41,7 +48,7 @@ export class Playlist extends React.Component {
       <div>
         <h1>{playlistName} Playlist</h1>
         {loopedSongs(this.props.playlists)}
-        <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/>
+        {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
       </div>
     )
   }
