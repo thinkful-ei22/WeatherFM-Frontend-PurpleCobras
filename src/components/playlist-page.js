@@ -8,8 +8,6 @@ export class PlaylistPage extends React.Component {
   componentDidMount() {
     console.log('Component Mounted');
     this.props.dispatch(fetchPlaylists());
-
-
   }
 
   render() {
@@ -24,7 +22,7 @@ export class PlaylistPage extends React.Component {
       let i = 0;
       userPlaylistArray.map(() => {
         let name = userPlaylistArray[i];
-        links.push(<Link key={name} to={`/playlist/${name}`} className="playlistLink">{name} Playlist <br /></Link>);
+        links.push(<Link key={name} to={`/playlist/${name}`} className="playlistLink" component={name}> {name} Playlist <br /> </Link>);
         i++;
       });
       return links;

@@ -1,5 +1,4 @@
 import { API_BASE_URL } from '../config';
-import { normalizeResponseErrors }  from './utils';
 
 export const FETCH_PLAYLISTS_SUCCESS = 'FETCH_PLAYLISTS_SUCCESS';
 export const fetchPlaylistsSuccess = playlists => ({
@@ -30,3 +29,5 @@ export const fetchPlaylists = () => (dispatch, getState) =>{
     dispatch(fetchPlaylistsError(err));
   })
 }
+
+// fetching all songs from playlist to render on a page
