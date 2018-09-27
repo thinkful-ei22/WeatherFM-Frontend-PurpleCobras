@@ -3,7 +3,7 @@ import Song from './song';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists } from '../actions/playlists';
-
+import { fetchYoutube } from '../actions/youtube';
 
 // send '{title} + {artist}' as 'song
 
@@ -18,7 +18,8 @@ export class Playlist extends React.Component {
     let pathArray = pathName.split('/');
     let playlistName = pathArray[2];
     console.log(playlistName)
-  
+    console.log(this.props);
+    const {dispatch, url, youtube} = this.props;
     let currentPlaylist;
     // code to loop through user's playlist object and render each song
     let songs = [];
@@ -32,11 +33,14 @@ export class Playlist extends React.Component {
           let albumArt = currentPlaylist[i].thumbnail;
 
           // dispatch API call to get youtube url & set it to a variable
-          let url = "https://www.youtube.com/watch?v=9egDNv987DU";
-
+          // let url = '';
+         dispatch(fetchYoutube(title, artist));
+         console.log(youtube, 'url');
           songs.push(
             <div key={title}>
-              <img src={albumArt}></img>, {title}, by {artist}, <Song url = {url}/><hr />
+              <img src={albumArt}></img>, {title}, by {artist},  <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/>
+              {/* <Song url = {url}/> */}
+              <hr />
             </div>
           );
         }
@@ -59,7 +63,8 @@ const mapStateToProps = state => {
   return {
       username: state.auth.currentUser.username,
       name: `${currentUser.firstName}`,
-      playlists: state.playlists.playlists
+      playlists: state.playlists.playlists,
+      url: state.youtube.url
   };
 };
 

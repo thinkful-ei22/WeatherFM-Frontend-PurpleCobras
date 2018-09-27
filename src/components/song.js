@@ -77,8 +77,8 @@ export class Song extends React.Component {
        onPause={this.onPause}
        volume={volume}
        muted={muted}
-       height='0%'
-       width='0%'
+       height='50%'
+       width='50%'
        onSeek={e => console.log('onSeek', e)}
        onProgress={this.onProgress}
        />

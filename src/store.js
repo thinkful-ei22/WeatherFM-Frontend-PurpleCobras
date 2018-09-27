@@ -8,6 +8,7 @@ import protectedDataReducer from './reducers/protected-data';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 import weatherReducer from './reducers/weather';
 import playlistReducer from './reducers/playlists';
+import youtubeReducer from './reducers/youtube';
 
 const store = createStore(
     combineReducers({
@@ -15,7 +16,8 @@ const store = createStore(
         auth: authReducer,
         protectedData: protectedDataReducer,
         weather: weatherReducer,
-        playlists: playlistReducer
+        playlists: playlistReducer,
+        youtube: youtubeReducer
     }), composeWithDevTools(
     applyMiddleware(thunk)
 ));
