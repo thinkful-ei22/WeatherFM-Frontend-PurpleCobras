@@ -6,30 +6,27 @@ import { fetchWeather } from '../actions/weather';
 
 export class Discover extends React.Component {
   
-  
-  // componentDidMount = () => {
-  //   console.log(this, '1st this');
-  //   const {dispatch} = this.props;
-  //   // if ("geolocation" in navigator) {
-  //   //   /* geolocation is available */
-  //   //   navigator.geolocation.getCurrentPosition(function(position) {
-  //   //     console.log(position.coords.latitude, position.coords.longitude);
+  componentDidMount = () => {
+    console.log(this, '1st this');
+    // make API call to spotify -> res = 20 songs.
+    // save songs in redux state
+  }
 
-  //   //     dispatch(fetchWeather(position.coords.latitude, position.coords.longitude));
-  //   //   });
-           
-  //   // } else {
-  //   //   /* geolocation IS NOT available */
-  //   //   console.log('geolocation is not available')
-  //   // }
-  // }
+  // get first song
+  // run YT API call
+  // render song on page w/ SONG component
+  
+  // add to playlist button -> click to add to playlist with same title as weather w/ endpoint
+  // SEND BACK -> weather, artist, song title, album thumbnail -- all in req. body
+
+  // next button -> pop off songs[0] -- rerender
 
   returnSong = (weather) => {
     if (weather === 'Rain'){
       console.log('raining');
       return <Song url="https://www.youtube.com/watch?v=J3eUw5ApueY" />
     }
-    else if (weather ==='Drizzle'){
+    else if (weather === 'Drizzle'){
       return <Song url="https://www.youtube.com/watch?v=wYkl_fPs6P4" />
     }
   }
