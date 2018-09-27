@@ -23,7 +23,6 @@ export const setWeather = weather => ({
 
 // store weather in local storage
 
-
 const storeWeather = (weather, dispatch) => {
   saveWeather(weather);
   dispatch(setWeather(weather));
