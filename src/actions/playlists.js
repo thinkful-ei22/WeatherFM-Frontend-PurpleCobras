@@ -29,5 +29,3 @@ export const fetchPlaylists = () => (dispatch, getState) =>{
     dispatch(fetchPlaylistsError(err));
   })
 }
-
-// fetching all songs from playlist to render on a page

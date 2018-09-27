@@ -13,14 +13,30 @@ export class Playlist extends React.Component {
     this.props.dispatch(fetchPlaylists());
   }
 
+  // dispatch(fetchYoutube(title, artist));
+
+
+
+
+
   render() {
+    const {dispatch, url, youtube} = this.props;
+
+
+    function youtubeClick(artist, title) {
+      dispatch(fetchYoutube(artist, title))
+    }
+
     let pathName = this.props.location.pathname;
     let pathArray = pathName.split('/');
     let playlistName = pathArray[2];
+
     console.log(playlistName)
     console.log(this.props);
-    const {dispatch, url, youtube} = this.props;
     let currentPlaylist;
+
+
+
     // code to loop through user's playlist object and render each song
     let songs = [];
     let loopedSongs = function (playlists) {
@@ -34,11 +50,13 @@ export class Playlist extends React.Component {
 
           // dispatch API call to get youtube url & set it to a variable
           // let url = '';
-         dispatch(fetchYoutube(title, artist));
          console.log(youtube, 'url');
           songs.push(
             <div key={title}>
-              <img src={albumArt}></img>, {title}, by {artist},  <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/>
+              <img src={albumArt} style={{width: 100, height: 100}}></img>, {title}, by {artist},
+              <button onClick={(e) => {
+                youtubeClick(artist, title);
+              }}>Play</button>
               {/* <Song url = {url}/> */}
               <hr />
             </div>
@@ -51,6 +69,8 @@ export class Playlist extends React.Component {
     return (
       <div>
         <h1>{playlistName} Playlist</h1>
+        <Song url = {this.props.url}/>
+
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
       </div>
@@ -64,7 +84,7 @@ const mapStateToProps = state => {
       username: state.auth.currentUser.username,
       name: `${currentUser.firstName}`,
       playlists: state.playlists.playlists,
-      url: state.youtube.url
+      url: state.youtube.videoURL
   };
 };
 

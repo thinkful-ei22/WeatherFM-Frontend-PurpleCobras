@@ -22,11 +22,12 @@ export const fetchYoutubeError = error => ({
 export const fetchYoutube = (title, artist) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
 
-  const song = title + '+' + artist;
+  let songArtist = artist.split(' ').join('+'); 
+  let songTitle = title.split(' ').join('+');
 
   console.log(title, artist, 'title and artist');
 
-  return fetch(`${API_BASE_URL}/users/youtube/${song}`, {
+  return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${authToken}`,
