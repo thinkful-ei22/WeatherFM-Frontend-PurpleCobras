@@ -1,3 +1,5 @@
+import {saveWeather} from '../local-storage';
+
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
@@ -12,6 +14,20 @@ export const fetchWeatherError = error => ({
   type: FETCH_WEATHER_ERROR,
   error
 })
+
+export const SET_WEATHER = 'SET_WEATHER';
+export const setWeather = weather => ({
+    type: SET_WEATHER,
+    weather
+});
+
+// store weather in local storage
+
+
+const storeWeather = (weather, dispatch) => {
+  saveWeather(weather);
+  dispatch(setWeather(weather));
+};
 
 export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
@@ -30,6 +46,7 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
   .then((weather) => dispatch(fetchWeatherSuccess(weather)))
+  .then(({weather}) => storeWeather(weather))
   .catch(err => {
     dispatch(fetchWeatherError(err));
   })

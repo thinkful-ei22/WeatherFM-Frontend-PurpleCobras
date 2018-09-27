@@ -1,6 +1,7 @@
 import {
   FETCH_WEATHER_SUCCESS,
-  FETCH_WEATHER_ERROR
+  FETCH_WEATHER_ERROR,
+  SET_WEATHER
 } from '../actions/weather';
 
 const initialState = {
@@ -18,5 +19,9 @@ export default function reducer(state = initialState, action) {
     return Object.assign({}, state, {
       error: action.error
     })
-  } return state;
+  } else if (action.type === SET_WEATHER) {
+        return Object.assign({}, state, {
+            weather: action.weather
+        });
+    } return state;
 }

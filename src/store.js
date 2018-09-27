@@ -2,13 +2,14 @@ import {createStore, applyMiddleware, combineReducers} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
-import {loadAuthToken} from './local-storage';
+import {loadAuthToken, loadWeather} from './local-storage';
 import authReducer from './reducers/auth';
 import protectedDataReducer from './reducers/protected-data';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 import weatherReducer from './reducers/weather';
 import playlistReducer from './reducers/playlists';
 import youtubeReducer from './reducers/youtube';
+import { setWeather } from './actions/weather';
 
 const store = createStore(
     combineReducers({
@@ -22,12 +23,19 @@ const store = createStore(
     applyMiddleware(thunk)
 ));
 
-// Hydrate the authToken from localStorage if it exist
+// Hydrate the authToken from localStorage if it exists
 const authToken = loadAuthToken();
 if (authToken) {
     const token = authToken;
     store.dispatch(setAuthToken(token));
     store.dispatch(refreshAuthToken());
+}
+
+// Hydrate the weather from localStorage if it exists
+const weather = loadWeather();
+console.log('weather', weather);
+if (weather) {
+    store.dispatch(setWeather(weather));
 }
 
 export default store;
