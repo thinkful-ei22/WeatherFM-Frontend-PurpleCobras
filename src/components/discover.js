@@ -31,19 +31,22 @@ export class Discover extends React.Component {
       console.log(this.props.url);
 
     }
+
     if (this.props.url){
+
       return (
       <div>
+        
         <Song url={this.props.url} />
 
         <button onClick={(e) =>{
-          console.log('Add to playlist Clicked', this.props.spotifyList[0].songTitle, this.props.spotifyList[0].artist, this.props.spotifyList[0].thumbnail);
-          this.props.dispatch(addSong(this.props.weather, this.props.spotifyList[0].songTitle, this.props.spotifyList[0].artist, this.props.spotifyList[0].thumbnail))
+          this.props.dispatch(addSong(this.props.weather, this.props.spotifyList[0].artist, this.props.spotifyList[0].songTitle, this.props.spotifyList[0].thumbnail))
         }}>
           Add to Playlist
         </button>
       </div>
     )}
+
   }
   render() {
     return (
