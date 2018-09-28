@@ -7,7 +7,7 @@ services:
 deploy:
   provider: heroku
   api_key:
-    secure: gJg0YLOYIg6-dRhbgG8GyQgit
+    secure: ffc62ba2-9821-4188-baf7-8893475a26af
   app: weatherfm-client
 
   
