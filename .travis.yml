@@ -3,3 +3,11 @@ node_js: node
 script: npm test
 services:
 - react
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: gJg0YLOYIg6-dRhbgG8GyQgit
+  app: weatherfm-client
+
+  
