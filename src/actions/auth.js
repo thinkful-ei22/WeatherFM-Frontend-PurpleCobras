@@ -42,6 +42,7 @@ const storeAuthInfo = (authToken, dispatch) => {
     dispatch(authSuccess(decodedToken.user));
 };
 
+
 export const login = (username, password) => dispatch => {
     dispatch(authRequest());
     return (
