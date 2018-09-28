@@ -46,7 +46,12 @@ export class Discover extends React.Component {
       let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <Song url={this.props.url} />
        <button onClick={(e) =>{
-          this.props.dispatch(addSong(this.props.weather, this.props.spotifyList[0].artist, this.props.spotifyList[0].songTitle, this.props.spotifyList[0].thumbnail))
+          this.props.dispatch(addSong(
+            this.props.weather, 
+            this.props.spotifyList[this.i].artist, 
+            this.props.spotifyList[this.i].songTitle, 
+            this.props.spotifyList[this.i].thumbnail
+          ))
         }}>
           Add to Playlist
         </button>
