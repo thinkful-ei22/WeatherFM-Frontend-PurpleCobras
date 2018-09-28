@@ -31,7 +31,7 @@ export default function reducer(state = initialState, action) {
       deleted: true
     })
   } else if (action.type === DELETE_SONG_ERROR) {
-    console.log('DELETE SONG ERROR');
+    console.log('DELETE SONG ERROR', action);
     return Object.assign({}, state, {
       error: action.error
     })

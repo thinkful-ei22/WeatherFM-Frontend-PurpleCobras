@@ -20,7 +20,7 @@ export const fetchPlaylists = () => (dispatch, getState) =>{
     method: 'GET',
     headers: {
       Authorization: `Bearer ${authToken}`,
-      'content-type': 'application-json'
+      'content-type': 'application/json'
     }
   })
   .then(res => res.json())
@@ -43,7 +43,7 @@ export const deleteSongError = error => ({
   error
 })
 
-export const deleteSong = (weather, songTitle, artist) => (dispatch, getState) => {
+export const deleteSong = (weather, songTitle) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   console.log('Deleting Song', weather);
 
@@ -51,17 +51,10 @@ export const deleteSong = (weather, songTitle, artist) => (dispatch, getState) =
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${authToken}`,
-      'content-type': 'application-json'
-    },
-    // body: JSON.stringify({
-    //   weather:weather,
-    //   artist:artist,
-    //   songTitle:songTitle,
-    //   thumbnail:thumbnail
-    // })
+      'content-type': 'application/json'
+    }
   })
-  .then(res => res.json())
-  .then((res) => dispatch(deleteSongSuccess(res)))
+  .then(() => dispatch(deleteSongSuccess()))
   .then((res) => dispatch(fetchPlaylists(res)))
   .catch((err) => {
     dispatch(deleteSongError(err))
