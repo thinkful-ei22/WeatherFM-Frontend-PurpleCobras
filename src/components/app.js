@@ -10,7 +10,7 @@ import Discover from './discover';
 import {refreshAuthToken} from '../actions/auth';
 import PlaylistPage from './playlist-page';
 import Playlist from './playlist';
-
+ 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
         if (!prevProps.loggedIn && this.props.loggedIn) {

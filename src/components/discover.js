@@ -13,7 +13,6 @@ export class Discover extends React.Component {
 
     this.props.dispatch(fetchSpotify(this.props.weather)); 
 
-
   }
 
   getNextSong(){
