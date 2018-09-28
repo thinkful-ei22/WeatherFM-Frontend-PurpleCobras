@@ -13,7 +13,7 @@ export const fetchPlaylistsError = error => ({
 })
 
 export const fetchPlaylists = () => (dispatch, getState) =>{
-  const authToken = getState().auth.authToken;
+  const authToken = getState().auth.authToken; 
 
   console.log('Fetching Playlists');
   return fetch(`${API_BASE_URL}/users/playlists`, {
