@@ -9,7 +9,7 @@ export class Discover extends React.Component {
   componentDidMount = () => {
     console.log(this, '1st this');
 
-    this.props.dispatch(fetchSpotify(this.props.weather));
+    this.props.dispatch(fetchSpotify(this.props.weather)); 
 
 
   }
