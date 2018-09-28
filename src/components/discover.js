@@ -2,14 +2,16 @@ import React from 'react';
 import Song from './song';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchWeather } from '../actions/weather';
-
+import { fetchSpotify } from '../actions/spotify';
+import { fetchYoutube } from '../actions/youtube';
 export class Discover extends React.Component {
   
   componentDidMount = () => {
     console.log(this, '1st this');
-    // make API call to spotify -> res = 20 songs.
-    // save songs in redux state
+
+    this.props.dispatch(fetchSpotify(this.props.weather));
+
+
   }
 
   // get first song
@@ -21,13 +23,15 @@ export class Discover extends React.Component {
 
   // next button -> pop off songs[0] -- rerender
 
-  returnSong = (weather) => {
-    if (weather === 'Rain'){
-      console.log('raining');
-      return <Song url="https://www.youtube.com/watch?v=J3eUw5ApueY" />
+  returnSong = () => {
+
+    if(this.props.spotifyList.length){
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[0].songTitle, this.props.spotifyList[0].artist))
+      console.log(this.props.url);
+
     }
-    else if (weather === 'Drizzle'){
-      return <Song url="https://www.youtube.com/watch?v=wYkl_fPs6P4" />
+    if (this.props.url){
+      return <Song url={this.props.url} />
     }
   }
   render() {
@@ -37,7 +41,7 @@ export class Discover extends React.Component {
 
         {this.props.weather} Radio
 
-        {this.returnSong('Rain')}
+        {this.returnSong()}
       </div>
     )
   }
@@ -49,7 +53,9 @@ const mapStateToProps = state => {
       username: state.auth.currentUser.username,
       name: `${currentUser.firstName}`,
       protectedData: state.protectedData.data,
-      weather: state.weather.weather
+      weather: state.weather.weather,
+      spotifyList: state.spotify.songs,
+      url: state.youtube.videoURL
   };
 };
 
