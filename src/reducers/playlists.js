@@ -2,7 +2,9 @@ import {
   FETCH_PLAYLISTS_SUCCESS,
   FETCH_PLAYLISTS_ERROR,
   DELETE_SONG_SUCCESS,
-  DELETE_SONG_ERROR
+  DELETE_SONG_ERROR,
+  ADD_SONG_SUCCESS,
+  ADD_SONG_ERROR
 } from '../actions/playlists';
 
 const initialState = {
@@ -33,6 +35,15 @@ export default function reducer(state = initialState, action) {
     return Object.assign({}, state, {
       error: action.error
     })
-  }
-  return state;
+  } else if (action.type === ADD_SONG_SUCCESS) {
+    console.log('ADD SONG SUCCESSFUL');
+    return Object.assign({}, state, {
+      error: null
+    })
+  } else if (action.type === ADD_SONG_ERROR) {
+    console.log('ADD SONG ERROR');
+    return Object.assign({}, state, {
+      error: action.error
+    })
+  } return state;
 }

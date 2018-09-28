@@ -67,3 +67,40 @@ export const deleteSong = (weather, songTitle, artist) => (dispatch, getState) =
     dispatch(deleteSongError(err))
   })
 }
+
+// add a song
+
+export const ADD_SONG_SUCCESS = 'ADD_SONG_SUCCESS';
+export const addSongSuccess = () => ({
+  type: ADD_SONG_SUCCESS
+})
+
+export const ADD_SONG_ERROR = 'ADD_SONG_ERROR';
+export const addSongError = error => ({
+  type: ADD_SONG_ERROR,
+  error
+})
+
+export const addSong = (weather, artist, songTitle, thumbnail) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  console.log('Adding song to', weather);
+
+  return fetch(`${API_BASE_URL}/users/playlists`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      weather,
+      artist,
+      songTitle,
+      thumbnail
+    })
+  })
+  .then(res => res.json())
+  .then((res) => dispatch(addSongSuccess(res)))
+  .catch((err) => {
+    dispatch(addSongError(err))
+  })
+}

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
+import { addSong } from '../actions/playlists';
 export class Discover extends React.Component {
   
   componentDidMount = () => {
@@ -31,8 +32,18 @@ export class Discover extends React.Component {
 
     }
     if (this.props.url){
-      return <Song url={this.props.url} />
-    }
+      return (
+      <div>
+        <Song url={this.props.url} />
+
+        <button onClick={(e) =>{
+          console.log('Add to playlist Clicked', this.props.spotifyList[0].songTitle, this.props.spotifyList[0].artist, this.props.spotifyList[0].thumbnail);
+          this.props.dispatch(addSong(this.props.weather, this.props.spotifyList[0].songTitle, this.props.spotifyList[0].artist, this.props.spotifyList[0].thumbnail))
+        }}>
+          Add to Playlist
+        </button>
+      </div>
+    )}
   }
   render() {
     return (
@@ -42,6 +53,8 @@ export class Discover extends React.Component {
         {this.props.weather} Radio
 
         {this.returnSong()}
+
+
       </div>
     )
   }
