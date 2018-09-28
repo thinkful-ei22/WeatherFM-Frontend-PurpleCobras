@@ -30,8 +30,10 @@ export class Discover extends React.Component {
       console.log(this.props.url);
 
     }
+
     if (this.props.url){
-      return <Song url={this.props.url} />
+      return <div><h1>{this.props.spotifyList[0].songTitle} by {this.props.spotifyList[0].artist}</h1>
+       <Song url={this.props.url} /></div>
     }
   }
   render() {
