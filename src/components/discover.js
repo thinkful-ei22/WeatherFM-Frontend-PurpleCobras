@@ -7,6 +7,7 @@ import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
 export class Discover extends React.Component {
   
+  i=0;
   componentDidMount = () => {
     console.log(this, '1st this');
 
@@ -15,6 +16,14 @@ export class Discover extends React.Component {
 
   }
 
+  getNextSong(){
+    console.log('i is: ', this.i);
+
+    this.i++;
+    console.log('i is now: ', this.i);
+
+    this.returnSong(this.i);
+  }
   // get first song
   // run YT API call
   // render song on page w/ SONG component
@@ -24,29 +33,27 @@ export class Discover extends React.Component {
 
   // next button -> pop off songs[0] -- rerender
 
-  returnSong = () => {
+  returnSong = (index) => {
 
     if(this.props.spotifyList.length){
-      this.props.dispatch(fetchYoutube(this.props.spotifyList[0].songTitle, this.props.spotifyList[0].artist))
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
       console.log(this.props.url);
 
     }
 
     if (this.props.url){
 
-      return (
-      <div>
-        
-        <Song url={this.props.url} />
-
-        <button onClick={(e) =>{
+      let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+       <Song url={this.props.url} />
+       <button onClick={(e) =>{
           this.props.dispatch(addSong(this.props.weather, this.props.spotifyList[0].artist, this.props.spotifyList[0].songTitle, this.props.spotifyList[0].thumbnail))
         }}>
           Add to Playlist
         </button>
-      </div>
-    )}
+       </div>;
 
+       return returnHTML;
+    }
   }
   render() {
     return (
@@ -55,9 +62,9 @@ export class Discover extends React.Component {
 
         {this.props.weather} Radio
 
-        {this.returnSong()}
 
-
+        {this.returnSong(this.i)}
+        <button onClick={() => this.getNextSong()}>Next</button>
       </div>
     )
   }
