@@ -2,7 +2,7 @@ import React from 'react';
 import Song from './song';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchPlaylists } from '../actions/playlists';
+import { fetchPlaylists, deleteSong } from '../actions/playlists';
 import { fetchYoutube } from '../actions/youtube';
 
 // send '{title} + {artist}' as 'song
@@ -16,11 +16,12 @@ export class Playlist extends React.Component {
   // dispatch(fetchYoutube(title, artist));
 
 
-
-
+  // to delete -> send in weather, artist, title, and thumbnail
+  // api/users/playlists
 
   render() {
-    const {dispatch, url, youtube} = this.props;
+    const { dispatch, url, youtube, weather } = this.props;
+    const {deleteSongFromPlaylist} = this;
 
 
     function youtubeClick(artist, title) {
@@ -53,10 +54,20 @@ export class Playlist extends React.Component {
          console.log(youtube, 'url');
           songs.push(
             <div key={title}>
+              
               <img src={albumArt} style={{width: 100, height: 100}}></img>, {title}, by {artist},
+              
               <button onClick={(e) => {
                 youtubeClick(artist, title);
               }}>Play</button>
+
+              <button onClick={(e) => {
+                console.log(playlistName, title, artist, albumArt);
+                dispatch(deleteSong(playlistName, title, artist, albumArt));
+              }}>
+              Delete Song
+              </button>
+
               {/* <Song url = {url}/> */}
               <hr />
             </div>
@@ -85,6 +96,8 @@ const mapStateToProps = state => {
       username: state.auth.currentUser.username,
       name: `${currentUser.firstName}`,
       playlists: state.playlists.playlists,
+      weather: state.weather.weather,
+      deleted: state.playlists.deleted,
       url: state.youtube.videoURL
   };
 };

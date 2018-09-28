@@ -29,3 +29,41 @@ export const fetchPlaylists = () => (dispatch, getState) =>{
     dispatch(fetchPlaylistsError(err));
   })
 }
+
+// delete a song
+
+export const DELETE_SONG_SUCCESS = 'DELETE_SONG_SUCCESS';
+export const deleteSongSuccess = () => ({
+  type: DELETE_SONG_SUCCESS,
+})
+
+export const DELETE_SONG_ERROR = 'DELETE_SONG_ERROR';
+export const deleteSongError = error => ({
+  type: DELETE_SONG_ERROR,
+  error
+})
+
+export const deleteSong = (weather, songTitle, artist) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  console.log('Deleting Song', weather);
+
+  return fetch(`${API_BASE_URL}/users/playlists/${weather}/${songTitle}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'content-type': 'application-json'
+    },
+    // body: JSON.stringify({
+    //   weather:weather,
+    //   artist:artist,
+    //   songTitle:songTitle,
+    //   thumbnail:thumbnail
+    // })
+  })
+  .then(res => res.json())
+  .then((res) => dispatch(deleteSongSuccess(res)))
+  .then((res) => dispatch(fetchPlaylists(res)))
+  .catch((err) => {
+    dispatch(deleteSongError(err))
+  })
+}
