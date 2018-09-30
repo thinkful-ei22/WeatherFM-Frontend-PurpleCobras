@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import {fetchWeather} from '../actions/weather';
 
-
+ 
 export class Dashboard extends React.Component {
 
   getLocation = () => {
