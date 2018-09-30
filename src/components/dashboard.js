@@ -5,7 +5,7 @@ import requiresLogin from './requires-login';
 import {fetchWeather} from '../actions/weather';
 
  
-export class Dashboard extends React.Component {
+export class Dashboard extends React.Component  {
 
   getLocation = () => {
     console.log('geoloc running');
