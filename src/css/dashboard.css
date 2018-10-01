@@ -1,0 +1,8 @@
+.dashboard {
+  display: flex;
+}
+
+.dashboard .linkTo {
+  display: inline-block;
+}
+

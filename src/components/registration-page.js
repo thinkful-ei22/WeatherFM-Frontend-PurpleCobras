@@ -12,9 +12,8 @@ export function RegistrationPage(props) {
     }
     return (
         <div className="home">
-            <h2>Register for Foo App</h2>
+            <h2>Register for Weather FM</h2>
             <RegistrationForm />
-            <Link to="/">Login</Link>
         </div>
     );
 }
