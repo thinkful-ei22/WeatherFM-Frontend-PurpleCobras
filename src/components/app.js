@@ -10,6 +10,7 @@ import Discover from './discover';
 import {refreshAuthToken} from '../actions/auth';
 import PlaylistPage from './playlist-page';
 import Playlist from './playlist';
+import LoginPage from './login';
  
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -48,11 +49,13 @@ export class App extends React.Component {
                 <Link to={'/discover'}>Discover</Link>
                 <Link to={'/dashboard'}>Dashboard</Link>
                 <Link to={'/playlists'}>Playlist Page</Link>
-                <HeaderBar />
+                <HeaderBar exact path="/(dashboard|discover|playlists)/" />
                 <Route exact path="/" component={LandingPage} />
+                <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/discover" component={Discover} />
                 <Route exact path="/playlists" component={PlaylistPage} />
+                <Route path="/playlist/:name" component={HeaderBar} />
                 <Route path="/playlist/:name" component={Playlist} />
                 <Route exact path="/register" component={RegistrationPage} />
             </div>
