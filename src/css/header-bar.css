@@ -1,0 +1,17 @@
+.header-bar {
+  background-color: inherit;
+  width: 96%;
+  position: relative;
+  padding: 2%;
+  text-align: right;
+}
+
+.headLinks a, a:link, a:visited, a:active, a:hover {
+  color: #000;
+  text-decoration: none;
+  background-color: #fff;
+  padding: 5px;
+  margin: 5px;
+  font-family: 'Open Sans';
+  font-size: 12px;
+}

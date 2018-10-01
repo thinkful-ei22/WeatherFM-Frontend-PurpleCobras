@@ -45,17 +45,12 @@ export class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <Link to={'/'}>Home</Link>
-                <Link to={'/discover'}>Discover</Link>
-                <Link to={'/dashboard'}>Dashboard</Link>
-                <Link to={'/playlists'}>Playlist Page</Link>
-                <HeaderBar exact path="/(dashboard|discover|playlists)/" />
+                <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/discover" component={Discover} />
                 <Route exact path="/playlists" component={PlaylistPage} />
-                <Route path="/playlist/:name" component={HeaderBar} />
                 <Route path="/playlist/:name" component={Playlist} />
                 <Route exact path="/register" component={RegistrationPage} />
             </div>

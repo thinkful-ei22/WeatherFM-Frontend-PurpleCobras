@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Righteous');
+
+.bigCont {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f9f0fdc18a215ec725f8ca61dc6fcbdf&auto=format&fit=crop&w=1500&q=80);
+  /* background-image: url(https://cdnw.nickpic.host/xXhFWp.png); */
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: auto;
+}

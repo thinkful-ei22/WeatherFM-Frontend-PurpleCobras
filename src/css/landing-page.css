@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Righteous');
+
+.landingPage h1 { 
+  font-family: 'Righteous';
+  font-size: 70px;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+  width: 24%;
+  margin-left: 8%;
+  margin-top: 10%;
+  border: 5px solid #fff;
+  padding: 3%;
+  letter-spacing: 1px;
+  line-height: 130%;
+  text-align: justify!important;
+}
+
+.landingPage h4 {
+  font-family: 'Open Sans';
+  font-weight: light;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 5px;
+  position: absolute;
+  margin-top: -27%;
+  margin-left: 20%;
+}

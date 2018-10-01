@@ -5,11 +5,14 @@ import {Provider} from 'react-redux';
 import App from './components/app';
 import store from './store';
 import './index.css';
+import './css/app.css';
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <App />
+            <div className="bigCont">
+                <App />
+            </div>
         </Router>
     </Provider>,
     document.getElementById('root')
