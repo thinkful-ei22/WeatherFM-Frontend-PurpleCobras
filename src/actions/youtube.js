@@ -20,12 +20,13 @@ export const fetchYoutubeError = error => ({
 })
 
 export const fetchYoutube = (title, artist) => (dispatch, getState) => {
+  dispatch(fetchYoutubeRequest());
   const authToken = getState().auth.authToken;
 
   let songArtist = artist.split(' ').join('+'); 
   let songTitle = title.split(' ').join('+');
 
-  console.log(title, artist, 'title and artist');
+  // console.log(title, artist, 'title and artist');
 
   return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}`, {
     method: 'GET',
@@ -39,16 +40,16 @@ export const fetchYoutube = (title, artist) => (dispatch, getState) => {
    return normalizeResponseErrors(res)
   })
   .then(res => {
-    console.log(res, 'res')
+    // console.log(res, 'res')
 
     return res.json()
   })
   .then(videoURL => {
-    console.log(videoURL, 'url in action')
+    // console.log(videoURL, 'url in action')
     dispatch(fetchYoutubeSuccess(videoURL))
   })
   .catch(err => {
-    console.log(err)
+    // console.log(err)
     dispatch(fetchYoutubeError(err));
   })
 };
