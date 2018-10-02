@@ -3,8 +3,13 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import {fetchWeather} from '../actions/weather';
+<<<<<<< HEAD
 import '../css/app.css';
 import '../css/dashboard.css';
+=======
+import './dashboard.css';
+
+>>>>>>> 3ddb6302e2f2f951b92560439738375c395c4f42
  
 export class Dashboard extends React.Component  {
 
@@ -36,7 +41,11 @@ export class Dashboard extends React.Component  {
     render() {
       this.getLocation();
 
+<<<<<<< HEAD
      // console.log("THE WEATHER", this.props.weather)
+=======
+      console.log("THE WEATHER", this.props.weather)
+>>>>>>> 3ddb6302e2f2f951b92560439738375c395c4f42
 
       //to add the spinner
       let weather;
@@ -46,7 +55,11 @@ export class Dashboard extends React.Component  {
         weather = <div>Right now it is {this.props.weather}!</div>
       }
 
+<<<<<<< HEAD
        // console.log(this.props);
+=======
+        console.log(this.props);
+>>>>>>> 3ddb6302e2f2f951b92560439738375c395c4f42
         return (
             <div className="dashboard">
                 {/* <div className="dashboard-username">

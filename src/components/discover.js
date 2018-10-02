@@ -5,8 +5,12 @@ import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
+<<<<<<< HEAD
 import '../css/discover.css';
 import '../css/app.css';
+=======
+import './discover.css';
+>>>>>>> 3ddb6302e2f2f951b92560439738375c395c4f42
 
 export class Discover extends React.Component {
   
@@ -29,6 +33,7 @@ export class Discover extends React.Component {
   }
 
   returnSong = (index) => {
+<<<<<<< HEAD
     if(this.props.spotifyList.length){
       this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist));
@@ -43,6 +48,21 @@ export class Discover extends React.Component {
       let returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <div className="thumbnail">{this.thumbnail}</div>
        <div className="controls"></div>
+=======
+    let returnHTML = '';
+    if(this.props.spotifyList.length){
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
+      // console.log(this.props.url);
+    }
+
+    // let returnHTML = '';
+    if(this.props.url === '') {
+      return returnHTML = <div className="lds-circle"></div>
+    }
+ 
+    else if (this.props.url){
+      let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+>>>>>>> 3ddb6302e2f2f951b92560439738375c395c4f42
        <Song url={this.props.url} />
        <button onClick={(e) =>{
           this.props.dispatch(addSong(
