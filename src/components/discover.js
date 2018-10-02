@@ -6,23 +6,24 @@ import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
 import '../css/discover.css';
+import '../css/app.css';
 
 export class Discover extends React.Component {
   
   thumbnail="";
   i=0;
   componentDidMount = () => {
-    console.log(this, '1st this');
+    // console.log(this, '1st this');
 
     this.props.dispatch(fetchSpotify(this.props.weather)); 
 
   }
 
   getNextSong(){
-    console.log('i is: ', this.i);
+    // console.log('i is: ', this.i);
 
     this.i++;
-    console.log('i is now: ', this.i);
+    // console.log('i is now: ', this.i);
 
     this.returnSong(this.i);
   }
@@ -33,7 +34,11 @@ export class Discover extends React.Component {
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist));
     }
 
-    if (this.props.url){
+     let returnHTML = '';
+     if(this.props.url === '') {
+      return returnHTML = <div className="lds-circle"></div>
+    }
+    else if (this.props.url){
 
       let returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <div className="thumbnail">{this.thumbnail}</div>

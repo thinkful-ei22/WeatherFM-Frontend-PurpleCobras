@@ -17,7 +17,7 @@ export const clearAuthToken = () => {
 // weather
 
 export const loadWeather = () => {
-    console.log(localStorage.getItem('weather'))
+    // console.log(localStorage.getItem('weather'))
     return localStorage.getItem('weather');
 }
 
