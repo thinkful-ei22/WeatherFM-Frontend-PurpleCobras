@@ -11,14 +11,14 @@ const initialState = {
 
 export default function reducer(state = initialState, action){
   if (action.type === FETCH_SPOTIFY_SUCCESS){
-    console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
+    // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
     return Object.assign({}, state, {
 
       songs: action.songs
     })
   }
   else if (action.type === FETCH_SPOTIFY_ERROR){
-    console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
+    // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
     return Object.assign({}, state, {
       error: action.error
     })

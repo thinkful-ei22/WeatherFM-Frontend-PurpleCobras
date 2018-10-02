@@ -6,38 +6,41 @@ import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
 import '../css/discover.css';
-
 export class Discover extends React.Component {
   
   thumbnail="";
   i=0;
   componentDidMount = () => {
-    console.log(this, '1st this');
+    // console.log(this, '1st this');
 
     this.props.dispatch(fetchSpotify(this.props.weather)); 
 
   }
 
   getNextSong(){
-    console.log('i is: ', this.i);
+    // console.log('i is: ', this.i);
 
     this.i++;
-    console.log('i is now: ', this.i);
+    // console.log('i is now: ', this.i);
 
     this.returnSong(this.i);
   }
 
   returnSong = (index) => {
+    let returnHTML = '';
     if(this.props.spotifyList.length){
       this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
+
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist));
+      // console.log(this.props.url);
     }
 
-    if (this.props.url){
-
-      let returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
-       <div className="thumbnail">{this.thumbnail}</div>
-       <div className="controls"></div>
+    if(this.props.url === '') {
+      return returnHTML = <div className="lds-circle"></div>
+    }
+ 
+    else if (this.props.url){
+      let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <Song url={this.props.url} />
        <button onClick={(e) =>{
           this.props.dispatch(addSong(

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists, deleteSong } from '../actions/playlists';
 import { fetchYoutube } from '../actions/youtube';
+import '../css/playlist.css';
 
 // send '{title} + {artist}' as 'song
 
@@ -77,11 +78,18 @@ export class Playlist extends React.Component {
       }
       return songs;
     }
+    let currentSong
+    if(this.props.urlLoading === true){
+      currentSong = <div className="lds-circle"></div>
+    } else if(this.props.urlLoading === false){
+      currentSong = <Song url = {this.props.url}/>
+    }
 
     return (
       <div>
         <h1>{playlistName} Playlist</h1>
-        <Song url = {this.props.url}/>
+        {/* <Song url = {this.props.url}/> */}
+        {currentSong}
 
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
@@ -98,7 +106,8 @@ const mapStateToProps = state => {
       playlists: state.playlists.playlists,
       weather: state.weather.weather,
       deleted: state.playlists.deleted,
-      url: state.youtube.videoURL
+      url: state.youtube.videoURL,
+      urlLoading: state.youtube.loading
   };
 };
 

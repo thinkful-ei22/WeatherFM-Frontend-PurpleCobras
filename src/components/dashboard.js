@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import {fetchWeather} from '../actions/weather';
+import './dashboard.css';
 
  
 export class Dashboard extends React.Component  {
@@ -33,8 +34,17 @@ export class Dashboard extends React.Component  {
 
       
     render() {
-  
       this.getLocation();
+
+      console.log("THE WEATHER", this.props.weather)
+
+      //to add the spinner
+      let weather;
+      if (this.props.weather === "loading...") {
+        weather = <div class="lds-circle"></div>
+      } else {
+        weather = <div>Right now it is {this.props.weather}!</div>
+      }
 
         console.log(this.props);
         return (
@@ -44,7 +54,7 @@ export class Dashboard extends React.Component  {
                 </div>
                 <div className="dashboard-name">Name: {this.props.name}</div> */}
 
-                <div>Right now it is {this.props.weather}!</div>
+                {weather}
             
                 <div className="linkTo">
                   <Link to={'/discover'} clasName="">Discover</Link>
