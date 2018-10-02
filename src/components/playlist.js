@@ -4,12 +4,8 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists, deleteSong } from '../actions/playlists';
 import { fetchYoutube } from '../actions/youtube';
-<<<<<<< HEAD
 // import './playlist.css';
 import '../css/app.css';
-=======
-import './playlist.css';
->>>>>>> 3ddb6302e2f2f951b92560439738375c395c4f42
 
 // send '{title} + {artist}' as 'song
 
