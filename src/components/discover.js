@@ -62,7 +62,10 @@ export class Discover extends React.Component {
   changeWeather = (newWeather) => {
     console.log(newWeather);
     this.props.dispatch(changeWeather(newWeather))
-    .then(this.props.dispatch(fetchSpotify(this.props.weather)));
+    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   render() {
