@@ -6,6 +6,7 @@ import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
 import { changeWeather } from '../actions/weather';
+import './discover.css';
 
 export class Discover extends React.Component {
   constructor() {
@@ -18,29 +19,34 @@ export class Discover extends React.Component {
   i=0;
   componentDidMount = () => {
     console.log(this, '1st this');
+    // console.log(this, '1st this');
+
     this.props.dispatch(fetchSpotify(this.props.weather)); 
     this.setState({changed: false});
   }
 
   getNextSong(){
-    console.log('i is: ', this.i);
+    // console.log('i is: ', this.i);
 
     this.i++;
-    console.log('i is now: ', this.i);
+    // console.log('i is now: ', this.i);
 
     this.returnSong(this.i);
   }
 
   returnSong = (index) => {
-
+    let returnHTML = '';
     if(this.props.spotifyList.length){
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
-      console.log(this.props.url);
-
+      // console.log(this.props.url);
     }
 
-    if (this.props.url){
-
+    // let returnHTML = '';
+    if(this.props.url === '') {
+      return returnHTML = <div className="lds-circle"></div>
+    }
+ 
+    else if (this.props.url){
       let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <Song url={this.props.url} />
        <button onClick={(e) =>{

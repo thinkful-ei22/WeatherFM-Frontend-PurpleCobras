@@ -35,7 +35,7 @@ if (authToken) {
 
 // Hydrate the weather from localStorage if it exists
 const weather = loadWeather();
-console.log('weather', weather);
+// console.log('weather', weather);
 if (weather) {
     store.dispatch(setWeather(weather));
 }
