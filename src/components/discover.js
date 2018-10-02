@@ -5,24 +5,20 @@ import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
+import Slider from './slider';
 import './discover.css';
 
 export class Discover extends React.Component {
-  
   i=0;
   componentDidMount = () => {
     // console.log(this, '1st this');
-
     this.props.dispatch(fetchSpotify(this.props.weather)); 
-
   }
 
   getNextSong(){
     // console.log('i is: ', this.i);
-
     this.i++;
     // console.log('i is now: ', this.i);
-
     this.returnSong(this.i);
   }
   // get first song
@@ -74,6 +70,7 @@ export class Discover extends React.Component {
 
         {this.returnSong(this.i)}
         <button onClick={() => this.getNextSong()}>Next</button>
+        <Slider/>
       </div>
     )
   }
