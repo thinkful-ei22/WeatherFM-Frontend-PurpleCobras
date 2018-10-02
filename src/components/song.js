@@ -19,11 +19,11 @@ export class Song extends React.Component {
   }
 
   onPlay = () => {
-    console.log('onPlay')
+    //console.log('onPlay')
     this.setState({ playing: true })
   }
   onPause = () => {
-    console.log('onPause')
+    //console.log('onPause')
     this.setState({ playing: false })
   }
   setVolume = e => {
@@ -37,7 +37,7 @@ export class Song extends React.Component {
 
   onSeekMouseDown = e => {
     this.setState({ seeking: true });
-    console.log(e.target.value)
+    //console.log(e.target.value)
   }
   onSeekChange = e => {
     this.setState({ played: parseFloat(e.target.value) })
@@ -45,19 +45,20 @@ export class Song extends React.Component {
 
   onSeekMouseUp = e => {
     if (this.player) {
-      console.log('seeking');
+      //console.log('seeking');
       this.setState({ seeking: false });
       this.player.seekTo(parseFloat(e.target.value));
     }
   }
 
   onProgress = state => {
-    console.log('onProgress', state)
+    //console.log('onProgress', state)
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
       this.setState(state)
     }
   }
+  
 
   ref = player => {
     this.player = player
@@ -80,21 +81,9 @@ export class Song extends React.Component {
               onPlay={this.onPlay}
               onPause={this.onPause}
               onSeek={e => console.log('onSeek', e)}
-              // onEnded={this.onEnded}
+              onEnded={this.props.onEnded}
               onProgress={this.onProgress}
             />
-       {/* <ReactPlayer 
-       ref={this.ref}
-       playing={playing}
-       onPlay={this.onPlay}
-       onPause={this.onPause}
-       volume={volume}
-       muted={muted}
-       height='50%'
-       width='50%'
-       onSeek={e => console.log('onSeek', e)}
-       onProgress={this.onProgress}
-       /> */}
 <section>
        <table><tbody>
             <tr>
@@ -110,7 +99,7 @@ export class Song extends React.Component {
               {/* <input type="range" name="weight" id="range_weight" value="5" min="1" max="100" /> */}
                 <input
                   type='range' min={0} max={1} step='any'
-                  value={this.state.played}
+                  value={played}
                   onMouseDown={this.onSeekMouseDown}
                   onChange={this.onSeekChange}
                   onMouseUp={this.onSeekMouseUp}

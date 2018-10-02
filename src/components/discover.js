@@ -27,6 +27,11 @@ export class Discover extends React.Component {
 
     this.returnSong(this.i);
   }
+  onEnded(){
+    console.log('Song has ended');
+
+    this.getNextSong();
+  }
 
   returnSong = (index) => {
     if(this.props.spotifyList.length){
@@ -43,7 +48,7 @@ export class Discover extends React.Component {
       let returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <div className="thumbnail">{this.thumbnail}</div>
        <div className="controls"></div>
-       <Song url={this.props.url} />
+       <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
        <button onClick={(e) =>{
           this.props.dispatch(addSong(
             this.props.weather, 

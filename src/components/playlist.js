@@ -5,7 +5,7 @@ import requiresLogin from './requires-login';
 import { fetchPlaylists, deleteSong } from '../actions/playlists';
 import { fetchYoutube } from '../actions/youtube';
 // import './playlist.css';
-import '../css/app.css';
+// import '../css/app.css';
 
 // send '{title} + {artist}' as 'song
 
