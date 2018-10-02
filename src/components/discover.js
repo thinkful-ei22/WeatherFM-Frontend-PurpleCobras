@@ -5,14 +5,21 @@ import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
+import { changeWeather } from '../actions/weather';
+
 export class Discover extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      changed: false
+    }
+  }
   
   i=0;
   componentDidMount = () => {
     console.log(this, '1st this');
-
     this.props.dispatch(fetchSpotify(this.props.weather)); 
-
+    this.setState({changed: false});
   }
 
   getNextSong(){
@@ -23,14 +30,6 @@ export class Discover extends React.Component {
 
     this.returnSong(this.i);
   }
-  // get first song
-  // run YT API call
-  // render song on page w/ SONG component
-  
-  // add to playlist button -> click to add to playlist with same title as weather w/ endpoint
-  // SEND BACK -> weather, artist, song title, album thumbnail -- all in req. body
-
-  // next button -> pop off songs[0] -- rerender
 
   returnSong = (index) => {
 
@@ -59,10 +58,33 @@ export class Discover extends React.Component {
        return returnHTML;
     }
   }
+
+  changeWeather = (newWeather) => {
+    console.log(newWeather);
+    this.props.dispatch(changeWeather(newWeather))
+    .then(this.props.dispatch(fetchSpotify(this.props.weather)));
+  }
+
   render() {
     return (
       <div>
-        Right now it is {this.props.weather}! <br /><br />
+        Right now it is {this.props.weather}! <br />
+        <label forHTML="Radio">Change the station: </label>
+        <select 
+          name="Radio"
+          // value={this.props.weather} 
+          onChange={e => 
+            this.changeWeather(e.target.value)
+            // console.log(e.target.value)
+        }>
+          <option value="Sunny">Sunny</option>
+          <option value="Rainy">Rainy</option>
+          <option value="Drizzle">Drizzle</option>
+          <option value="Snowy">Snowy</option>
+          <option value="Cloudy">Cloudy</option>
+          <option value="Thunderstorm">Thunderstorm</option>
+        </select>
+        <br /><br />
 
         {this.props.weather} Radio
 
@@ -82,7 +104,8 @@ const mapStateToProps = state => {
       protectedData: state.protectedData.data,
       weather: state.weather.weather,
       spotifyList: state.spotify.songs,
-      url: state.youtube.videoURL
+      url: state.youtube.videoURL,
+      changed: state.weather.changed
   };
 };
 
