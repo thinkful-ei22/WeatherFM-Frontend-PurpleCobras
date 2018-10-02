@@ -22,7 +22,7 @@ export const fetchSpotifyError = error => ({
 export const fetchSpotify = (weather) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
 
-  console.log(weather);
+  // console.log(weather);
 
   return fetch(`${API_BASE_URL}/users/rec/${weather}`, {
     method: 'GET',
@@ -38,11 +38,11 @@ export const fetchSpotify = (weather) => (dispatch, getState) => {
     return res.json()
   })
   .then(songsArr => {
-    console.log(songsArr, 'discovered songs')
+    // console.log(songsArr, 'discovered songs')
     dispatch(fetchSpotifySuccess(songsArr))
   })
   .catch(err => {
-    console.log(err)
+    // console.log(err)
     dispatch(fetchSpotifyError(err))
   })
 };
