@@ -6,19 +6,21 @@ import {
 
 import {
   FETCH_SPOTIFY_SLIDER_ERROR,
-  FETCH_SPOTIFY_SLIDER_SUCCESS
+  FETCH_SPOTIFY_SLIDER_SUCCESS,
+  FETCH_SPOTIFY_AVERAGES_SUCCESS
 } from '../actions/spotifySlider';
+
 
 const initialState = {
   songs: [],
-  error: null
+  error: null,
+  averages: null
 }
 
 export default function reducer(state = initialState, action){
   if (action.type === FETCH_SPOTIFY_SUCCESS){
     // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
     return Object.assign({}, state, {
-
       songs: action.songs
     })
   }
@@ -26,6 +28,12 @@ export default function reducer(state = initialState, action){
     // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
     return Object.assign({}, state, {
       error: action.error
+    })
+  }
+  else if (action.type === FETCH_SPOTIFY_AVERAGES_SUCCESS){
+    // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
+    return Object.assign({}, state, {
+      averages: action.averages
     })
   }
   else if (action.type === FETCH_SPOTIFY_SLIDER_ERROR){
