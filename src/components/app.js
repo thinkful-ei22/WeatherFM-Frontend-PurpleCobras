@@ -10,6 +10,7 @@ import Discover from './discover';
 import {refreshAuthToken} from '../actions/auth';
 import PlaylistPage from './playlist-page';
 import Playlist from './playlist';
+import Onboarding from './onboarding';
  
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -50,6 +51,7 @@ export class App extends React.Component {
                 <Link to={'/playlists'}>Playlist Page</Link>
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
+                <Route exact path="/onboarding" component={Onboarding} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/discover" component={Discover} />
                 <Route exact path="/playlists" component={PlaylistPage} />
