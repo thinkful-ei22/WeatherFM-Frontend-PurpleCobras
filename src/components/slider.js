@@ -9,7 +9,13 @@ export class Slider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            displaySlider: false
+            displaySlider: false,
+            danceability: .5,
+            energy: .5,
+            popularity: 40,
+            valence: .5,
+            loudness: -30,
+            acousticness: .5
         };
     }
     componentDidMount() {
@@ -48,43 +54,54 @@ export class Slider extends React.Component {
             sliderMessage = "Hide Advanced Settings"
             sliderForm =
                 <div>
-                    <form onSubmit={(e) => console.log(e.target.value)} className="slider">
+                    <form onSubmit={(e) => this.handleSlider(e)} className="slider">
                         <div className="dancy">
                             <label htmlFor="danceability">Not Dancy</label>
                             <input type="range" id="danceability" name="danceability"
                                 min="0" max="1" defaultValue=".5" step=".01"
-                                onChange={(e) => console.log(e.target.value)} />
-                            <label htmlFor="danceability">Super Dance</label>
+                                onChange={(e) => this.setState({danceability: e.target.value})}
+                                value={this.state.danceability} />
+                            <label htmlFor="danceability">Super Dancy: {Math.floor(this.state.danceability * 100)}%</label>
                         </div>
                         <div className="energy">
                             <label htmlFor="energy">Low Energy</label>
                             <input type="range" id="energy" name="energy"
-                                min="0" max="1" defaultValue=".5" step=".01" />
-                            <label htmlFor="energy">High Energy</label>
+                                min="0" max="1" defaultValue=".5" step=".01"
+                                onChange={(e) => this.setState({energy: e.target.value})}
+                                value={this.state.energy} />
+                            <label htmlFor="energy">High Energy: {Math.floor(this.state.energy * 100)}%</label>
                         </div>
                         <div className="popularity">
                             <label htmlFor="popularity">Less Popular</label>
                             <input type="range" id="popularity" name="popularity"
-                                min="10" max="80" defaultValue="30" step="1" />
-                            <label htmlFor="popularity">More Popular</label>
+                                min="10" max="80" defaultValue="30" step="1"
+                                onChange={(e) => this.setState({popularity: e.target.value})}
+                                value={this.state.popularity} />
+                            <label htmlFor="popularity">More Popular: {this.state.popularity}%</label>
                         </div>
-                        <div className="happiness">
+                        <div className="valence">
                             <label htmlFor="valence">Sad</label>
                             <input type="range" id="valence" name="valence"
-                                min="0" max="1" defaultValue=".5" step=".01" />
-                            <label htmlFor="valence">Happy</label>
+                                min="0" max="1" defaultValue=".5" step=".01"
+                                onChange={(e) => this.setState({valence: e.target.value})}
+                                value={this.state.valence} />
+                            <label htmlFor="valence">Happy: {Math.floor(this.state.valence * 100)}%</label>
                         </div>
                         <div className="volume">
                             <label htmlFor="loudness">Softer</label>
                             <input type="range" id="loudness" name="loudness"
-                                min="-60" max="0" defaultValue="-30" step=".5" />
-                            <label htmlFor="loudness">Louder</label>
+                                min="-60" max="0" defaultValue="-30" step="1"
+                                onChange={(e) => this.setState({loudness: e.target.value})}
+                                value={this.state.loudness} />
+                            <label htmlFor="loudness">Louder: {this.state.loudness}dBs (-60 to 0)</label>
                         </div>
                         <div className="acousticness">
                             <label htmlFor="acousticness">Less Acoustic</label>
                             <input type="range" id="acousticness" name="acousticness"
-                                min="0" max="1" defaultValue=".5" step=".01" />
-                            <label htmlFor="acousticness">More Acoustic</label>
+                                min="0" max="1" defaultValue=".5" step=".01"
+                                onChange={(e) => this.setState({acousticness: e.target.value})}
+                                value={this.state.acousticness} />
+                            <label htmlFor="acousticness">More Acoustic: {Math.floor(this.state.acousticness * 100)}%</label>
                         </div>
                         <button type="submit">Customize!</button>
                     </form>
