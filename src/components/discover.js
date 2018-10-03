@@ -12,7 +12,8 @@ export class Discover extends React.Component {
   constructor() {
     super()
     this.state = {
-      changed: false
+      changed: false,
+      karaokeMode: false
     }
   }
   
@@ -35,13 +36,45 @@ export class Discover extends React.Component {
     this.returnSong(this.i);
   }
 
+  switchMode = () =>{
+    //console.log('switch mode running');
+    this.setState({
+      karaokeMode: !this.state.karaokeMode
+    })
+  }
+  changeModeButton = () =>{
+    //console.log('changing mode');
+    let switchButton;
+    if (this.state.karaokeMode === false){
+     switchButton = <button onClick={() => this.switchMode()}>Switch to Karaoke Mode</button>;
+
+    }
+    else {
+      switchButton = <button onClick={() => this.switchMode()}>Switch to Video Mode</button>;
+    }
+    return switchButton;
+
+  }
+
   returnSong = (index) => {
+    //console.log('returnSong ran');
     let returnHTML = '';
     if(this.props.spotifyList.length){
+      //console.log(this.props.spotifyList);
       this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
+      if (this.state.karaokeMode === false){
+        //console.log('karaokeMode is' +this.state.karaokeMode)
+        //console.log('video mode');
 
-      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist));
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'));
       // console.log(this.props.url);
+      }
+      else if (this.state.karaokeMode === true) {
+        //console.log('karaokeMode is' +this.state.karaokeMode)
+        //console.log('karaoke mode');
+        this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke'));
+
+      }
     }
 
     if(this.props.url === '') {
@@ -50,6 +83,7 @@ export class Discover extends React.Component {
  
     else if (this.props.url){
       let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+      <p>{this.props.lyrics}</p>
        <Song url={this.props.url} />
        <button onClick={(e) =>{
           this.props.dispatch(addSong(
@@ -68,7 +102,7 @@ export class Discover extends React.Component {
   }
 
   changeWeather = (newWeather) => {
-    console.log(newWeather);
+    //console.log(newWeather);
     this.props.dispatch(changeWeather(newWeather))
     .then(this.props.dispatch(fetchSpotify(this.props.weather)))
     .catch(err => {
@@ -100,6 +134,8 @@ export class Discover extends React.Component {
         {this.props.weather} Radio
 
         {this.returnSong(this.i)}
+        {this.changeModeButton()}
+
         <button onClick={() => this.getNextSong()}>Next</button>
       </div>
     )
@@ -115,7 +151,7 @@ const mapStateToProps = state => {
       weather: state.weather.weather,
       spotifyList: state.spotify.songs,
       url: state.youtube.videoURL,
-      changed: state.weather.changed
+      changed: state.weather.changed,
   };
 };
 

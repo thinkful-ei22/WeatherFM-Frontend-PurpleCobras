@@ -11,7 +11,6 @@ import playlistReducer from './reducers/playlists';
 import youtubeReducer from './reducers/youtube';
 import { setWeather } from './actions/weather';
 import spotifyReducer from './reducers/spotify';
-
 const store = createStore(
     combineReducers({
         form: formReducer,
@@ -20,7 +19,7 @@ const store = createStore(
         weather: weatherReducer,
         playlists: playlistReducer,
         youtube: youtubeReducer,
-        spotify: spotifyReducer
+        spotify: spotifyReducer,
     }), composeWithDevTools(
     applyMiddleware(thunk)
 ));

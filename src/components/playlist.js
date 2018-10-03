@@ -13,12 +13,34 @@ export class Playlist extends React.Component {
     console.log('Playlist Component Mounted');
     this.props.dispatch(fetchPlaylists());
   }
-
+  state = {
+    karaokeMode: false
+  }
   // dispatch(fetchYoutube(title, artist));
 
 
   // to delete -> send in weather, artist, title, and thumbnail
   // api/users/playlists
+  switchMode = () =>{
+    console.log('switch mode running');
+    this.setState({
+      karaokeMode: !this.state.karaokeMode
+    })
+  }
+  changeModeButton = () =>{
+    console.log('changing mode');
+    let switchButton;
+    if (this.state.karaokeMode === false){
+     switchButton = <button onClick={() => this.switchMode()}>Switch to Karaoke Mode</button>;
+
+    }
+    else {
+
+      switchButton = <button onClick={() => this.switchMode()}>Switch to Video Mode</button>;
+    }
+    return switchButton;
+
+  }
 
   render() {
     const { dispatch, url, youtube, weather } = this.props;

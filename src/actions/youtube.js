@@ -19,7 +19,7 @@ export const fetchYoutubeError = error => ({
   error
 })
 
-export const fetchYoutube = (title, artist) => (dispatch, getState) => {
+export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
   dispatch(fetchYoutubeRequest());
   const authToken = getState().auth.authToken;
 
@@ -28,7 +28,7 @@ export const fetchYoutube = (title, artist) => (dispatch, getState) => {
 
   // console.log(title, artist, 'title and artist');
 
-  return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}`, {
+  return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}/${mode}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${authToken}`,
