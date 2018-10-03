@@ -76,15 +76,15 @@ export class Slider extends React.Component {
                         <div className="dancy">
                             <label htmlFor="danceability">Not Dancy</label>
                             <input type="range" id="danceability" name="danceability"
-                                min="0" max="1" defaultValue=".5" step=".01"
+                                min="0" max="1" defaultValue={this.props.averages.danceability} step=".01"
                                 onChange={(e) => this.setState({ danceability: e.target.value })}
-                                value={this.state.danceability} />
+                                value={this.props.averages.danceability} />
                             <label htmlFor="danceability">Super Dancy: {Math.floor(this.state.danceability * 100)}%</label>
                         </div>
                         <div className="energy">
                             <label htmlFor="energy">Low Energy</label>
                             <input type="range" id="energy" name="energy"
-                                min="0" max="1" defaultValue=".5" step=".01"
+                                min="0" max="1" defaultValue={this.props.averages.energy} step=".01"
                                 onChange={(e) => this.setState({ energy: e.target.value })}
                                 value={this.state.energy} />
                             <label htmlFor="energy">High Energy: {Math.floor(this.state.energy * 100)}%</label>
