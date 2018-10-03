@@ -83,7 +83,7 @@ export class Discover extends React.Component {
     return (
       <div>
         Right now it is {this.props.weather}! <br />
-        <label forHTML="Radio">Change the station: </label>
+        <label htmlFor="Radio">Change the station: </label>
         <select 
           name="Radio"
           // value={this.props.weather} 

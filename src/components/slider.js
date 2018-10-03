@@ -4,6 +4,7 @@ import requiresLogin from './requires-login';
 import { fetchSpotifySlider } from '../actions/spotifySlider';
 import { fetchSpotify } from '../actions/spotify';
 import '../css/slider.css';
+import { fetchPlaylists } from '../actions/playlists';
 
 export class Slider extends React.Component {
     constructor(props) {
@@ -19,8 +20,7 @@ export class Slider extends React.Component {
         };
     }
     componentDidMount() {
-        //get spotify average settings???
-        //than store that and use it to set the default settings for slider....
+      this.props.dispatch(fetchPlaylists())
     }
 
     handleSlider(e) {
@@ -47,7 +47,13 @@ export class Slider extends React.Component {
         })
     }
 
+    getAttributeAverages() {
+       let currentPlaylist = this.props.playlists[this.props.weather];
+       console.log(currentPlaylist);
+    }
+
     render() {
+        this.getAttributeAverages();
         let sliderForm = '';
         let sliderMessage = 'Show Advanced Settings'
         if (this.state.displaySlider === true) {
@@ -104,8 +110,9 @@ export class Slider extends React.Component {
                             <label htmlFor="acousticness">More Acoustic: {Math.floor(this.state.acousticness * 100)}%</label>
                         </div>
                         <button type="submit">Customize!</button>
+                        <button onClick={() => this.resetSettings()}>Reset to Weather Settings</button>
                     </form>
-                    <button onClick={() => this.resetSettings()}>Reset to Weather Settings</button>
+                    
                 </div>
 
         }
@@ -120,7 +127,8 @@ export class Slider extends React.Component {
 
 const mapStateToProps = state => ({
         weather: state.weather.weather,
-        url: state.youtube.videoURL
+        url: state.youtube.videoURL,
+        playlists: state.playlists.playlists
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Slider));
