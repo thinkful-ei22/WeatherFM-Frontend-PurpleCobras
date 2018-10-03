@@ -36,14 +36,16 @@ export class Discover extends React.Component {
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
       // console.log(this.props.url);
     }
+    if(!this.props.spotifyList.length && this.props.url !== ''){
+      return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
+    }
 
-    // let returnHTML = '';
     if(this.props.url === '') {
       return returnHTML = <div className="lds-circle"></div>
     }
  
-    else if (this.props.url){
-      let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+    if (this.props.url !== '' && this.props.spotifyList.length){
+      returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <Song url={this.props.url} />
        <button onClick={(e) =>{
           this.props.dispatch(addSong(
@@ -58,15 +60,13 @@ export class Discover extends React.Component {
        </div>;
 
        return returnHTML;
-    }
+    } 
   }
   render() {
     return (
       <div>
         Right now it is {this.props.weather}! <br /><br />
-
         {this.props.weather} Radio
-
 
         {this.returnSong(this.i)}
         <button onClick={() => this.getNextSong()}>Next</button>
