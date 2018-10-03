@@ -49,16 +49,17 @@ export class Dashboard extends React.Component  {
         console.log(this.props);
         return (
             <div className="dashboard">
-
-                <div className="dashboard-username">
+                {/* <div className="dashboard-username">
                     Username: {this.props.username}
                 </div>
-                <div className="dashboard-name">Name: {this.props.name}</div>
+                <div className="dashboard-name">Name: {this.props.name}</div> */}
 
                 {weather}
             
-                <Link to={'/discover'}>Discover</Link>
-                <Link to={'/playlists'}>Playlist Page</Link>
+                <div className="linkTo">
+                  <Link to={'/discover'} clasName="">Discover</Link>
+                  <Link to={'/playlists'} clasName="">Playlist Page</Link>
+                </div>
             </div>
         );
     }

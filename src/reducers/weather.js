@@ -1,12 +1,14 @@
 import {
   FETCH_WEATHER_SUCCESS,
   FETCH_WEATHER_ERROR,
-  SET_WEATHER
+  SET_WEATHER,
+  CHANGE_WEATHER_SUCCESS,
+  CHANGE_WEATHER_ERROR
 } from '../actions/weather';
 
 const initialState = {
   weather: '',
-  error: null
+  error: null,
 }
 
 export default function reducer(state = initialState, action) {
@@ -23,5 +25,13 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             weather: action.weather
         });
+  } else if (action.type === CHANGE_WEATHER_SUCCESS) {
+      return Object.assign({}, state, {
+          weather: action.newWeather
+      })
+  } else if (action.type === CHANGE_WEATHER_ERROR ) {
+      return Object.assign({}, state, {
+        error: action.error
+      })
     } return state;
 }

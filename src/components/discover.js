@@ -6,13 +6,25 @@ import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
 import Slider from './slider';
-import './discover.css';
+import { changeWeather } from '../actions/weather';
+import '../css/discover.css';
 
 export class Discover extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      changed: false
+    }
+  }
+  
+  thumbnail="";
   i=0;
   componentDidMount = () => {
+    console.log(this, '1st this');
     // console.log(this, '1st this');
     this.props.dispatch(fetchSpotify(this.props.weather)); 
+
+    this.setState({changed: false});
   }
 
   getNextSong(){
@@ -21,20 +33,15 @@ export class Discover extends React.Component {
     // console.log('i is now: ', this.i);
     this.returnSong(this.i);
   }
-  // get first song
-  // run YT API call
-  // render song on page w/ SONG component
-  
-  // add to playlist button -> click to add to playlist with same title as weather w/ endpoint
-  // SEND BACK -> weather, artist, song title, album thumbnail -- all in req. body
-
-  // next button -> pop off songs[0] -- rerender
 
   returnSong = (index) => {
     let returnHTML = '';
     if(this.props.spotifyList.length){
-      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
+      this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
+
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist));
       // console.log(this.props.url);
+
     }
     if(!this.props.spotifyList.length && this.props.url !== ''){
       return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
@@ -62,12 +69,37 @@ export class Discover extends React.Component {
        return returnHTML;
     } 
   }
+
+  changeWeather = (newWeather) => {
+    console.log(newWeather);
+    this.props.dispatch(changeWeather(newWeather))
+    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
   render() {
     return (
       <div>
-        Right now it is {this.props.weather}! <br /><br />
+        Right now it is {this.props.weather}! <br />
+        <label forHTML="Radio">Change the station: </label>
+        <select 
+          name="Radio"
+          // value={this.props.weather} 
+          onChange={e => 
+            this.changeWeather(e.target.value)
+            // console.log(e.target.value)
+        }>
+          <option value="Sunny">Sunny</option>
+          <option value="Rainy">Rainy</option>
+          <option value="Drizzle">Drizzle</option>
+          <option value="Snowy">Snowy</option>
+          <option value="Cloudy">Cloudy</option>
+          <option value="Thunderstorm">Thunderstorm</option>
+        </select>
+        <br /><br />
         {this.props.weather} Radio
-
         {this.returnSong(this.i)}
         <button onClick={() => this.getNextSong()}>Next</button>
         <Slider/>
@@ -84,7 +116,8 @@ const mapStateToProps = state => {
       protectedData: state.protectedData.data,
       weather: state.weather.weather,
       spotifyList: state.spotify.songs,
-      url: state.youtube.videoURL
+      url: state.youtube.videoURL,
+      changed: state.weather.changed
   };
 };
 

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists } from '../actions/playlists';
+import HeaderBar from './header-bar';
 
 export class PlaylistPage extends React.Component {
   componentDidMount() {
@@ -32,7 +33,10 @@ export class PlaylistPage extends React.Component {
 
     return (
       <div>
-        {links}
+        <HeaderBar />
+        <div>
+          {links}
+        </div>
       </div>
     )
   }
