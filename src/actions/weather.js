@@ -50,3 +50,32 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
     dispatch(fetchWeatherError(err));
   })
 };
+
+export const CHANGE_WEATHER_SUCCESS = 'CHANGE_WEATHER_SUCCESS';
+export const changeWeatherSuccess = newWeather => ({
+  type: CHANGE_WEATHER_SUCCESS,
+  newWeather
+})
+
+export const CHANGE_WEATHER_ERROR = 'CHANGE_WEATHER_ERROR';
+export const changeWeatherError = error => ({
+  type: CHANGE_WEATHER_ERROR,
+  error
+})
+
+export const changeWeather = (weather) => (dispatch, getState) => {
+  let newWeather = weather;
+
+  console.log(newWeather);
+  return fetch(`${API_BASE_URL}/users/weather`, {
+    method: 'GET',
+    headers: {
+      'content-type' : 'application/json'
+    }
+  })
+  .then(() => dispatch(changeWeatherSuccess(newWeather)))
+  .then(({weather}) => storeWeather(weather))
+  .catch(err => {
+    dispatch(changeWeatherError(err));
+  })
+};
