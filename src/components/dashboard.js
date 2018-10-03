@@ -9,9 +9,9 @@ import './dashboard.css';
 export class Dashboard extends React.Component  {
 
   getLocation = () => {
-    console.log('geoloc running');
+    // console.log('geoloc running');
     let latitude, longitude;
-    console.log(this, '1st this');
+    // console.log(this, '1st this');
     const {dispatch} = this.props;
     if ("geolocation" in navigator) {
       /* geolocation is available */
@@ -20,10 +20,10 @@ export class Dashboard extends React.Component  {
 
         latitude=position.coords.latitude;
         longitude=position.coords.longitude;
-        console.log(this, ' <THIS');
+        // console.log(this, ' <THIS');
         dispatch(fetchWeather(latitude, longitude));
 
-        console.log('at the end of function');
+        // console.log('at the end of function');
       });
 
     } else {
@@ -36,7 +36,7 @@ export class Dashboard extends React.Component  {
     render() {
       this.getLocation();
 
-      console.log("THE WEATHER", this.props.weather)
+      // console.log("THE WEATHER", this.props.weather)
 
       //to add the spinner
       let weather;
