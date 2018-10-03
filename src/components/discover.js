@@ -5,7 +5,7 @@ import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
-
+import Slider from './slider';
 import { changeWeather } from '../actions/weather';
 import '../css/discover.css';
 
@@ -22,17 +22,15 @@ export class Discover extends React.Component {
   componentDidMount = () => {
     console.log(this, '1st this');
     // console.log(this, '1st this');
-
     this.props.dispatch(fetchSpotify(this.props.weather)); 
+
     this.setState({changed: false});
   }
 
   getNextSong(){
     // console.log('i is: ', this.i);
-
     this.i++;
     // console.log('i is now: ', this.i);
-
     this.returnSong(this.i);
   }
 
@@ -45,13 +43,16 @@ export class Discover extends React.Component {
       // console.log(this.props.url);
 
     }
+    if(!this.props.spotifyList.length && this.props.url !== ''){
+      return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
+    }
 
     if(this.props.url === '') {
       return returnHTML = <div className="lds-circle"></div>
     }
  
-    else if (this.props.url){
-      let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+    if (this.props.url !== '' && this.props.spotifyList.length){
+      returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <Song url={this.props.url} />
        <button onClick={(e) =>{
           this.props.dispatch(addSong(
@@ -66,7 +67,7 @@ export class Discover extends React.Component {
        </div>;
 
        return returnHTML;
-    }
+    } 
   }
 
   changeWeather = (newWeather) => {
@@ -98,11 +99,10 @@ export class Discover extends React.Component {
           <option value="Thunderstorm">Thunderstorm</option>
         </select>
         <br /><br />
-
         {this.props.weather} Radio
-
         {this.returnSong(this.i)}
         <button onClick={() => this.getNextSong()}>Next</button>
+        <Slider/>
       </div>
     )
   }
