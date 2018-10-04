@@ -62,10 +62,6 @@ form label {
 
 }
 
-* {
-  background-color: aquamarine
-}
-
 .lds-circle {
 display: inline-block;
 width: 51px;

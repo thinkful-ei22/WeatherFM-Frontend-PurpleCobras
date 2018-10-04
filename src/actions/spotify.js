@@ -26,7 +26,7 @@ export const fetchSpotify = (weather) => (dispatch, getState) => {
 
   return fetch(`${API_BASE_URL}/users/rec/${weather}`, {
     method: 'GET',
-    header: {
+    headers: {
       Authorization: `Bearer ${authToken}`,
       'content-type': 'application/json'
     }
