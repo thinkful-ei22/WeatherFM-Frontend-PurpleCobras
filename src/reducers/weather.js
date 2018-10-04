@@ -3,7 +3,7 @@ import {
   FETCH_WEATHER_ERROR,
   SET_WEATHER,
   CHANGE_WEATHER_SUCCESS,
-  CHANGE_WEATHER_ERROR
+  CHANGE_WEATHER_ERROR,
 } from '../actions/weather';
 
 const initialState = {

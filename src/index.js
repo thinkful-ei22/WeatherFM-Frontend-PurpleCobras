@@ -8,10 +8,10 @@ import './index.css';
 import './css/app.css';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <div className="topCont"><App /></div>
-        </Router>
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <Router>
+      <div className="topCont"><App /></div>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
 );
