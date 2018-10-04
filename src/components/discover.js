@@ -62,7 +62,7 @@ export class Discover extends React.Component {
             this.props.spotifyList[this.i].thumbnail
           ))
         }}>
-          Add to Playlist
+          Add to Playlist 
         </button>
        </div>;
 
