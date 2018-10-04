@@ -31,7 +31,9 @@ export class Slider extends React.Component {
         ids.forEach((id, i) => {
             this.props.averages[id] = weathPlaylist[i].spotifyId
         })
-        // console.log("WEATHER PLAYLIST", weathPlaylist)
+        if(!this.props.averages.popularity) {
+            this.props.averages.popularity = 20;
+        }
         console.log(this.props.averages)
         this.props.dispatch(fetchSpotifySlider(this.props.averages))
     }
