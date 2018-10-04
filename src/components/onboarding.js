@@ -1,6 +1,7 @@
 import React from 'react';
 import requiresLogin from './requires-login';
 import {Link} from 'react-router-dom';
+import {changeSongs} from '../actions/playlists';
 
 export class Onboarding extends React.Component {
   constructor() {
@@ -8,9 +9,9 @@ export class Onboarding extends React.Component {
     this.state = {
       sunny: [],
       rainy: [],
-      cloudy: [],
       drizzle: [],
       snowy: [],
+      cloudy: [],
       thunderstorm: []
     }
   }
@@ -19,12 +20,19 @@ export class Onboarding extends React.Component {
     e.preventDefault();
     if (this.state[weather].length < 5) {
       this.setState({
-        [weather]: [...this.state[weather], {title: e.target.song.value, artist: e.target.artist.value}]
+        [weather]: [...this.state[weather], {songTitle: e.target.song.value, artist: e.target.artist.value}]
       })
     }
   }
 
   // sunny, rainy, drizzle, snowy, cloudy, thunderstorm
+
+  addAllSongs (e, sunny, rainy, drizzle, snowy, cloudy, thunderstorm) {
+    console.log(sunny);
+    e.preventDefault();
+    this.props.dispatch(changeSongs(sunny, rainy, drizzle, snowy, cloudy, thunderstorm));
+  }
+
 
   render() {
 
@@ -33,7 +41,7 @@ export class Onboarding extends React.Component {
     const renderSongs = (weather) => {
       console.log(state[weather]);
         return state[weather].map(item => {
-          return <li key={item.title}>{item.title}, {item.artist}<br /></li>
+          return <li key={item.songTitle}>{item.songTitle}, {item.artist}<br /></li>
         })
     }
 
@@ -119,7 +127,15 @@ export class Onboarding extends React.Component {
               
           </form><br />
         
-        <form>
+        <form onSubmit={e => this.addAllSongs(
+            e,
+            this.state.sunny, 
+            this.state.rainy, 
+            this.state.drizzle, 
+            this.state.snowy, 
+            this.state.cloudy, 
+            this.state.thunderstorm
+          )}>
           <button type="submit">Add Songs</button>
           <Link to="/dashboard"><button type="submit">Skip (Go to Dashboard)</button></Link>
         </form><br />

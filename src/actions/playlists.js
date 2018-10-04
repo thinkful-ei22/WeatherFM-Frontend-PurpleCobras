@@ -97,3 +97,40 @@ export const addSong = (weather, artist, songTitle, thumbnail) => (dispatch, get
     dispatch(addSongError(err))
   })
 }
+
+export const CHANGE_SONGS_SUCCESS = 'CHANGE_SONGS_SUCCESS';
+export const changeSongsSuccess = () => ({
+  type: CHANGE_SONGS_SUCCESS
+})
+
+export const CHANGE_SONGS_ERROR = 'CHANGE_SONGS_ERROR';
+export const changeSongsError = error => ({
+  type: CHANGE_SONGS_ERROR,
+  error
+})
+
+export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  console.log('Customized Songs--------', Sunny);
+
+  return fetch(`${API_BASE_URL}/users/`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      Sunny,
+      Rainy,
+      Drizzle,
+      Snowy,
+      Cloudy,
+      Thunderstorm
+    })
+  })
+  .then(res => res.json())
+  .then(() => dispatch(changeSongsSuccess()))
+  .catch((err) => {
+    dispatch(changeSongsError(err))
+  })
+}
