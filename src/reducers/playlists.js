@@ -15,7 +15,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   if (action.type === FETCH_PLAYLISTS_SUCCESS) {
-    console.log('FETCH PLAYLISTS SUCCESSFUL');
+    // console.log('FETCH PLAYLISTS SUCCESSFUL');
     return Object.assign({}, state, {
       playlists: action.playlists,
       deleted: false,

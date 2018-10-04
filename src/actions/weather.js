@@ -73,12 +73,15 @@ export const changeWeatherError = error => ({
 });
 
 export const changeWeather = (weather) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
   let newWeather = weather;
 
   console.log(newWeather);
-  return fetch(`${API_BASE_URL}/users/weather`, {
+  // need to fix the endpoint/refactor
+  return fetch(`${API_BASE_URL}/users`, {
     method: 'GET',
     headers: {
+      Authorization: `Bearer ${authToken}`,
       'content-type' : 'application/json'
     }
   })
