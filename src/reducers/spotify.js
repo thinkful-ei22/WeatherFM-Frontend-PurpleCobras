@@ -23,13 +23,13 @@ export default function reducer(state = initialState, action){
     // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
     return Object.assign({}, state, {
       songs: action.songs
-    })
+    });
   }
   else if (action.type === FETCH_SPOTIFY_ERROR){
     // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');
     return Object.assign({}, state, {
       error: action.error
-    })
+    });
   }
   else if (action.type === UPDATE_SPOTIFY_AVERAGES){
     // console.log('FETCH SPOTIFY SONGS SUCCESSFUL');

@@ -16,7 +16,7 @@ export class PlaylistPage extends React.Component {
     let userPlaylists;
     userPlaylists = this.props.playlists;
 
-    let links = []
+    let links = [];
     let userPlaylistArray;
     if (this.props.playlists) {
       userPlaylistArray = Object.keys(userPlaylists);
@@ -38,16 +38,16 @@ export class PlaylistPage extends React.Component {
           {links}
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
   const {currentUser} = state.auth;
   return {
-      username: state.auth.currentUser.username,
-      name: `${currentUser.firstName}`,
-      playlists: state.playlists.playlists
+    username: state.auth.currentUser.username,
+    name: `${currentUser.firstName}`,
+    playlists: state.playlists.playlists
   };
 };
 
