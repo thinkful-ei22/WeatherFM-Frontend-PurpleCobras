@@ -47,13 +47,6 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-<<<<<<< HEAD
-    .then((weather) => dispatch(fetchWeatherSuccess(weather)))
-    .then(({weather}) => storeWeather(weather))
-    .catch(err => {
-      dispatch(fetchWeatherError(err));
-    })
-=======
     .then((weather) => {
       // console.log(weather, typeof weather, weather.weather);
       dispatch(fetchWeatherSuccess(
@@ -65,7 +58,6 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
     .catch(err => {
       dispatch(fetchWeatherError(err));
     });
->>>>>>> 76f2da778842efdba15812ca5606d5209ffca904
 };
 
 export const CHANGE_WEATHER_SUCCESS = 'CHANGE_WEATHER_SUCCESS';
@@ -94,11 +86,7 @@ export const changeWeather = (weather) => (dispatch, getState) => {
     }
   })
     .then(() => dispatch(changeWeatherSuccess(newWeather)))
-<<<<<<< HEAD
     .then(({newWeather}) => storeWeather(newWeather))
-=======
-    .then(({weather}) => storeWeather(weather))
->>>>>>> 76f2da778842efdba15812ca5606d5209ffca904
     .catch(err => {
       dispatch(changeWeatherError(err));
     });
