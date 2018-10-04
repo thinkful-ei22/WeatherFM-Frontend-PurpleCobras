@@ -13,6 +13,7 @@ export class Discover extends React.Component {
     super()
     this.state = {
       changed: false,
+      karaokeModeButton: 'show',
       karaokeMode: false
     }
   }
@@ -46,11 +47,11 @@ export class Discover extends React.Component {
     //console.log('changing mode');
     let switchButton;
     if (this.state.karaokeMode === false){
-     switchButton = <button onClick={() => this.switchMode()}>Switch to Karaoke Mode</button>;
+     switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Karaoke Mode</button>;
 
     }
     else {
-      switchButton = <button onClick={() => this.switchMode()}>Switch to Video Mode</button>;
+      switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Video Mode</button>;
     }
     return switchButton;
 
@@ -65,6 +66,9 @@ export class Discover extends React.Component {
       if (this.state.karaokeMode === false){
         //console.log('karaokeMode is' +this.state.karaokeMode)
         //console.log('video mode');
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke'));
+
+      console.log(this.props.title);
 
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'));
       // console.log(this.props.url);
@@ -150,6 +154,7 @@ const mapStateToProps = state => {
       protectedData: state.protectedData.data,
       weather: state.weather.weather,
       spotifyList: state.spotify.songs,
+      title: state.youtube.videoTitle,
       url: state.youtube.videoURL,
       changed: state.weather.changed,
   };
