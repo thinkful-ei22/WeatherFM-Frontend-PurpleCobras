@@ -25,6 +25,13 @@ export const fetchSpotifyAveragesSuccess = averages => ({
   averages
 })
 
+export const UPDATE_SPOTIFY_AVERAGES = 'UPDATE_SPOTIFY_AVERAGES';
+export const updateSpotifyAverages = average => ({
+  type: UPDATE_SPOTIFY_AVERAGES,
+  average
+})
+
+
 export const fetchSpotifySlider = (sliderObj) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   // console.log("slider OBJ!!", sliderObj);
