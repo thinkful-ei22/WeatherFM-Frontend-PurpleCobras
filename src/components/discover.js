@@ -20,7 +20,7 @@ export class Discover extends React.Component {
   thumbnail="";
   i=0;
   componentDidMount = () => {
-    console.log(this, '1st this');
+    // console.log(this, '1st this');
     // console.log(this, '1st this');
     this.props.dispatch(fetchSpotify(this.props.weather)); 
 
@@ -83,7 +83,7 @@ export class Discover extends React.Component {
     return (
       <div>
         Right now it is {this.props.weather}! <br />
-        <label forHTML="Radio">Change the station: </label>
+        <label htmlFor="Radio">Change the station: </label>
         <select 
           name="Radio"
           // value={this.props.weather} 

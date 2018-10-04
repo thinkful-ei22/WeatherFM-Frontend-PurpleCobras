@@ -9,29 +9,33 @@ import {
 const initialState = {
   weather: '',
   error: null,
-}
+  tempC: null,
+  tempF: null,
+};
 
 export default function reducer(state = initialState, action) {
   if (action.type === FETCH_WEATHER_SUCCESS) {
-    console.log('FETCH WEATHER SUCCESSFUL');
+    // console.log('FETCH WEATHER SUCCESSFUL');
     return Object.assign({}, state, {
-      weather: action.weather
-    })
+      weather: action.weather,
+      tempC: action.tempC,
+      tempF: action.tempF, 
+    });
   } else if (action.type === FETCH_WEATHER_ERROR) {
     return Object.assign({}, state, {
       error: action.error
-    })
+    });
   } else if (action.type === SET_WEATHER) {
-        return Object.assign({}, state, {
-            weather: action.weather
-        });
+    return Object.assign({}, state, {
+      weather: action.weather
+    });
   } else if (action.type === CHANGE_WEATHER_SUCCESS) {
-      return Object.assign({}, state, {
-          weather: action.newWeather
-      })
+    return Object.assign({}, state, {
+      weather: action.newWeather
+    });
   } else if (action.type === CHANGE_WEATHER_ERROR ) {
-      return Object.assign({}, state, {
-        error: action.error
-      })
-    } return state;
+    return Object.assign({}, state, {
+      error: action.error
+    });
+  } return state;
 }
