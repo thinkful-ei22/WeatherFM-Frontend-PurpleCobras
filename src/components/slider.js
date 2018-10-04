@@ -11,19 +11,35 @@ export class Slider extends React.Component {
         super(props);
         this.state = {
             displaySlider: false,
-            danceability: .5,
-            energy: .5,
-            popularity: 40,
-            valence: .5,
-            loudness: -30,
-            acousticness: .5
+            danceability: null,
+            energy: null,
+            popularity: null,
+            valence: null,
+            loudness: null,
+            acousticness: null
         };
     }
+
+    //was trying to fetch averages then set local state with those props
+    //and after the local is set once initially, it will change when the slider
+    //is moved by the
     componentDidMount() {
         return this.props.dispatch(fetchPlaylists())
         .then(() => {
-            this.getAttributeAverages();
-        });
+            return this.getAttributeAverages();
+        })
+        .then(() => {
+            if(this.props.averages) {
+                this.setState({
+                    danceability: this.props.averages.danceability,
+                    energy: this.props.averages.energy,
+                    popularity: this.props.averages.popularity,
+                    valence: this.props.averages.valence,
+                    loudness: this.props.averages.loudness,
+                    acousticness: this.props.averages.acousticness
+                })
+            }
+        })
     }
 
     handleSlider(e) {
@@ -54,7 +70,7 @@ export class Slider extends React.Component {
         if (this.props.playlists) {
             currentPlaylist = this.props.playlists[this.props.weather].slice(0, 5);
             let songIdArray = currentPlaylist.map(song => song.spotifyId);
-            console.log(songIdArray);
+            // console.log(songIdArray);
             this.props.dispatch(fetchSpotifyAverages(songIdArray));
             //dispatch action 
             //fetch song attribute levels from spotify
@@ -76,49 +92,55 @@ export class Slider extends React.Component {
                         <div className="dancy">
                             <label htmlFor="danceability">Not Dancy</label>
                             <input type="range" id="danceability" name="danceability"
-                                min="0" max="1" defaultValue={this.props.averages.danceability} step=".01"
-                                onChange={(e) => this.setState({ danceability: e.target.value })}
-                                value={this.props.averages.danceability} />
+                                min="0" max="1" step=".01"
+                                // onChange={(e) => this.setState({ danceability: e.target.value })}
+                                // value={this.state.danceability}
+                                defaultValue={this.state.danceability} />
                             <label htmlFor="danceability">Super Dancy: {Math.floor(this.state.danceability * 100)}%</label>
                         </div>
                         <div className="energy">
                             <label htmlFor="energy">Low Energy</label>
                             <input type="range" id="energy" name="energy"
-                                min="0" max="1" defaultValue={this.props.averages.energy} step=".01"
-                                onChange={(e) => this.setState({ energy: e.target.value })}
-                                value={this.state.energy} />
+                                min="0" max="1" step=".01"
+                                // onChange={(e) => this.setState({ energy: e.target.value })}
+                                // value={this.state.energy}
+                                defaultValue={this.state.energy} />
                             <label htmlFor="energy">High Energy: {Math.floor(this.state.energy * 100)}%</label>
                         </div>
                         <div className="popularity">
                             <label htmlFor="popularity">Less Popular</label>
                             <input type="range" id="popularity" name="popularity"
-                                min="10" max="80" defaultValue="30" step="1"
-                                onChange={(e) => this.setState({ popularity: e.target.value })}
-                                value={this.state.popularity} />
+                                min="10" max="80" step="1"
+                                // onChange={(e) => this.setState({ popularity: e.target.value })}
+                                // value={this.state.popularity}
+                                defaultValue={this.state.popularity} />
                             <label htmlFor="popularity">More Popular: {this.state.popularity}%</label>
                         </div>
                         <div className="valence">
                             <label htmlFor="valence">Sad</label>
                             <input type="range" id="valence" name="valence"
-                                min="0" max="1" defaultValue=".5" step=".01"
-                                onChange={(e) => this.setState({ valence: e.target.value })}
-                                value={this.state.valence} />
+                                min="0" max="1" step=".01"
+                                // onChange={(e) => this.setState({ valence: e.target.value })}
+                                // value={this.state.valence}
+                                defaultValue={this.state.valence} />
                             <label htmlFor="valence">Happy: {Math.floor(this.state.valence * 100)}%</label>
                         </div>
                         <div className="volume">
                             <label htmlFor="loudness">Softer</label>
                             <input type="range" id="loudness" name="loudness"
-                                min="-60" max="0" defaultValue="-30" step="1"
-                                onChange={(e) => this.setState({ loudness: e.target.value })}
-                                value={this.state.loudness} />
+                                min="-60" max="0" step="1"
+                                // onChange={(e) => this.setState({ loudness: e.target.value })}
+                                // value={this.state.loudness} 
+                                defaultValue={this.state.loudness}/>
                             <label htmlFor="loudness">Louder: {this.state.loudness}dBs (-60 to 0)</label>
                         </div>
                         <div className="acousticness">
                             <label htmlFor="acousticness">Less Acoustic</label>
                             <input type="range" id="acousticness" name="acousticness"
-                                min="0" max="1" defaultValue=".5" step=".01"
-                                onChange={(e) => this.setState({ acousticness: e.target.value })}
-                                value={this.state.acousticness} />
+                                min="0" max="1" step=".01"
+                                // onChange={(e) => this.setState({ acousticness: e.target.value })}
+                                // value={this.state.acousticness} 
+                                defaultValue={this.state.acousticness}/>
                             <label htmlFor="acousticness">More Acoustic: {Math.floor(this.state.acousticness * 100)}%</label>
                         </div>
                         <button type="submit">Customize!</button>

@@ -20,7 +20,7 @@ export class Discover extends React.Component {
   thumbnail="";
   i=0;
   componentDidMount = () => {
-    console.log(this, '1st this');
+    // console.log(this, '1st this');
     // console.log(this, '1st this');
     this.props.dispatch(fetchSpotify(this.props.weather)); 
 

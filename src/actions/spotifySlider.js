@@ -27,7 +27,7 @@ export const fetchSpotifyAveragesSuccess = averages => ({
 
 export const fetchSpotifySlider = (sliderObj) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log("slider OBJ!!", sliderObj);
+  // console.log("slider OBJ!!", sliderObj);
   return fetch(`${API_BASE_URL}/users/rec`, {
     method: 'POST',
     headers: {
@@ -54,7 +54,7 @@ export const fetchSpotifySlider = (sliderObj) => (dispatch, getState) => {
 
 export const fetchSpotifyAverages = (songIdArray) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log("song ID array", songIdArray);
+  // console.log("song ID array", songIdArray);
   return fetch(`${API_BASE_URL}/users/rec/averages/${songIdArray[0]},${songIdArray[1]},
     ${songIdArray[2]},${songIdArray[3]},${songIdArray[4]}`, {
     method: 'GET',
