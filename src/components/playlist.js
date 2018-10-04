@@ -10,11 +10,13 @@ import '../css/playlist.css';
 
 export class Playlist extends React.Component {
   componentDidMount() {
-    console.log('Playlist Component Mounted');
+    //console.log('Playlist Component Mounted');
     this.props.dispatch(fetchPlaylists());
   }
   state = {
-    karaokeMode: false
+    karaokeMode: false,
+    currentArtist: '',
+    currentSongTitle: ''
   }
   // dispatch(fetchYoutube(title, artist));
 
@@ -23,8 +25,21 @@ export class Playlist extends React.Component {
   // api/users/playlists
   switchMode = () =>{
     console.log('switch mode running');
+    let artist = this.state.currentArtist;
+    let title = this.state.currentSongTitle;
     this.setState({
       karaokeMode: !this.state.karaokeMode
+    }, function () {
+      if (this.state.karaokeMode){
+        console.log('karaoke mode');
+        console.log(this.state.currentArtist, this.state.currentSongTitle);
+        this.props.dispatch(fetchYoutube(artist, title, 'karaoke'));
+        }
+        else {
+          console.log('video mode');
+          console.log(this.state.currentArtist, this.state.currentSongTitle);
+          this.props.dispatch(fetchYoutube(artist, title, 'video'))
+        }
     })
   }
   changeModeButton = () =>{
@@ -47,26 +62,30 @@ export class Playlist extends React.Component {
     const {deleteSongFromPlaylist} = this;
 
 
-    function youtubeClick(artist, title) {
-      dispatch(fetchYoutube(artist, title))
+    const youtubeClick = (artist, title) => {
+      if (this.state.karaokeMode){
+      dispatch(fetchYoutube(artist, title, 'karaoke'))
+      }
+      else {
+        dispatch(fetchYoutube(artist, title, 'video'))
+      }
     }
 
     let pathName = this.props.location.pathname;
     let pathArray = pathName.split('/');
     let playlistName = pathArray[2];
 
-    console.log(playlistName)
-    console.log(this.props);
+    //console.log(playlistName)
+    //console.log(this.props);
     let currentPlaylist;
 
 
 
     // code to loop through user's playlist object and render each song
     let songs = [];
-    let loopedSongs = function (playlists) {
+    let loopedSongs =  (playlists) => {
       if (playlists) {
         currentPlaylist = playlists[playlistName];
-
         for (let i = 0; i < currentPlaylist.length; i++ ) {
           let title = currentPlaylist[i].songTitle;
           let artist = currentPlaylist[i].artist;
@@ -74,7 +93,7 @@ export class Playlist extends React.Component {
 
           // dispatch API call to get youtube url & set it to a variable
           // let url = '';
-         console.log(youtube, 'url');
+         //console.log(youtube, 'url');
           songs.push(
             <div key={title}>
               
@@ -82,10 +101,14 @@ export class Playlist extends React.Component {
               
               <button onClick={(e) => {
                 youtubeClick(artist, title);
+                this.setState({
+                  currentArtist: artist,
+                  currentSongTitle: title
+                })
               }}>Play</button>
 
               <button onClick={(e) => {
-                console.log(playlistName, title, artist, albumArt);
+                //console.log(playlistName, title, artist, albumArt);
                 dispatch(deleteSong(playlistName, title, artist, albumArt));
               }}>
               Delete Song
@@ -112,7 +135,7 @@ export class Playlist extends React.Component {
         <h1>{playlistName} Playlist</h1>
         {/* <Song url = {this.props.url}/> */}
         {currentSong}
-
+        {this.changeModeButton()}
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
       </div>
