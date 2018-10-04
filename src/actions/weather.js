@@ -17,8 +17,8 @@ export const fetchWeatherError = error => ({
 
 export const SET_WEATHER = 'SET_WEATHER';
 export const setWeather = weather => ({
-    type: SET_WEATHER,
-    weather
+  type: SET_WEATHER,
+  weather
 });
 
 // store weather in local storage
@@ -42,13 +42,13 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
       'content-type' : 'application/json'
     }
   })
-  .then(res => normalizeResponseErrors(res))
-  .then(res => res.json())
-  .then((weather) => dispatch(fetchWeatherSuccess(weather)))
-  .then(({weather}) => storeWeather(weather))
-  .catch(err => {
-    dispatch(fetchWeatherError(err));
-  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((weather) => dispatch(fetchWeatherSuccess(weather)))
+    .then(({weather}) => storeWeather(weather))
+    .catch(err => {
+      dispatch(fetchWeatherError(err));
+    })
 };
 
 export const CHANGE_WEATHER_SUCCESS = 'CHANGE_WEATHER_SUCCESS';
@@ -76,9 +76,9 @@ export const changeWeather = (weather) => (dispatch, getState) => {
       'content-type' : 'application/json'
     }
   })
-  .then(() => dispatch(changeWeatherSuccess(newWeather)))
-  .then(({weather}) => storeWeather(weather))
-  .catch(err => {
-    dispatch(changeWeatherError(err));
-  })
+    .then(() => dispatch(changeWeatherSuccess(newWeather)))
+    .then(({newWeather}) => storeWeather(newWeather))
+    .catch(err => {
+      dispatch(changeWeatherError(err));
+    });
 };
