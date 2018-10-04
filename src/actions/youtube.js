@@ -8,8 +8,9 @@ export const fetchYoutubeRequest = loading => ({
 })
 
 export const FETCH_YOUTUBE_SUCCESS = 'FETCH_YOUTUBE_SUCCESS';
-export const fetchYoutubeSuccess = videoURL => ({
+export const fetchYoutubeSuccess = (videoTitle,videoURL) => ({
   type: FETCH_YOUTUBE_SUCCESS,
+  videoTitle,
   videoURL
 })
 
@@ -48,6 +49,8 @@ export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
     console.log(videoInfo);
     let videoTitle = videoInfo.videoTitle;
     let videoURL = videoInfo.videoURL
+    console.log(videoTitle, 'videoTitle');
+    console.log(videoURL, 'videoURL');
     // console.log(videoURL, 'url in action')
     dispatch(fetchYoutubeSuccess(videoTitle, videoURL))
   })

@@ -10,10 +10,10 @@ import '../css/discover.css';
 
 export class Discover extends React.Component {
   constructor() {
+    let karaokeModeButton = 'show';
     super()
     this.state = {
       changed: false,
-      karaokeModeButton: 'show',
       karaokeMode: false
     }
   }
@@ -47,14 +47,28 @@ export class Discover extends React.Component {
     //console.log('changing mode');
     let switchButton;
     if (this.state.karaokeMode === false){
-     switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Karaoke Mode</button>;
+     switchButton = <button onClick={() => this.switchMode()} className={this.karaokeModeButton}>Switch to Karaoke Mode</button>;
 
     }
     else {
-      switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Video Mode</button>;
+      switchButton = <button onClick={() => this.switchMode()} className={this.karaokeModeButton}>Switch to Video Mode</button>;
     }
     return switchButton;
 
+  }
+  checkLyricsVideo = () => {
+    console.log('checking video to see if it is a lyrics video');
+    if (!this.props.title.toLowerCase().includes('lyrics')){
+      console.log('this is not a lyrics video');
+      this.karaokeModeButton = 'hide';
+      console.log(this.karaokeModeButton, 'karaokeModeButton className');
+    }
+    else {
+      console.log('this is a lyrics video');
+      this.karaokeModeButton = 'show';
+      console.log(this.karaokeModeButton, 'karaokeModeButton className');
+    }
+   
   }
 
   returnSong = (index) => {
@@ -66,11 +80,15 @@ export class Discover extends React.Component {
       if (this.state.karaokeMode === false){
         //console.log('karaokeMode is' +this.state.karaokeMode)
         //console.log('video mode');
+        if (this.props.url === ''){
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke'));
-
-      console.log(this.props.title);
-
+        }
+        else {
+        console.log(this.props.url, 'lyrics video URL');
+        console.log(this.props.title, 'video title');
+        this.checkLyricsVideo();
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'));
+        }
       // console.log(this.props.url);
       }
       else if (this.state.karaokeMode === true) {
@@ -86,6 +104,7 @@ export class Discover extends React.Component {
     }
  
     else if (this.props.url){
+      console.log(this.props.url, 'props.url');
       let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
       <p>{this.props.lyrics}</p>
        <Song url={this.props.url} />
