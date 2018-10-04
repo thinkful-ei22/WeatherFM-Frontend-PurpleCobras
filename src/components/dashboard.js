@@ -57,8 +57,8 @@ export class Dashboard extends React.Component  {
                 {weather}
             
                 <div className="linkTo">
-                  <Link to={'/discover'} clasName="">Discover</Link>
-                  <Link to={'/playlists'} clasName="">Playlist Page</Link>
+                  <Link to={'/discover'} className="">Discover</Link>
+                  <Link to={'/playlists'} className="">Playlist Page</Link>
                 </div>
             </div>
         );
