@@ -117,7 +117,7 @@ if (this.state.karaokeMode === true){
 
   returnSong = (index) => {
     this.i = index;
-    console.log('returnSong ran');
+    //console.log('returnSong ran');
 
     //set returnHTML to empty string 
     let returnHTML = '';
@@ -130,12 +130,12 @@ if (this.state.karaokeMode === true){
      //set thumbnail
      this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
       //console.log('karaokeMode is' +this.karaokeMode);
-      console.log('karaokeMode is>>>', this.state.karaokeMode);
+      //console.log('karaokeMode is>>>', this.state.karaokeMode);
 
       //console.log(this, '<<< this');
       //if karaokeMode is false
       if (this.state.karaokeMode === false){
-        console.log('video mode is RUNNING');
+        //console.log('video mode is RUNNING');
         new Promise( (resolve, reject)  => {
 
           //console.log(this, '<<<THIS');
@@ -145,7 +145,7 @@ if (this.state.karaokeMode === true){
        if (this.props.url === '' || this.checkedForLyricsSong === false){
          //attempts to fetch lyrics video
          //console.log('fetching lyrics video');
-         console.log('checkedForLyricsSong now equals', this.checkedForLyricsSong);
+         //console.log('checkedForLyricsSong now equals', this.checkedForLyricsSong);
      resolve(this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke')))
        }
         })
@@ -155,7 +155,7 @@ if (this.state.karaokeMode === true){
         console.log(this.karaokeTitle, '<<<lyrics video title');
         this.checkLyricsVideo(this.karaokeTitle);
         this.checkedForLyricsSong = true;
-        console.log('fetching regular video');
+        // console.log('fetching regular video');
         })
         .then (() => {
           this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
@@ -171,7 +171,7 @@ if (this.state.karaokeMode === true){
 
       }
       else if (this.state.karaokeMode === true) {
-        console.log('karaoke mode is RUNNING');
+        // console.log('karaoke mode is RUNNING');
 
         console.log(this.props.title.toLowerCase(), '<<<lyrics video title');
 
@@ -196,7 +196,7 @@ if (this.state.karaokeMode === true){
        <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
      
        <button onClick={(e) =>{
-         console.log(this.props.spotifyList[this.i]);
+        //  console.log(this.props.spotifyList[this.i]);
           this.props.dispatch(addSong(
             this.props.weather,
             this.props.spotifyList[this.i].spotifyId, 

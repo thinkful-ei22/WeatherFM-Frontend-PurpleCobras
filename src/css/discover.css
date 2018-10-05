@@ -63,7 +63,7 @@ input {
   background-color: aquamarine
 }
 .hide{
-  display: none;
+  display: none !important;  
 }
 
 .lds-circle {
