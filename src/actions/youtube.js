@@ -46,11 +46,11 @@ export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
     return res.json()
   })
   .then(videoInfo => {
-    console.log(videoInfo);
+   // console.log(videoInfo);
     let videoTitle = videoInfo.videoTitle;
     let videoURL = videoInfo.videoURL
-    console.log(videoTitle, 'videoTitle');
-    console.log(videoURL, 'videoURL');
+    //console.log(videoTitle, 'videoTitle');
+   // console.log(videoURL, 'videoURL');
     // console.log(videoURL, 'url in action')
     dispatch(fetchYoutubeSuccess(videoTitle, videoURL))
   })
