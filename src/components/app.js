@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Route, withRouter, Link} from 'react-router-dom';
 import '../css/app.css';
+
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard';
@@ -42,7 +43,6 @@ export class App extends React.Component {
     if (!this.refreshInterval) {
       return;
     }
-
     clearInterval(this.refreshInterval);
   }
 

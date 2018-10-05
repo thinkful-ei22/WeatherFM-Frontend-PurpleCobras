@@ -40,24 +40,30 @@ export class HeaderBar extends React.Component {
     }
   }
 
-  render() {
-    // console.log(this.props.tempC, this.props.tempF);
-    // Only render the log out button if we are logged in
-    let logOutButton;
-    let links;
-    if (this.props.loggedIn) {
-      logOutButton = (
-        <div>
-          <button onClick={() => this.logOut()}>Log out</button>
-        </div>
-      );
-      links = (
-        <div className="links">
-          <Link to={'/dashboard'}>Dashboard</Link>
-          <Link to={'/discover'}>Discover</Link>
-          <Link to={'/playlists'}>Playlist Page</Link>
-        </div>
-      );
+    render() {
+          // console.log(this.props.tempC, this.props.tempF);
+        // Only render the log out button if we are logged in
+        let logOutButton;
+        let links;
+        if (this.props.loggedIn) {
+            logOutButton = (
+                <button onClick={() => this.logOut()}>Log out</button>
+            );
+            links = (
+                <div className="links">
+                    <Link to={'/dashboard'}>Dashboard</Link>
+                    <Link to={'/discover'}>Discover</Link>
+                    <Link to={'/playlists'}>Playlist Page</Link>
+                </div>
+            )
+        }
+        return (
+            <div className="header-bar">
+                {links}
+                {logOutButton}
+            </div>
+        );
+
     }
     return (
       <div className="header-bar">

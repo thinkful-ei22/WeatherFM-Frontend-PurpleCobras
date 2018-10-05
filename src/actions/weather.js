@@ -47,7 +47,7 @@ const storeWeather = (weather, dispatch) => {
 export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
 
-  console.log('latitude', latitude, 'and longitude', longitude);
+  //console.log('latitude', latitude, 'and longitude', longitude);
   const newLat = latitude;
   const newLong = longitude;
   return fetch(`${API_BASE_URL}/users/weather/${newLat}/${newLong}`, {

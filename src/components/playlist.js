@@ -5,6 +5,7 @@ import requiresLogin from './requires-login';
 import { fetchPlaylists, deleteSong } from '../actions/playlists';
 import { syncSpotifyPlaylist } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
+
 import '../css/playlist.css';
 
 // send '{title} + {artist}' as 'song
@@ -12,6 +13,7 @@ import '../css/playlist.css';
 export class Playlist extends React.Component {
   componentDidMount() {
     console.log('Playlist Component Mounted');
+
     const currentURL = new URL(window.location);
     let accessToken=currentURL.hash.slice(14, currentURL.hash.search('&'));
 
@@ -36,12 +38,38 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
+  }
+  state = {
+    currentIndex: null,
+    playlistName: this.props.location.pathname.split('/')[2]
+  }
+  // dispatch(fetchYoutube(title, artist));
   // to delete -> send in weather, artist, title, and thumbnail
   // api/users/playlists
 
+  onEnd = () => {
+    
+    console.log('song has ended');
+    this.setState({
+      currentIndex: this.state.currentIndex+1
+    }, () => {
+      const song = this.props.playlists[this.state.playlistName][this.state.currentIndex];
+      console.log(song);
+      this.props.dispatch(fetchYoutube(song.artist, song.songTitle))
+    })
+  }
+  youtubeClick = (artist, title, index) => {
+    this.setState({
+      currentIndex: index
+    })
+    this.props.dispatch(fetchYoutube(artist, title))
+  }
   render() {
     const { dispatch, url, youtube, weather } = this.props;
     const {deleteSongFromPlaylist} = this;
+    const {playlistName} = this.state;
+
+    
 
 
     function youtubeClick(artist, title) {
@@ -58,7 +86,7 @@ export class Playlist extends React.Component {
 
     // code to loop through user's playlist object and render each song
     let songs = [];
-    let loopedSongs = function (playlists) {
+    let loopedSongs = (playlists) => {
       if (playlists) {
         currentPlaylist = playlists[playlistName];
 
@@ -75,8 +103,10 @@ export class Playlist extends React.Component {
               
               <img src={albumArt} style={{width: 100, height: 100}}></img>, {title}, by {artist},
               
-              <button onClick={() => {
-                youtubeClick(artist, title);
+              <button onClick={(e) => {
+                this.youtubeClick(artist, title, i);
+
+
               }}>Play</button>
 
               <button onClick={() => {
@@ -99,7 +129,8 @@ export class Playlist extends React.Component {
     if(this.props.urlLoading === true){
       currentSong = <div className="lds-circle"></div>;
     } else if(this.props.urlLoading === false){
-      currentSong = <Song url = {this.props.url}/>;
+      currentSong = <Song url = {this.props.url} onEnded ={() => this.onEnd()}/>
+
     }
 
     return (

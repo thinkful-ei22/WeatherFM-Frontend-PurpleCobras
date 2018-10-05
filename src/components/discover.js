@@ -5,6 +5,7 @@ import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
+import '../css/app.css';
 import Slider from './slider';
 import { changeWeather } from '../actions/weather';
 import '../css/discover.css';
@@ -31,28 +32,34 @@ export class Discover extends React.Component {
     this.i++;
     this.returnSong(this.i);
   }
+  onEnded(){
+    console.log('Song has ended');
+
+    this.getNextSong();
+  }
+
 
   returnSong = (index) => {
-    let returnHTML = '';
     if(this.props.spotifyList.length){
-      // console.log(this.props.spotifyList[0]);
       this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
-
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist));
-      // console.log(this.props.url);
-
     }
-    if(!this.props.spotifyList.length && this.props.url !== ''){
+
+     let returnHTML = '';
+     if(!this.props.spotifyList.length && this.props.url !== ''){
       return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
     }
-
-    if(this.props.url === '') {
+    
+     if(this.props.url === '') {
       return returnHTML = <div className="lds-circle"></div>
     }
- 
-    if (this.props.url !== '' && this.props.spotifyList.length){
-      returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
-       <Song url={this.props.url} />
+    else if (this.props.url && this.props.spotifyList.length){
+
+      let returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+       <div className="thumbnail">{this.thumbnail}</div>
+       <div className="controls"></div>
+       <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
+     
        <button onClick={(e) =>{
          console.log(this.props.spotifyList[this.i]);
           this.props.dispatch(addSong(
@@ -82,8 +89,8 @@ export class Discover extends React.Component {
 
   render() {
     return (
-      <div>
-        Right now it is {this.props.weather}! <br />
+      <div className="discover">
+   Right now it is {this.props.weather}! <br />
         <label htmlFor="Radio">Change the station: </label>
         <select 
           name="Radio"
@@ -101,6 +108,8 @@ export class Discover extends React.Component {
         </select>
         <br /><br />
         {this.props.weather} Radio
+
+
         {this.returnSong(this.i)}
         <button onClick={() => this.getNextSong()}>Next</button>
         <Slider/>

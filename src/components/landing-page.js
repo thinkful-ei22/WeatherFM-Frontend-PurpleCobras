@@ -10,12 +10,13 @@ export function LandingPage(props) {
     return <Redirect to="/dashboard" />;
   }
 
-  return (
-    <div className="home">
-      <h1>Weather FM Radio</h1>
-      <LoginForm />
-    </div>
-  );
+    return (
+        <div className="home">
+            <h1>Weather FM Radio</h1>
+            <LoginForm />
+        </div>
+    );
+
 }
 
 const mapStateToProps = state => ({
