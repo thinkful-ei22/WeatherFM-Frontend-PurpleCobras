@@ -13,6 +13,10 @@ export class HeaderBar extends React.Component {
     };
   }
 
+  componentDidMount(){
+    this.tempClick();
+  }
+
   logOut() {
     this.props.dispatch(clearAuth());
     clearAuthToken();
@@ -37,6 +41,7 @@ export class HeaderBar extends React.Component {
   }
 
   render() {
+    // console.log(this.props.tempC, this.props.tempF);
     // Only render the log out button if we are logged in
     let logOutButton;
     let links;
