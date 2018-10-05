@@ -21,7 +21,6 @@ export class Discover extends React.Component {
   i=0;
   componentDidMount = () => {
     // console.log(this, '1st this');
-    // console.log(this, '1st this');
     this.props.dispatch(fetchSpotify(this.props.weather)); 
 
     this.setState({changed: false});
@@ -30,7 +29,6 @@ export class Discover extends React.Component {
   getNextSong(){
     // console.log('i is: ', this.i);
     this.i++;
-    // console.log('i is now: ', this.i);
     this.returnSong(this.i);
   }
 
