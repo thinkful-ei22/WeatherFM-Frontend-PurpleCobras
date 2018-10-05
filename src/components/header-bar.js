@@ -20,18 +20,20 @@ export class HeaderBar extends React.Component {
 
   tempClick () {
     let text = '';
-    if(this.state.tempFlip === false){
-      text = `${this.props.tempC} °C`;
+    if(this.props.tempC && this.props.tempF){
+      if(this.state.tempFlip === false){
+        text = `${this.props.tempC} °C`;
+      }
+      else if(this.state.tempFlip === true){
+        text = `${this.props.tempF} °F`;
+      }
+      return(
+        <div 
+          className='temperature'
+          onClick={() => this.setState({tempFlip: !this.state.tempFlip})}
+        >{text}</div>
+      );
     }
-    else if(this.state.tempFlip === true){
-      text = `${this.props.tempF} °F`;
-    }
-    return(
-      <div 
-        className='temperature'
-        onClick={() => this.setState({tempFlip: !this.state.tempFlip})}
-      >{text}</div>
-    );
   }
 
   render() {

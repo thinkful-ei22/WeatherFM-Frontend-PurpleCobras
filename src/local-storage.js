@@ -26,3 +26,14 @@ export const saveWeather = weather => {
     localStorage.setItem('weather', weather);
   } catch (e) {}
 };
+
+// export const loadConversion = () => {
+//   // console.log(localStorage.getItem('weather'))
+//   return localStorage.getItem('conversion');
+// };
+
+// export const saveDegreeConversion = conversion => {
+//   try {
+//     localStorage.setItem('conversion', conversion);
+//   } catch (e) {}
+// };

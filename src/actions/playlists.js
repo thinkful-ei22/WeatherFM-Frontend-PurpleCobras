@@ -74,7 +74,7 @@ export const addSongError = error => ({
   error
 });
 
-export const addSong = (weather, artist, songTitle, thumbnail) => (dispatch, getState) => {
+export const addSong = (weather, spotifyId, artist, songTitle, thumbnail) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   console.log('Adding song to', weather);
 
@@ -86,6 +86,7 @@ export const addSong = (weather, artist, songTitle, thumbnail) => (dispatch, get
     },
     body: JSON.stringify({
       weather,
+      spotifyId,
       artist,
       songTitle,
       thumbnail
