@@ -6,12 +6,42 @@ import {clearAuthToken} from '../local-storage';
 import '../css/header-bar.css';
 
 export class HeaderBar extends React.Component {
-    logOut() {
-        this.props.dispatch(clearAuth());
-        clearAuthToken();
+  constructor(props){
+    super(props);
+    this.state = {
+      tempFlip: false,
+    };
+  }
+
+  componentDidMount(){
+    this.tempClick();
+  }
+
+  logOut() {
+    this.props.dispatch(clearAuth());
+    clearAuthToken();
+  }
+
+  tempClick () {
+    let text = '';
+    if(this.props.tempC && this.props.tempF){
+      if(this.state.tempFlip === false){
+        text = `${this.props.tempC} °C`;
+      }
+      else if(this.state.tempFlip === true){
+        text = `${this.props.tempF} °F`;
+      }
+      return(
+        <div 
+          className='temperature'
+          onClick={() => this.setState({tempFlip: !this.state.tempFlip})}
+        >{text}</div>
+      );
     }
+  }
 
     render() {
+          // console.log(this.props.tempC, this.props.tempF);
         // Only render the log out button if we are logged in
         let logOutButton;
         let links;
@@ -33,11 +63,15 @@ export class HeaderBar extends React.Component {
                 {logOutButton}
             </div>
         );
+
     }
-}
+    
+  }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+  loggedIn: state.auth.currentUser !== null,
+  tempC: state.weather.tempC,
+  tempF: state.weather.tempF
 });
 
 export default connect(mapStateToProps)(HeaderBar);

@@ -7,6 +7,25 @@
   display: flex;
 }
 
+
+.temperature {
+  display: inline-block;
+  padding: 10px;
+  border: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 5px;
+  width: 4%;
+  right: 12%;
+  position: absolute;
+  font-family: 'Montserrat';
+  cursor: pointer;
+}
+
+.temperature:hover{
+  background-color: #fff;
+}
+
 .header-bar button {
   display: inline-block;
   padding: 10px;
@@ -15,6 +34,7 @@
   box-shadow: none;
   border-radius: 5px;
   width: 10%;
+
   right: 3%;
   position: absolute;
   font-family: 'Montserrat';

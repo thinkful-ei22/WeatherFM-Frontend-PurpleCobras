@@ -9,7 +9,7 @@ const initialState = {
   videoURL: '',
   error: null,
   loading: false
-}
+};
 
 export default function reducer(state = initialState, action){
   if (action.type === FETCH_YOUTUBE_SUCCESS){
@@ -19,16 +19,16 @@ export default function reducer(state = initialState, action){
       videoTitle: action.videoTitle,
       videoURL: action.videoURL,
       loading: false
-    })
+    });
   } else if (action.type === FETCH_YOUTUBE_REQUEST) {
     return Object.assign({}, state, {
       loading: true
-    })
+    });
   } else if (action.type === FETCH_YOUTUBE_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
-    })
+    });
   }
   return state;
 }

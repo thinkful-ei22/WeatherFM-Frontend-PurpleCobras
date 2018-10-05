@@ -5,6 +5,8 @@ import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
+import '../css/app.css';
+import Slider from './slider';
 import { changeWeather } from '../actions/weather';
 import '../css/discover.css';
 
@@ -25,9 +27,10 @@ export class Discover extends React.Component {
   i=0;
   componentDidMount = () => {
     //console.log(this, '1st this');
-    // console.log(this, '1st this');
 
+    // console.log(this, '1st this');
     this.props.dispatch(fetchSpotify(this.props.weather)); 
+
     this.setState({changed: false});
   }
 
@@ -43,8 +46,15 @@ if (this.state.karaokeMode === true){
       karaokeMode: false
     })
 }
+
     this.returnSong(this.i);
   }
+  onEnded(){
+    console.log('Song has ended');
+
+    this.getNextSong();
+  }
+
 
   switchMode = (index) =>{
     //console.log('switch mode running');
@@ -167,31 +177,41 @@ if (this.state.karaokeMode === true){
 
         this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke'));
       }
+
     }
 
-    if(this.props.url === '') {
+     let returnHTML = '';
+     if(!this.props.spotifyList.length && this.props.url !== ''){
+      return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
+    }
+    
+     if(this.props.url === '') {
       return returnHTML = <div className="lds-circle"></div>
     }
- 
-    else if (this.props.url){
-      //console.log(this.props.url, 'props.url');
-      let returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
-      <p>{this.props.lyrics}</p>
-       <Song url={this.props.url} />
+
+    else if (this.props.url && this.props.spotifyList.length){
+
+      let returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+       <div className="thumbnail">{this.thumbnail}</div>
+       <div className="controls"></div>
+       <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
+     
        <button onClick={(e) =>{
+         console.log(this.props.spotifyList[this.i]);
           this.props.dispatch(addSong(
-            this.props.weather, 
+            this.props.weather,
+            this.props.spotifyList[this.i].spotifyId, 
             this.props.spotifyList[this.i].artist, 
             this.props.spotifyList[this.i].songTitle, 
             this.props.spotifyList[this.i].thumbnail
           ))
         }}>
-          Add to Playlist
+          Add to Playlist 
         </button>
        </div>;
 
        return returnHTML;
-    }
+    } 
   }
 
   changeWeather = (newWeather) => {
@@ -206,9 +226,9 @@ if (this.state.karaokeMode === true){
 
   render() {
     return (
-      <div>
-        Right now it is {this.props.weather}! <br />
-        <label forHTML="Radio">Change the station: </label>
+      <div className="discover">
+   Right now it is {this.props.weather}! <br />
+        <label htmlFor="Radio">Change the station: </label>
         <select 
           name="Radio"
           // value={this.props.weather} 
@@ -224,13 +244,14 @@ if (this.state.karaokeMode === true){
           <option value="Thunderstorm">Thunderstorm</option>
         </select>
         <br /><br />
-
         {this.props.weather} Radio
+
 
         {this.returnSong(this.i)}
         {this.changeModeButton(this.i)}
 
         <button onClick={() => this.getNextSong()}>Next</button>
+        <Slider/>
       </div>
     )
   }
