@@ -4,13 +4,13 @@ export const FETCH_PLAYLISTS_SUCCESS = 'FETCH_PLAYLISTS_SUCCESS';
 export const fetchPlaylistsSuccess = playlists => ({
   type: FETCH_PLAYLISTS_SUCCESS,
   playlists
-})
+});
 
 export const FETCH_PLAYLISTS_ERROR = 'FETCH_PLAYLISTS_ERROR';
 export const fetchPlaylistsError = error => ({
   type: FETCH_PLAYLISTS_ERROR,
   error
-})
+});
 
 export const fetchPlaylists = () => (dispatch, getState) =>{
   const authToken = getState().auth.authToken; 
@@ -23,25 +23,25 @@ export const fetchPlaylists = () => (dispatch, getState) =>{
       'content-type': 'application/json'
     }
   })
-  .then(res => res.json())
-  .then((playlists) => dispatch(fetchPlaylistsSuccess(playlists)))
-  .catch(err => {
-    dispatch(fetchPlaylistsError(err));
-  })
-}
+    .then(res => res.json())
+    .then((playlists) => dispatch(fetchPlaylistsSuccess(playlists)))
+    .catch(err => {
+      dispatch(fetchPlaylistsError(err));
+    });
+};
 
 // delete a song
 
 export const DELETE_SONG_SUCCESS = 'DELETE_SONG_SUCCESS';
 export const deleteSongSuccess = () => ({
   type: DELETE_SONG_SUCCESS,
-})
+});
 
 export const DELETE_SONG_ERROR = 'DELETE_SONG_ERROR';
 export const deleteSongError = error => ({
   type: DELETE_SONG_ERROR,
   error
-})
+});
 
 export const deleteSong = (weather, songTitle) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
@@ -54,27 +54,27 @@ export const deleteSong = (weather, songTitle) => (dispatch, getState) => {
       'content-type': 'application/json'
     }
   })
-  .then(() => dispatch(deleteSongSuccess()))
-  .then((res) => dispatch(fetchPlaylists(res)))
-  .catch((err) => {
-    dispatch(deleteSongError(err))
-  })
-}
+    .then(() => dispatch(deleteSongSuccess()))
+    .then((res) => dispatch(fetchPlaylists(res)))
+    .catch((err) => {
+      dispatch(deleteSongError(err));
+    });
+};
 
 // add a song
 
 export const ADD_SONG_SUCCESS = 'ADD_SONG_SUCCESS';
 export const addSongSuccess = () => ({
   type: ADD_SONG_SUCCESS
-})
+});
 
 export const ADD_SONG_ERROR = 'ADD_SONG_ERROR';
 export const addSongError = error => ({
   type: ADD_SONG_ERROR,
   error
-})
+});
 
-export const addSong = (weather, artist, songTitle, thumbnail) => (dispatch, getState) => {
+export const addSong = (weather, spotifyId, artist, songTitle, thumbnail) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   console.log('Adding song to', weather);
 
@@ -86,6 +86,7 @@ export const addSong = (weather, artist, songTitle, thumbnail) => (dispatch, get
     },
     body: JSON.stringify({
       weather,
+      spotifyId,
       artist,
       songTitle,
       thumbnail

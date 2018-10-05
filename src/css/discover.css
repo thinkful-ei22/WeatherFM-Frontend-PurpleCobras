@@ -1,0 +1,85 @@
+.songTitle h1 {
+  font-size: 30px;
+  padding: 0px;
+  color: #fff;
+  position: relative;
+  font-family: 'Montserrat';
+  letter-spacing: 0px;
+  font-weight: 700;
+  margin-top: 5%;
+  max-width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.discover button {
+  display: inline-block;
+  padding: 10px;
+  border: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 5px;
+  width: 10%;
+  right: 3%;
+  font-family: 'Montserrat';
+}
+
+.thumbnail img {
+  max-width: 170px;
+  max-height: 170px;
+  border-radius: 50%;
+  opacity: .8;
+}
+
+.thumbnail img:hover {
+  background-color: #fff;
+}
+
+.thumbnailBorder {
+  margin-left: auto;
+  margin-right: auto;
+  width: 170px;
+  height: 170px;
+  padding: 3px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+
+/* Loading spinner */
+
+* {
+  background-color: aquamarine
+input {
+  padding: 0px;
+  border: 0px;
+  box-shadow: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.lds-circle {
+display: inline-block;
+width: 51px;
+height: 51px;
+margin: 6px;
+border-radius: 50%;
+background: #fff;
+animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes lds-circle {
+0%, 100% {
+  animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+}
+0% {
+  transform: rotateY(0deg);
+}
+50% {
+  transform: rotateY(1800deg);
+  animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+}
+100% {
+  transform: rotateY(3600deg);
+}
+}

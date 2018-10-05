@@ -6,20 +6,26 @@ import {
 
 const initialState = {
   videoURL: '',
-  error: null
-}
+  error: null,
+  loading: false
+};
 
 export default function reducer(state = initialState, action){
   if (action.type === FETCH_YOUTUBE_SUCCESS){
-    console.log('FETCH YOUTUBE VIDEO SUCCESSFUL');
+    // console.log('FETCH YOUTUBE VIDEO SUCCESSFUL');
     return Object.assign({}, state, {
-      videoURL: action.videoURL
-    })
-  }
-  else if (action.type === FETCH_YOUTUBE_ERROR){
+      videoURL: action.videoURL,
+      loading: false
+    });
+  } else if (action.type === FETCH_YOUTUBE_REQUEST) {
     return Object.assign({}, state, {
-      error: action.error
-    })
+      loading: true
+    });
+  } else if (action.type === FETCH_YOUTUBE_ERROR){
+    return Object.assign({}, state, {
+      error: action.error,
+      loading: false
+    });
   }
   return state;
 }

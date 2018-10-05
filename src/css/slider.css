@@ -1,0 +1,9 @@
+.slider label {
+    display: inline
+}
+.slider button {
+    display: inline
+}
+.slider {
+    width: 800px;
+}

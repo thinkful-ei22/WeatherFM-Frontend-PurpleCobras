@@ -3,19 +3,20 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists } from '../actions/playlists';
+import HeaderBar from './header-bar';
 
 export class PlaylistPage extends React.Component {
   componentDidMount() {
-    console.log('Component Mounted');
+    // console.log('Component Mounted');
     this.props.dispatch(fetchPlaylists());
   }
 
   render() {
-    console.log(this.props.playlists);
+    // console.log(this.props.playlists);
     let userPlaylists;
     userPlaylists = this.props.playlists;
 
-    let links = []
+    let links = [];
     let userPlaylistArray;
     if (this.props.playlists) {
       userPlaylistArray = Object.keys(userPlaylists);
@@ -32,18 +33,21 @@ export class PlaylistPage extends React.Component {
 
     return (
       <div>
-        {links}
+        <HeaderBar />
+        <div>
+          {links}
+        </div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
   const {currentUser} = state.auth;
   return {
-      username: state.auth.currentUser.username,
-      name: `${currentUser.firstName}`,
-      playlists: state.playlists.playlists
+    username: state.auth.currentUser.username,
+    name: `${currentUser.firstName}`,
+    playlists: state.playlists.playlists
   };
 };
 
