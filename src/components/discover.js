@@ -180,7 +180,6 @@ if (this.state.karaokeMode === true){
 
     }
 
-     let returnHTML = '';
      if(!this.props.spotifyList.length && this.props.url !== ''){
       return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
     }
@@ -191,7 +190,7 @@ if (this.state.karaokeMode === true){
 
     else if (this.props.url && this.props.spotifyList.length){
 
-      let returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+       returnHTML = <div className="songTitle"><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <div className="thumbnail">{this.thumbnail}</div>
        <div className="controls"></div>
        <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
