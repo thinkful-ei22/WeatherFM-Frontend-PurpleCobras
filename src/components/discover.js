@@ -32,10 +32,10 @@ export class Discover extends React.Component {
     this.returnSong(this.i);
   }
 
-  
   returnSong = (index) => {
     let returnHTML = '';
     if(this.props.spotifyList.length){
+      // console.log(this.props.spotifyList[0]);
       this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
 
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist));
@@ -54,8 +54,10 @@ export class Discover extends React.Component {
       returnHTML = <div><h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
        <Song url={this.props.url} />
        <button onClick={(e) =>{
+         console.log(this.props.spotifyList[this.i]);
           this.props.dispatch(addSong(
-            this.props.weather, 
+            this.props.weather,
+            this.props.spotifyList[this.i].spotifyId, 
             this.props.spotifyList[this.i].artist, 
             this.props.spotifyList[this.i].songTitle, 
             this.props.spotifyList[this.i].thumbnail
