@@ -3,6 +3,7 @@ import Song from './song';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists, deleteSong } from '../actions/playlists';
+import { syncSpotifyPlaylist } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
 import '../css/playlist.css';
 
@@ -11,16 +12,27 @@ import '../css/playlist.css';
 export class Playlist extends React.Component {
   componentDidMount() {
     console.log('Playlist Component Mounted');
-    this.props.dispatch(fetchPlaylists());
+    const currentURL = new URL(window.location);
+    let accessToken=currentURL.hash.slice(14, currentURL.hash.search('&'));
+
+    this.props.dispatch(fetchPlaylists())
+      .then(() => {
+        if (accessToken && this.props.playlists) {
+          const weather = this.props.location.pathname.split('/')[2];
+          const playlist = this.props.playlists[weather];
+          console.log('send DATA', weather, playlist);
+          this.props.dispatch(syncSpotifyPlaylist(accessToken, weather, playlist))
+            .then(() => {
+              window.location = (window.location.origin + window.location.pathname);
+            });
+        }
+      });
   }
 
   onSyncClick() {
-    const location = window.location;
-    console.log('current url', location);
-    const weather = this.props.location.pathname.split('/')[2];
-    const playlist = this.props.playlists[weather];
+    const URLlocation = (window.location.origin + window.location.pathname).replace(/\//g, '%2F');
     
-    window.location = 'https://accounts.spotify.com/authorize?client_id=cae7690868bd44f7b7ae0abde50e406b&redirect_uri=http:%2F%2Flocalhost:3000%2Fdashboard&'
+    window.location = `https://accounts.spotify.com/authorize?client_id=cae7690868bd44f7b7ae0abde50e406b&redirect_uri=${URLlocation}&`
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
@@ -62,7 +74,7 @@ export class Playlist extends React.Component {
 
           // dispatch API call to get youtube url & set it to a variable
           // let url = '';
-          console.log(youtube, 'url');
+          //console.log(youtube, 'url');
           songs.push(
             <div key={title}>
               
