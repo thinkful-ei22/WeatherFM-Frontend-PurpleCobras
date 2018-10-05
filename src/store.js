@@ -2,14 +2,14 @@ import {createStore, applyMiddleware, combineReducers} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
-import {loadAuthToken, loadWeather, loadDegrees} from './local-storage';
+import {loadAuthToken, loadWeather, loadConversion, saveDegreeConversion} from './local-storage';
 import authReducer from './reducers/auth';
 import protectedDataReducer from './reducers/protected-data';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 import weatherReducer from './reducers/weather';
 import playlistReducer from './reducers/playlists';
 import youtubeReducer from './reducers/youtube';
-import { setWeather, setDegrees } from './actions/weather';
+import { setWeather} from './actions/weather';
 import spotifyReducer from './reducers/spotify';
 
 const store = createStore(
@@ -39,5 +39,11 @@ const weather = loadWeather();
 if (weather) {
   store.dispatch(setWeather(weather));
 }
+
+// const conversion = loadConversion();
+// // console.log('weather', weather);
+// if (conversion) {
+//   store.dispatch(saveDegreeConversion(conversion));
+// }
 
 export default store;

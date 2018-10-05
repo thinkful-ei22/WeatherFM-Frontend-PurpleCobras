@@ -7,12 +7,12 @@ import HeaderBar from './header-bar';
 
 export class PlaylistPage extends React.Component {
   componentDidMount() {
-    console.log('Component Mounted');
+    // console.log('Component Mounted');
     this.props.dispatch(fetchPlaylists());
   }
 
   render() {
-    console.log(this.props.playlists);
+    // console.log(this.props.playlists);
     let userPlaylists;
     userPlaylists = this.props.playlists;
 

@@ -13,6 +13,10 @@ export class HeaderBar extends React.Component {
     };
   }
 
+  componentDidMount(){
+    this.tempClick();
+  }
+
   logOut() {
     this.props.dispatch(clearAuth());
     clearAuthToken();
@@ -20,21 +24,24 @@ export class HeaderBar extends React.Component {
 
   tempClick () {
     let text = '';
-    if(this.state.tempFlip === false){
-      text = `${this.props.tempC} °C`;
+    if(this.props.tempC && this.props.tempF){
+      if(this.state.tempFlip === false){
+        text = `${this.props.tempC} °C`;
+      }
+      else if(this.state.tempFlip === true){
+        text = `${this.props.tempF} °F`;
+      }
+      return(
+        <div 
+          className='temperature'
+          onClick={() => this.setState({tempFlip: !this.state.tempFlip})}
+        >{text}</div>
+      );
     }
-    else if(this.state.tempFlip === true){
-      text = `${this.props.tempF} °F`;
-    }
-    return(
-      <div 
-        className='temperature'
-        onClick={() => this.setState({tempFlip: !this.state.tempFlip})}
-      >{text}</div>
-    );
   }
 
   render() {
+    // console.log(this.props.tempC, this.props.tempF);
     // Only render the log out button if we are logged in
     let logOutButton;
     let links;

@@ -1,4 +1,4 @@
-import {saveWeather, saveDegrees} from '../local-storage';
+import {saveWeather} from '../local-storage';
 
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
@@ -22,6 +22,19 @@ export const setWeather = weather => ({
   type: SET_WEATHER,
   weather
 });
+
+export const CHANGE_WEATHER_SUCCESS = 'CHANGE_WEATHER_SUCCESS';
+export const changeWeatherSuccess = newWeather => ({
+  type: CHANGE_WEATHER_SUCCESS,
+  newWeather
+});
+
+export const CHANGE_WEATHER_ERROR = 'CHANGE_WEATHER_ERROR';
+export const changeWeatherError = error => ({
+  type: CHANGE_WEATHER_ERROR,
+  error
+});
+
 
 // store weather in local storage
 
@@ -49,6 +62,7 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
     .then(res => res.json())
     .then((weather) => {
       // console.log(weather, typeof weather, weather.weather);
+      
       dispatch(fetchWeatherSuccess(
         weather.weather,
         weather.tempC,
@@ -59,18 +73,6 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
       dispatch(fetchWeatherError(err));
     });
 };
-
-export const CHANGE_WEATHER_SUCCESS = 'CHANGE_WEATHER_SUCCESS';
-export const changeWeatherSuccess = newWeather => ({
-  type: CHANGE_WEATHER_SUCCESS,
-  newWeather
-});
-
-export const CHANGE_WEATHER_ERROR = 'CHANGE_WEATHER_ERROR';
-export const changeWeatherError = error => ({
-  type: CHANGE_WEATHER_ERROR,
-  error
-});
 
 export const changeWeather = (weather) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;

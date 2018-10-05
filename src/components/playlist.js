@@ -36,9 +36,6 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
-  // dispatch(fetchYoutube(title, artist));
-
-
   // to delete -> send in weather, artist, title, and thumbnail
   // api/users/playlists
 
@@ -55,11 +52,9 @@ export class Playlist extends React.Component {
     let pathArray = pathName.split('/');
     let playlistName = pathArray[2];
 
-    console.log(playlistName);
-    console.log(this.props);
+    // console.log(playlistName);
+    // console.log(this.props);
     let currentPlaylist;
-
-
 
     // code to loop through user's playlist object and render each song
     let songs = [];
@@ -80,11 +75,11 @@ export class Playlist extends React.Component {
               
               <img src={albumArt} style={{width: 100, height: 100}}></img>, {title}, by {artist},
               
-              <button onClick={(e) => {
+              <button onClick={() => {
                 youtubeClick(artist, title);
               }}>Play</button>
 
-              <button onClick={(e) => {
+              <button onClick={() => {
                 console.log(playlistName, title, artist, albumArt);
                 dispatch(deleteSong(playlistName, title, artist, albumArt));
               }}>
@@ -135,9 +130,6 @@ const mapStateToProps = state => {
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Playlist));
-
-
-
 
 // { Sunny: [song, song, song], Cloudy: [song, song, song] }
 // [ {name: Sunny, songs: [song, song, song]}, {name: Cloudy, songs: [song, song, song]} ]
