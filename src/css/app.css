@@ -30,15 +30,6 @@ h2 {
   padding-top: 13%;
   margin-top: 0%;
 }
-
-/* input {
-  padding: 13px;
-  border: 0px;
-  box-shadow: none;
-  border-radius: 5px;
-  width: 20%;
-} */
-
 form button {
   padding: 13px;
   border: 0px;
@@ -85,4 +76,5 @@ form label {
   100% {
     transform: rotateY(3600deg);
   }
+
 }

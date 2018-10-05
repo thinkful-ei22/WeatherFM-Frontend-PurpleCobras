@@ -84,6 +84,7 @@ export class Song extends React.Component {
               onEnded={this.props.onEnded}
               onProgress={this.onProgress}
             />
+
 <section>
        <table><tbody>
             <tr>
