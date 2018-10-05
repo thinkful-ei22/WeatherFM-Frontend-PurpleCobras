@@ -65,15 +65,8 @@ export class HeaderBar extends React.Component {
         );
 
     }
-    return (
-      <div className="header-bar">
-        {links}
-        {this.tempClick()}
-        {logOutButton}
-      </div>
-    );
+    
   }
-}
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.currentUser !== null,

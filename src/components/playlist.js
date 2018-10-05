@@ -38,7 +38,7 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
-  }
+  
   state = {
     currentIndex: null,
     playlistName: this.props.location.pathname.split('/')[2]
@@ -76,9 +76,9 @@ export class Playlist extends React.Component {
       dispatch(fetchYoutube(artist, title));
     }
 
-    let pathName = this.props.location.pathname;
-    let pathArray = pathName.split('/');
-    let playlistName = pathArray[2];
+    // let pathName = this.props.location.pathname;
+    // let pathArray = pathName.split('/');
+    // let playlistName = pathArray[2];
 
     // console.log(playlistName);
     // console.log(this.props);
