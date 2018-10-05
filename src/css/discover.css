@@ -59,6 +59,12 @@ input {
   border-radius: 5px;
   width: 100%;
 }
+* {
+  background-color: aquamarine
+}
+.hide{
+  display: none;
+}
 
 .lds-circle {
 display: inline-block;

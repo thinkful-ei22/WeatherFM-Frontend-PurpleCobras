@@ -11,17 +11,17 @@ import playlistReducer from './reducers/playlists';
 import youtubeReducer from './reducers/youtube';
 import { setWeather} from './actions/weather';
 import spotifyReducer from './reducers/spotify';
-
 const store = createStore(
-  combineReducers({
-    form: formReducer,
-    auth: authReducer,
-    protectedData: protectedDataReducer,
-    weather: weatherReducer,
-    playlists: playlistReducer,
-    youtube: youtubeReducer,
-    spotify: spotifyReducer
-  }), composeWithDevTools(
+    combineReducers({
+        form: formReducer,
+        auth: authReducer,
+        protectedData: protectedDataReducer,
+        weather: weatherReducer,
+        playlists: playlistReducer,
+        youtube: youtubeReducer,
+        spotify: spotifyReducer,
+    }), composeWithDevTools(
+
     applyMiddleware(thunk)
   ));
 

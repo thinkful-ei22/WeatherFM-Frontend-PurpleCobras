@@ -8,8 +8,9 @@ export const fetchYoutubeRequest = loading => ({
 });
 
 export const FETCH_YOUTUBE_SUCCESS = 'FETCH_YOUTUBE_SUCCESS';
-export const fetchYoutubeSuccess = videoURL => ({
+export const fetchYoutubeSuccess = (videoTitle,videoURL) => ({
   type: FETCH_YOUTUBE_SUCCESS,
+  videoTitle,
   videoURL
 });
 
@@ -19,7 +20,7 @@ export const fetchYoutubeError = error => ({
   error
 });
 
-export const fetchYoutube = (title, artist) => (dispatch, getState) => {
+export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
   dispatch(fetchYoutubeRequest());
   const authToken = getState().auth.authToken;
 
@@ -28,7 +29,7 @@ export const fetchYoutube = (title, artist) => (dispatch, getState) => {
 
   // console.log(title, artist, 'title and artist');
 
-  return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}`, {
+  return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}/${mode}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -42,13 +43,19 @@ export const fetchYoutube = (title, artist) => (dispatch, getState) => {
     .then(res => {
     // console.log(res, 'res')
 
-      return res.json();
-    })
-    .then(videoURL => {
+    return res.json()
+  })
+  .then(videoInfo => {
+   // console.log(videoInfo);
+    let videoTitle = videoInfo.videoTitle;
+    let videoURL = videoInfo.videoURL
+    //console.log(videoTitle, 'videoTitle');
+   // console.log(videoURL, 'videoURL');
     // console.log(videoURL, 'url in action')
-      dispatch(fetchYoutubeSuccess(videoURL));
-    })
-    .catch(err => {
+    dispatch(fetchYoutubeSuccess(videoTitle, videoURL))
+  })
+  .catch(err => {
+
     // console.log(err)
       dispatch(fetchYoutubeError(err));
     });

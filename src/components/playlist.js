@@ -12,6 +12,7 @@ import '../css/playlist.css';
 
 export class Playlist extends React.Component {
   componentDidMount() {
+
     console.log('Playlist Component Mounted');
 
     const currentURL = new URL(window.location);
@@ -30,6 +31,11 @@ export class Playlist extends React.Component {
         }
       });
   }
+   state = {
+    karaokeMode: false,
+    currentArtist: '',
+    currentSongTitle: ''
+  }
 
   onSyncClick() {
     const URLlocation = (window.location.origin + window.location.pathname).replace(/\//g, '%2F');
@@ -46,6 +52,39 @@ export class Playlist extends React.Component {
   // dispatch(fetchYoutube(title, artist));
   // to delete -> send in weather, artist, title, and thumbnail
   // api/users/playlists
+  switchMode = () =>{
+    console.log('switch mode running');
+    let artist = this.state.currentArtist;
+    let title = this.state.currentSongTitle;
+    this.setState({
+      karaokeMode: !this.state.karaokeMode
+    }, function () {
+      if (this.state.karaokeMode){
+        console.log('karaoke mode');
+        console.log(this.state.currentArtist, this.state.currentSongTitle);
+        this.props.dispatch(fetchYoutube(artist, title, 'karaoke'));
+        }
+        else {
+          console.log('video mode');
+          console.log(this.state.currentArtist, this.state.currentSongTitle);
+          this.props.dispatch(fetchYoutube(artist, title, 'video'))
+        }
+    })
+  }
+  changeModeButton = () =>{
+    console.log('changing mode');
+    let switchButton;
+    if (this.state.karaokeMode === false){
+     switchButton = <button onClick={() => this.switchMode()}>Switch to Karaoke Mode</button>;
+
+    }
+    else {
+
+      switchButton = <button onClick={() => this.switchMode()}>Switch to Video Mode</button>;
+    }
+    return switchButton;
+
+  }
 
   onEnd = () => {
     
@@ -72,24 +111,31 @@ export class Playlist extends React.Component {
     
 
 
-    function youtubeClick(artist, title) {
-      dispatch(fetchYoutube(artist, title));
+    const youtubeClick = (artist, title) => {
+      if (this.state.karaokeMode){
+      dispatch(fetchYoutube(artist, title, 'karaoke'))
+      }
+      else {
+        dispatch(fetchYoutube(artist, title, 'video'))
+      }
+
     }
 
     // let pathName = this.props.location.pathname;
     // let pathArray = pathName.split('/');
     // let playlistName = pathArray[2];
 
-    // console.log(playlistName);
-    // console.log(this.props);
+    //console.log(playlistName)
+    //console.log(this.props);
+
     let currentPlaylist;
 
     // code to loop through user's playlist object and render each song
     let songs = [];
-    let loopedSongs = (playlists) => {
+    let loopedSongs =  (playlists) => {
+
       if (playlists) {
         currentPlaylist = playlists[playlistName];
-
         for (let i = 0; i < currentPlaylist.length; i++ ) {
           let title = currentPlaylist[i].songTitle;
           let artist = currentPlaylist[i].artist;
@@ -97,7 +143,8 @@ export class Playlist extends React.Component {
 
           // dispatch API call to get youtube url & set it to a variable
           // let url = '';
-          //console.log(youtube, 'url');
+         //console.log(youtube, 'url');
+
           songs.push(
             <div key={title}>
               
@@ -105,12 +152,15 @@ export class Playlist extends React.Component {
               
               <button onClick={(e) => {
                 this.youtubeClick(artist, title, i);
-
-
+                this.setState({
+                  currentArtist: artist,
+                  currentSongTitle: title
+                })
               }}>Play</button>
 
-              <button onClick={() => {
-                console.log(playlistName, title, artist, albumArt);
+              <button onClick={(e) => {
+                //console.log(playlistName, title, artist, albumArt);
+
                 dispatch(deleteSong(playlistName, title, artist, albumArt));
               }}>
               Delete Song
@@ -137,9 +187,8 @@ export class Playlist extends React.Component {
       <div>
         <h1>{playlistName} Playlist</h1>
         {/* <Song url = {this.props.url}/> */}
-        {currentSong}
+        {currentSong}        {this.changeModeButton()}
         <button onClick={() => this.onSyncClick()} >Creatue playing on Spotify using these songs.</button>
-
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
       </div>
