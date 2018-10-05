@@ -12,6 +12,7 @@ import {refreshAuthToken} from '../actions/auth';
 import PlaylistPage from './playlist-page';
 import {fetchWeather} from '../actions/weather';
 import Playlist from './playlist';
+import Onboarding from './onboarding';
  
 export class App extends React.Component {
   componentDidMount(){
@@ -67,19 +68,20 @@ export class App extends React.Component {
   }
 
   render() {
-    return (
-      <div className="app">
-        <Route exact path="/(dashboard|discover|playlists)/" component={HeaderBar} />
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/discover" component={Discover} />
-        <Route exact path="/playlists" component={PlaylistPage} />
-        <Route path="/playlist/:name" component={HeaderBar} />
-        <Route path="/playlist/:name" component={Playlist} />
-        <Route exact path="/register" component={RegistrationPage} />
-      </div>
-    );
-  }
+        return (
+            <div className="app">
+                <Route exact path="/(dashboard|discover|playlists)/" component={HeaderBar} />
+                <Route exact path="/" component={LandingPage} />
+                <Route exact path="/onboarding" component={Onboarding} />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/discover" component={Discover} />
+                <Route exact path="/playlists" component={PlaylistPage} />
+                 <Route path="/playlist/:name" component={HeaderBar} />
+                <Route path="/playlist/:name" component={Playlist} />
+                <Route exact path="/register" component={RegistrationPage} />
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
