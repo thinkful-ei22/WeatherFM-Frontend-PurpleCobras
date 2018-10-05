@@ -14,6 +14,16 @@ export class Playlist extends React.Component {
     this.props.dispatch(fetchPlaylists());
   }
 
+  onSyncClick() {
+    const location = window.location;
+    console.log('current url', location);
+    const weather = this.props.location.pathname.split('/')[2];
+    const playlist = this.props.playlists[weather];
+    
+    window.location = 'https://accounts.spotify.com/authorize?client_id=cae7690868bd44f7b7ae0abde50e406b&redirect_uri=http:%2F%2Flocalhost:3000%2Fdashboard&'
+    +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
+  }
+
   // dispatch(fetchYoutube(title, artist));
 
 
@@ -90,6 +100,7 @@ export class Playlist extends React.Component {
         <h1>{playlistName} Playlist</h1>
         {/* <Song url = {this.props.url}/> */}
         {currentSong}
+        <button onClick={() => this.onSyncClick()} >Creatue playing on Spotify using these songs.</button>
 
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
