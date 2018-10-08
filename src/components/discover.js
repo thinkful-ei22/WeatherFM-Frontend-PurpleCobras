@@ -15,109 +15,29 @@ export class Discover extends React.Component {
     super(props);
     this.state = {
       changed: false,
-      karaokeMode: false,
-      karaokeModeButton: 'hide'
-    };
+      // karaokeMode: false,
+      // karaokeModeButton: 'hide'
+    }
   }
+  // checkedForLyricsSong = false;
 
-  checkedForLyricsSong = false;
   thumbnail="";
-  karaokeTitle = '';
-  officialTitle = '';
+  // karaokeTitle = '';
+  // officialTitle = '';
   i=0;
-  componentDidMount(){
-    //console.log(this, '1st this');
+  componentDidMount = () => {
+
     this.props.dispatch(fetchSpotify(this.props.weather)); 
     this.setState({changed: false});
   }
 
   getNextSong(){
-    this.checkedForLyricsSong = false;
     this.i++;
-    console.log('in getNextSong, checkedForLyricsSong equals', this.checkedForLyricsSong);
-    if (this.state.karaokeMode === true){
-      console.log('karaokeMode INSIDE OF getNextSong() is' , this.state.karaokeMode);
-      this.setState({karaokeMode: false})
-    }
     this.returnSong(this.i);
   }
 
   onEnded(){
     this.getNextSong();
-  }
-
-  switchMode(index){
-    //console.log('switch mode running');
-    this.setState({karaokeMode : !this.state.karaokeMode}, () => {
-      if (this.state.karaokeMode === false ){
-        this.checkedForLyricsSong = false;
-      }
-      this.returnSong(index);
-    })
-  }
-
-  changeModeButton(index){
-    //console.log('changing button');
-    let switchButton;
-    if (this.state.karaokeMode === false){
-      switchButton = <button onClick={() => this.switchMode(index)} className={this.state.karaokeModeButton}>Switch to Karaoke Mode</button>;
-    } else {
-      switchButton = <button onClick={() => this.switchMode(index)} className={this.state.karaokeModeButton}>Switch to Video Mode</button>;
-    }
-    return switchButton;
-  }
-
-  checkLyricsVideo(title){
-    // console.log('should be ', title.toLowerCase().includes('lyrics') || title.toLowerCase().includes('lyric'));
-    if ((title.toLowerCase().includes('lyrics') 
-      || title.toLowerCase().includes('lyric'))
-        && (!title.toLowerCase().includes('lyrics in description'))
-          && (!title.toLowerCase().includes('lyrics below'))
-           && (this.karaokeTitle !== this.officialTitle)
-    ){
-      console.log('there is a lyrics video');
-      if (this.state.karaokeModeButton === 'hide'){
-        this.setState({
-          karaokeModeButton: 'show'
-        })
-      }
-    }
-    else {
-      console.log('there is not a lyrics video');
-      if (this.state.karaokeModeButton === 'show'){
-        if (this.state.karaokeMode === true){
-        this.setState({
-          karaokeMode: false,
-          karaokeModeButton: 'hide'
-        })
-      } else {
-        this.setState({karaokeModeButton: 'hide'})
-        }
-      }
-    }
-  }
-
-  addSongToPlaylist(){
-    return(
-      <button onClick={(e) =>{
-        //  console.log(this.props.spotifyList[this.i]);
-          this.props.dispatch(addSong(
-            this.props.weather,
-            this.props.spotifyList[this.i].spotifyId, 
-            this.props.spotifyList[this.i].artist, 
-            this.props.spotifyList[this.i].songTitle, 
-            this.props.spotifyList[this.i].thumbnail
-          ))
-        }}>
-          Add to Playlist 
-      </button>
-    );
-  }
-
-  fetchYoutube(index, str){
-    this.props.dispatch(fetchYoutube(
-      this.props.spotifyList[index].songTitle, 
-      this.props.spotifyList[index].artist, str));
   }
 
   returnSong(index){
@@ -126,36 +46,11 @@ export class Discover extends React.Component {
     let returnHTML = '';
     //if spotifyList has a length
     if(this.props.spotifyList.length){
-     //set thumbnail
+    
      this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
-      //console.log('karaokeMode is>>>', this.state.karaokeMode);
-      //if karaokeMode is false
-      if (this.state.karaokeMode === false){
-        new Promise( (resolve, reject)  => {
-          // if url is empty
-      if (this.props.url === '' || this.checkedForLyricsSong === false){
-        resolve(this.fetchYoutube(this.i, 'karaoke'))
-          }
-        }).then(() => {
-            //console.log(this.props.url, 'lyrics video URL');
-            this.karaokeTitle = this.props.title.toLowerCase();
-            console.log(this.karaokeTitle, '<<<lyrics video title');
-            this.checkLyricsVideo(this.karaokeTitle);
-            this.checkedForLyricsSong = true;
-            // console.log('fetching regular video');
-          }).then(() => {
-            this.fetchYoutube(this.i, 'video');
-          }).catch(err => {
-            console.log(err);
-          });
-          this.officialTitle = this.props.title.toLowerCase();
-          console.log(this.officialTitle, '<<<official video title');
-          this.checkLyricsVideo(this.karaokeTitle);
-      }
-      else if (this.state.karaokeMode === true){
-        console.log(this.props.title.toLowerCase(), '<<<lyrics video title');
-        this.fetchYoutube(this.i, 'karaoke');
-      }
+          
+     this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
+
     }
 
     if(!this.props.spotifyList.length && this.props.url !== ''){
@@ -179,13 +74,12 @@ export class Discover extends React.Component {
   changeWeather(newWeather){
     //console.log(newWeather);
     this.props.dispatch(changeWeather(newWeather))
-    .then(() => {
-      this.props.dispatch(fetchSpotify(this.props.weather))
-    })
+    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
+    .then(this.returnSong(0))
+
     .catch(err => {
       console.log(err);
     });
-    this.returnSong(0);
   }
 
   render() {
@@ -212,7 +106,6 @@ export class Discover extends React.Component {
 
 
         {this.returnSong(this.i)}
-        {this.changeModeButton(this.i)}
 
         <button onClick={() => this.getNextSong()}>Next</button>
         <Slider/>
