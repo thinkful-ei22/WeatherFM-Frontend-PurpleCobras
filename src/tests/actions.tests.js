@@ -11,7 +11,8 @@ import {
   addSongError, 
   changeSongs, 
   changeSongsSuccess, 
-  changeSongsError} from '../actions/playlists';
+  changeSongsError,
+  FETCH_PLAYLISTS_SUCCESS} from '../actions/playlists';
 
 import {
   fetchSpotify, 
@@ -34,10 +35,10 @@ import {
 
 describe('playlists', () => {
   it('should fetch the playlists for a user', () => {
-    const str = 'panini';
-    const action = fetchPlaylists();
-    expect(action.type).toEqual(NEW_SUCCESS);
-    expect(action.foods).toEqual(str);
+    const str = {artist:'panini'};
+    const action = fetchPlaylistsSuccess();
+    expect(action.type).toEqual(FETCH_PLAYLISTS_SUCCESS);
+    expect(action.playlists).toEqual(str);
   });
 });
  
