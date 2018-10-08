@@ -33,9 +33,15 @@ export class Playlist extends React.Component {
   }
    state = {
     karaokeMode: false,
+    karaokeModeButton: 'hide',
     currentArtist: '',
-    currentSongTitle: ''
+    currentSongTitle: '',
+    currentIndex: null,
+    playlistName: this.props.location.pathname.split('/')[2]
   }
+  
+  karaokeTitle = '';
+  checkedForLyricsSong = false;
 
   onSyncClick() {
     const URLlocation = (window.location.origin + window.location.pathname).replace(/\//g, '%2F');
@@ -44,12 +50,6 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
-  
-  state = {
-    currentIndex: null,
-    playlistName: this.props.location.pathname.split('/')[2]
-  }
-  // dispatch(fetchYoutube(title, artist));
   // to delete -> send in weather, artist, title, and thumbnail
   // api/users/playlists
   switchMode = () =>{
@@ -71,16 +71,49 @@ export class Playlist extends React.Component {
         }
     })
   }
+  checkLyricsVideo = (title) => {
+    console.log('should be ', title.toLowerCase().includes('lyrics') || title.toLowerCase().includes('lyric'));
+    if ((title.toLowerCase().includes('lyrics') 
+    || title.toLowerCase().includes('lyric'))
+    && (!title.toLowerCase().includes('lyrics in description'))
+    && (!title.toLowerCase().includes('lyrics below'))
+    && (this.karaokeTitle !== this.officialTitle)
+    )
+    {
+      console.log('there is a lyrics video');
+      if (this.state.karaokeModeButton === 'hide'){
+        this.setState({
+          karaokeModeButton: 'show'
+        })
+      }
+    }
+    else {
+      console.log('there is not a lyrics video');
+      if (this.state.karaokeModeButton === 'show'){
+      if (this.state.karaokeMode === true){
+      this.setState({
+        karaokeMode: false,
+        karaokeModeButton: 'hide'
+      })
+    }
+    else {
+      this.setState({
+        karaokeModeButton: 'hide'
+      })
+    }
+    }
+  }
+  }
   changeModeButton = () =>{
     console.log('changing mode');
     let switchButton;
     if (this.state.karaokeMode === false){
-     switchButton = <button onClick={() => this.switchMode()}>Switch to Karaoke Mode</button>;
+     switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Karaoke Mode</button>;
 
     }
     else {
 
-      switchButton = <button onClick={() => this.switchMode()}>Switch to Video Mode</button>;
+      switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Video Mode</button>;
     }
     return switchButton;
 
@@ -107,23 +140,24 @@ export class Playlist extends React.Component {
     this.setState({
       currentIndex: index
     })
-    if (this.state.karaokeMode){
+
+    if (!this.state.karaokeMode){
       this.props.dispatch(fetchYoutube(artist, title, 'karaoke'))
+      .then(() =>{
+        this.karaokeTitle = this.props.title.toLowerCase();
+        console.log(this.karaokeTitle);
+        this.checkLyricsVideo(this.karaokeTitle);
+        this.checkedForLyricsSong = true;
+      })
+      .then (this.props.dispatch(fetchYoutube(artist, title, 'video')))
+      
+      
       }
       else {
-        this.props.dispatch(fetchYoutube(artist, title, 'video'))
+       this.props.dispatch(fetchYoutube(artist, title, 'video'))
       }
   }
 
-  youtubeClick = (artist, title) => {
-    if (this.state.karaokeMode){
-    this.props.dispatch(fetchYoutube(artist, title, 'karaoke'))
-    }
-    else {
-      this.props.dispatch(fetchYoutube(artist, title, 'video'))
-    }
-
-  }
   render() {
     const { dispatch, url, youtube, weather } = this.props;
     const {deleteSongFromPlaylist} = this;
@@ -217,6 +251,7 @@ const mapStateToProps = state => {
     playlists: state.playlists.playlists,
     weather: state.weather.weather,
     deleted: state.playlists.deleted,
+    title: state.youtube.videoTitle,
     url: state.youtube.videoURL,
     urlLoading: state.youtube.loading
   };
