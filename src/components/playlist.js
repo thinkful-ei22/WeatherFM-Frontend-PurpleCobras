@@ -34,7 +34,9 @@ export class Playlist extends React.Component {
    state = {
     karaokeMode: false,
     currentArtist: '',
-    currentSongTitle: ''
+    currentSongTitle: '',
+    currentIndex: null,
+    playlistName: this.props.location.pathname.split('/')[2]
   }
 
   onSyncClick() {
@@ -44,11 +46,6 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
-  
-  state = {
-    currentIndex: null,
-    playlistName: this.props.location.pathname.split('/')[2]
-  }
   // dispatch(fetchYoutube(title, artist));
   // to delete -> send in weather, artist, title, and thumbnail
   // api/users/playlists
