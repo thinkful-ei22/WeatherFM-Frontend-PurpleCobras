@@ -50,6 +50,7 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
+  // dispatch(fetchYoutube(title, artist));
   // to delete -> send in weather, artist, title, and thumbnail
   // api/users/playlists
   switchMode = () =>{
