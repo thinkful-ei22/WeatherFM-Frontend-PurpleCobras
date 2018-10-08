@@ -40,18 +40,36 @@ export class Discover extends React.Component {
     this.getNextSong();
   }
 
+  addSongToPlaylist(){
+    return(
+      <button onClick={(e) =>{
+        //  console.log(this.props.spotifyList[this.i]);
+          this.props.dispatch(addSong(
+            this.props.weather,
+            this.props.spotifyList[this.i].spotifyId, 
+            this.props.spotifyList[this.i].artist, 
+            this.props.spotifyList[this.i].songTitle, 
+            this.props.spotifyList[this.i].thumbnail
+          ))
+        }}>
+          Add to Playlist 
+      </button>
+    );
+  }
+
   returnSong(index){
     this.i = index;
     //set returnHTML to empty string 
     let returnHTML = '';
     //if spotifyList has a length
     if(this.props.spotifyList.length){
-    
-     this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
-          
+     this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;   
      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
-
     }
+    else if (this.state.karaokeMode === true) {
+      // console.log('karaoke mode is RUNNING');
+
+      console.log(this.props.title.toLowerCase(), '<<<lyrics video title');
 
     if(!this.props.spotifyList.length && this.props.url !== ''){
       return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
@@ -67,6 +85,7 @@ export class Discover extends React.Component {
         <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
         {this.addSongToPlaylist()}  
       </div>;
+      
       return returnHTML;
     } 
   }
@@ -85,7 +104,7 @@ export class Discover extends React.Component {
   render() {
     return (
       <div className="discover">
-   Right now it is {this.props.weather}! <br />
+      Right now it is {this.props.weather}! <br />
         <label htmlFor="Radio">Change the station: </label>
         <select 
           name="Radio"
@@ -103,7 +122,6 @@ export class Discover extends React.Component {
         </select>
         <br /><br />
         {this.props.weather} Radio
-
 
         {this.returnSong(this.i)}
 
