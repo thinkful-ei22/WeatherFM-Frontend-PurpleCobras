@@ -88,6 +88,17 @@ export class Discover extends React.Component {
       
       return returnHTML;
     } 
+  }}
+
+  changeWeather(newWeather) {
+    //console.log(newWeather);
+    this.props.dispatch(changeWeather(newWeather))
+    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
+    .then(this.returnSong(0))
+
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   changeWeather(newWeather){
