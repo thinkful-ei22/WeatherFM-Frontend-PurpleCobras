@@ -94,14 +94,35 @@ export class Playlist extends React.Component {
     }, () => {
       const song = this.props.playlists[this.state.playlistName][this.state.currentIndex];
       console.log(song);
-      this.props.dispatch(fetchYoutube(song.artist, song.songTitle))
+      if (this.state.karaokeMode){
+      this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'karaoke'))
+      }
+      else {
+        this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'video'))
+
+      }
     })
   }
   youtubeClick = (artist, title, index) => {
     this.setState({
       currentIndex: index
     })
-    this.props.dispatch(fetchYoutube(artist, title))
+    if (this.state.karaokeMode){
+      this.props.dispatch(fetchYoutube(artist, title, 'karaoke'))
+      }
+      else {
+        this.props.dispatch(fetchYoutube(artist, title, 'video'))
+      }
+  }
+
+  youtubeClick = (artist, title) => {
+    if (this.state.karaokeMode){
+    this.props.dispatch(fetchYoutube(artist, title, 'karaoke'))
+    }
+    else {
+      this.props.dispatch(fetchYoutube(artist, title, 'video'))
+    }
+
   }
   render() {
     const { dispatch, url, youtube, weather } = this.props;
@@ -111,15 +132,6 @@ export class Playlist extends React.Component {
     
 
 
-    const youtubeClick = (artist, title) => {
-      if (this.state.karaokeMode){
-      dispatch(fetchYoutube(artist, title, 'karaoke'))
-      }
-      else {
-        dispatch(fetchYoutube(artist, title, 'video'))
-      }
-
-    }
 
     // let pathName = this.props.location.pathname;
     // let pathArray = pathName.split('/');
@@ -152,6 +164,7 @@ export class Playlist extends React.Component {
               
               <button onClick={(e) => {
                 this.youtubeClick(artist, title, i);
+              
                 this.setState({
                   currentArtist: artist,
                   currentSongTitle: title
