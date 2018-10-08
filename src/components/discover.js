@@ -17,7 +17,8 @@ export class Discover extends React.Component {
     this.state = {
       changed: false,
       karaokeMode: false,
-      karaokeModeButton: 'hide'
+      karaokeModeButton: 'hide',
+      changeYT: false
     }
   }
   checkedForLyricsSong = false;
@@ -31,7 +32,8 @@ export class Discover extends React.Component {
     // console.log(this, '1st this');
     this.props.dispatch(fetchSpotify(this.props.weather)); 
 
-    this.setState({changed: false});
+    // this.setState({changed: false,
+    // changeYT: false});
   }
 
   getNextSong(){
@@ -81,13 +83,14 @@ if (this.state.karaokeMode === true){
     return switchButton;
 
   }
+
   checkLyricsVideo = (title) => {
     console.log('should be ', title.toLowerCase().includes('lyrics') || title.toLowerCase().includes('lyric'));
     if ((title.toLowerCase().includes('lyrics') 
-    || title.toLowerCase().includes('lyric'))
-    && (!title.toLowerCase().includes('lyrics in description'))
-    && (!title.toLowerCase().includes('lyrics below'))
-    && (this.karaokeTitle !== this.officialTitle)
+      || title.toLowerCase().includes('lyric'))
+      && (!title.toLowerCase().includes('lyrics in description'))
+      && (!title.toLowerCase().includes('lyrics below'))
+      && (this.karaokeTitle !== this.officialTitle)
     )
     {
       console.log('there is a lyrics video');
@@ -115,71 +118,74 @@ if (this.state.karaokeMode === true){
   }
   }
 
+  changeWeather = (newWeather) => {
+    //console.log(newWeather);
+    this.props.dispatch(changeWeather(newWeather))
+    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
+    .then(this.props.dispatch(fetchYoutube(this.props.spotifyList[0].songTitle, this.props.spotifyList[0].artist, 'video')))
+    // .then(console.log(this.props.spotifyList[this.i].songTitle, 'song title ------'))
+    .then(this.setState({
+      changed: true
+    }))
+    .catch(err => {
+      console.log(err);
+    });
+    this.returnSong(0);
+  }
+
   returnSong = (index) => {
     this.i = index;
-    //console.log('returnSong ran');
 
     //set returnHTML to empty string 
     let returnHTML = '';
 
     //if spotifyList has a length
     if(this.props.spotifyList.length){
-     // console.log(this.props.spotifyList);
 
- 
      //set thumbnail
      this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
-      //console.log('karaokeMode is' +this.karaokeMode);
-      //console.log('karaokeMode is>>>', this.state.karaokeMode);
+     if (this.props.changed === true) {
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'));
+      this.setState({
+        changed: false
+      })
+     }
 
-      //console.log(this, '<<< this');
       //if karaokeMode is false
       if (this.state.karaokeMode === false){
-        //console.log('video mode is RUNNING');
         new Promise( (resolve, reject)  => {
-
-          //console.log(this, '<<<THIS');
        
-          // if url is empty
-       //console.log('checkedForLyricsSong equals', this.checkedForLyricsSong);
-       if (this.props.url === '' || this.checkedForLyricsSong === false){
-         //attempts to fetch lyrics video
-         //console.log('fetching lyrics video');
-         //console.log('checkedForLyricsSong now equals', this.checkedForLyricsSong);
-     resolve(this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke')))
-       }
-        })
-        .then (() => {
-        //console.log(this.props.url, 'lyrics video URL');
+       // if url is empty
+        if (this.props.url === '' || this.checkedForLyricsSong === false){
+          //attempts to fetch lyrics video
+          resolve(this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke')))
+        }
+      })
+      .then (() => {
         this.karaokeTitle = this.props.title.toLowerCase();
         console.log(this.karaokeTitle, '<<<lyrics video title');
         this.checkLyricsVideo(this.karaokeTitle);
         this.checkedForLyricsSong = true;
-        // console.log('fetching regular video');
-        })
-        .then (() => {
-          this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
-        })
-        .then (() => {
-        })
-        .catch(err => {
-          console.log(err);
-        });
-        this.officialTitle = this.props.title.toLowerCase();
-        console.log(this.officialTitle, '<<<official video title');
-        this.checkLyricsVideo(this.karaokeTitle);
-
-      }
-      else if (this.state.karaokeMode === true) {
-        // console.log('karaoke mode is RUNNING');
-
-        console.log(this.props.title.toLowerCase(), '<<<lyrics video title');
-
-        this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke'));
-      }
-
+      })
+      .then (() => {
+        this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
+      })
+      .then (() => {
+      })
+      .catch(err => {
+        console.log(err);
+      });
+      this.officialTitle = this.props.title.toLowerCase();
+      console.log(this.officialTitle, '<<<official video title');
+      this.checkLyricsVideo(this.karaokeTitle);
     }
+    else if (this.state.karaokeMode === true) {
+      // console.log('karaoke mode is RUNNING');
 
+      console.log(this.props.title.toLowerCase(), '<<<lyrics video title');
+
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'karaoke'));
+    }}
      if(!this.props.spotifyList.length && this.props.url !== ''){
       return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
     }
@@ -209,18 +215,8 @@ if (this.state.karaokeMode === true){
         </button>
        </div>;
 
-       return returnHTML;
+      return returnHTML;
     } 
-  }
-
-  changeWeather = (newWeather) => {
-    //console.log(newWeather);
-    this.props.dispatch(changeWeather(newWeather))
-    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
-    .catch(err => {
-      console.log(err);
-    });
-    this.returnSong(0);
   }
 
   render() {

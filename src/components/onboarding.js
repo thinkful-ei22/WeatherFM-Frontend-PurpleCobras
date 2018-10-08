@@ -1,6 +1,6 @@
 import React from 'react';
 import requiresLogin from './requires-login';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {changeSongs} from '../actions/playlists';
 
 export class Onboarding extends React.Component {
@@ -14,6 +14,7 @@ export class Onboarding extends React.Component {
       cloudy: [],
       thunderstorm: [],
       deleted: false,
+      submitted: false
     }
   }
 
@@ -31,7 +32,12 @@ export class Onboarding extends React.Component {
   addAllSongs (e, sunny, rainy, drizzle, snowy, cloudy, thunderstorm) {
     console.log(sunny);
     e.preventDefault();
-    this.props.dispatch(changeSongs(sunny, rainy, drizzle, snowy, cloudy, thunderstorm));
+    this.props.dispatch(changeSongs(sunny, rainy, drizzle, snowy, cloudy, thunderstorm))
+    .then(() => {
+        this.setState({
+        submitted: true
+      })
+    })
   }
 
   deleteSong (e, title, weather) {
@@ -57,6 +63,10 @@ export class Onboarding extends React.Component {
   render() {
 
     let state = this.state;
+
+    if (state.submitted) {
+      return <Redirect to="/dashboard" />;
+    }
 
     const renderSongs = (weather) => {
       console.log(state[weather]);
@@ -160,9 +170,8 @@ export class Onboarding extends React.Component {
             this.state.thunderstorm
           )}>
           <button type="submit">Add Songs</button>
-          <Link to="/dashboard"><button type="submit">Skip (Go to Dashboard)</button></Link>
+          <button type="submit">Skip (Go to Dashboard)</button>
         </form><br />
-      
       </div>
   )}
 }
