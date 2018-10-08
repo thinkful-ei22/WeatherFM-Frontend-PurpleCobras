@@ -92,23 +92,23 @@ export const addSong = (weather, spotifyId, artist, songTitle, thumbnail) => (di
       thumbnail
     })
   })
-  .then(res => res.json())
-  .then((res) => dispatch(addSongSuccess(res)))
-  .catch((err) => {
-    dispatch(addSongError(err))
-  })
-}
+    .then(res => res.json())
+    .then((res) => dispatch(addSongSuccess(res)))
+    .catch((err) => {
+      dispatch(addSongError(err));
+    });
+};
 
 export const CHANGE_SONGS_SUCCESS = 'CHANGE_SONGS_SUCCESS';
 export const changeSongsSuccess = () => ({
   type: CHANGE_SONGS_SUCCESS
-})
+});
 
 export const CHANGE_SONGS_ERROR = 'CHANGE_SONGS_ERROR';
 export const changeSongsError = error => ({
   type: CHANGE_SONGS_ERROR,
   error
-})
+});
 
 export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
@@ -129,9 +129,9 @@ export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) 
       Thunderstorm
     })
   })
-  .then(res => res.json())
-  .then(() => dispatch(changeSongsSuccess()))
-  .catch((err) => {
-    dispatch(changeSongsError(err))
-  })
-}
+    .then(res => res.json())
+    .then(() => dispatch(changeSongsSuccess()))
+    .catch((err) => {
+      dispatch(changeSongsError(err));
+    });
+};
