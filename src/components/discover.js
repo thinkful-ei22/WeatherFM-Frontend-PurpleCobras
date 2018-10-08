@@ -63,13 +63,9 @@ export class Discover extends React.Component {
     let returnHTML = '';
     //if spotifyList has a length
     if(this.props.spotifyList.length){
-     this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;   
+     this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
     }
-    else if (this.state.karaokeMode === true) {
-      // console.log('karaoke mode is RUNNING');
-
-      console.log(this.props.title.toLowerCase(), '<<<lyrics video title');
 
     if(!this.props.spotifyList.length && this.props.url !== ''){
       return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
@@ -85,20 +81,8 @@ export class Discover extends React.Component {
         <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
         {this.addSongToPlaylist()}  
       </div>;
-      
       return returnHTML;
     } 
-  }}
-
-  changeWeather(newWeather) {
-    //console.log(newWeather);
-    this.props.dispatch(changeWeather(newWeather))
-    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
-    .then(this.returnSong(0))
-
-    .catch(err => {
-      console.log(err);
-    });
   }
 
   changeWeather(newWeather){
@@ -115,7 +99,7 @@ export class Discover extends React.Component {
   render() {
     return (
       <div className="discover">
-      Right now it is {this.props.weather}! <br />
+   Right now it is {this.props.weather}! <br />
         <label htmlFor="Radio">Change the station: </label>
         <select 
           name="Radio"
