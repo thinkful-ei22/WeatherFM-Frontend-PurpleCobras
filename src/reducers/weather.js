@@ -3,7 +3,7 @@ import {
   FETCH_WEATHER_ERROR,
   SET_WEATHER,
   CHANGE_WEATHER_SUCCESS,
-  CHANGE_WEATHER_ERROR,
+  CHANGE_WEATHER_ERROR
 } from '../actions/weather';
 
 const initialState = {
@@ -15,8 +15,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   if (action.type === FETCH_WEATHER_SUCCESS) {
-    //console.log('FETCH WEATHER SUCCESSFUL');
-
+    // console.log('FETCH WEATHER SUCCESSFUL');
     return Object.assign({}, state, {
       weather: action.weather,
       tempC: action.tempC,
