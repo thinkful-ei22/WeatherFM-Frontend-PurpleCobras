@@ -1,0 +1,21 @@
+.playButtons{
+  width: 30%  !important;
+  margin-right: 5px;
+}
+#volumeButton{
+  width: 30% !important;
+}
+/* .player button{
+  width: 100% !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+} */
+#play{
+  width: 53%;
+}
+#seek{
+  width: 60%;
+}
+#volume{
+  width: 60%;
+}
