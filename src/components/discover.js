@@ -31,6 +31,13 @@ export class Discover extends React.Component {
     this.setState({changed: false});
   }
 
+  getPrevSong(){
+    if (this.i > 0) {
+      this.i--;
+      this.returnSong(this.i);
+    }
+  }
+
   getNextSong(){
     this.i++;
     this.returnSong(this.i);
@@ -120,6 +127,7 @@ export class Discover extends React.Component {
 
         {this.returnSong(this.i)}
 
+        <button onClick={() => this.getPrevSong()}>Previous</button>
         <button onClick={() => this.getNextSong()}>Next</button>
         <Slider/>
       </div>
