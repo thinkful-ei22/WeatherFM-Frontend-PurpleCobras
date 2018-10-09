@@ -1,22 +1,59 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-
 import LoginForm from './login-form';
+import RegistrationForm from './registration-form';
+import '../css/landing-page.css';
 
-export function LandingPage(props) {
+export class LandingPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      login: false,
+      register: false
+    }
+  }
+
+  returnForm() {
+    if (this.state.login) {
+      return <LoginForm />
+    }
+    if (this.state.register) {
+      return <RegistrationForm />
+    }
+  }
+
   // If we are logged in redirect straight to the user's dashboard
-  if (props.loggedIn) {
+
+  render() {
+  if (this.props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
 
     return (
-        <div className="home">
-            <h1>Weather FM Radio</h1>
-            <LoginForm />
+      <div className="landingCont">  
+        <div className="image"></div>
+        <div className="buttons">
+          <div className="button" onClick={() => {
+            this.setState({
+              login: !this.state.login,
+              register: false
+            })
+          }}>login to weather FM</div>
+          <div className="button" onClick={() => {
+            this.setState({
+              register: !this.state.register,
+              login: false
+            })
+          }}>register with us</div>
         </div>
+        <div className="info">
+            <h2><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h2>
+            {this.returnForm()}
+        </div>
+      </div>
     );
-
+  }
 }
 
 const mapStateToProps = state => ({

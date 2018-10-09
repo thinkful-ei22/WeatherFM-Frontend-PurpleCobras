@@ -1,0 +1,67 @@
+landingCont {
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.image {
+  width: 50vw;
+  height: 100vh;
+  background-image: url(https://images.unsplash.com/photo-1491848128688-e0c30289e89f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=66a76490578bb7a19e287559c4447348&auto=format&fit=crop&w=1500&q=80);
+  background-size: cover;
+  left: 0px;
+  display:inline-block;
+  margin-top: 0px;
+  float: left;
+  background-color: #eee;
+  background-blend-mode: multiply;
+}
+
+.info {
+  width: 50vw;
+  height: 100vh;
+  top: 0px!important;
+  position: relative;
+  display: inline-block;
+  float: right;
+  text-align: center;
+}
+
+.landingCont h2 {
+  font-size: 20px;
+  max-width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  margin-top: 40%;
+  line-height: 180%;
+  font-family: 'PT Mono';
+}
+
+.landingCont h2 span {
+  border-bottom: 1px solid red;
+  padding-bottom: 5px;
+}
+
+.landingCont .buttons {
+  position: absolute;
+  width: 100vw;
+  text-align: left;
+  left: 2%;
+  margin-top: 2%;
+}
+
+.landingCont .button {
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline;
+  padding: 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-right: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  border-radius: 5px;
+}
