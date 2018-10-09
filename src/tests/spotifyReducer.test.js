@@ -36,7 +36,6 @@ describe ('Spotify Reducers', () => {
     };
     const error = '400';
     const state = spotifyReducer(oldState, fetchSpotifyError(error));
-    console.log(state.error);
     expect(state.error).toEqual(error);
   });
 
