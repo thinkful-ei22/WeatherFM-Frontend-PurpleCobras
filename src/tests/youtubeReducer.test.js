@@ -1,6 +1,9 @@
 /* global $ expect jest */
 import youtubeReducer from '../reducers/youtube';
-import { fetchYoutubeRequest, fetchYoutubeSuccess, fetchYoutubeError } from '../actions/youtube';
+import { 
+  fetchYoutubeRequest, 
+  fetchYoutubeSuccess, 
+  fetchYoutubeError} from '../actions/youtube';
 
 describe ('Youtube Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {

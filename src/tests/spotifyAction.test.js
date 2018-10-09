@@ -1,32 +1,22 @@
 /* global $ expect jest */
 import {
   fetchSpotify, 
-  fetchSpotifyRequest, 
-  fetchSpotifySuccess, 
-  fetchSpotifyError, 
+  fetchSpotifyRequest, FETCH_SPOTIFY_REQUEST,
+  fetchSpotifySuccess, FETCH_SPOTIFY_SUCCESS,
+  fetchSpotifyError, FETCH_SPOTIFY_ERROR,
   syncSpotifyPlaylist, 
-  syncSpotifyRequest, 
-  syncSpotifySuccess, 
-  syncSpotifyError,
-  FETCH_SPOTIFY_REQUEST,
-  FETCH_SPOTIFY_SUCCESS,
-  FETCH_SPOTIFY_ERROR,
-  SYNC_SPOTIFY_REQUEST,
-  SYNC_SPOTIFY_SUCCESS,
-  SYNC_SPOTIFY_ERROR} from '../actions/spotify';
+  syncSpotifyRequest, SYNC_SPOTIFY_REQUEST, 
+  syncSpotifySuccess, SYNC_SPOTIFY_SUCCESS,
+  syncSpotifyError, SYNC_SPOTIFY_ERROR} 
+  from '../actions/spotify';
 
 import { 
-  fetchSpotifySliderRequest,
-  fetchSpotifyAveragesSuccess,
-  updateSpotifyAverages,
-  fetchSpotifySliderError,
-  fetchSpotifySliderSuccess,
-  FETCH_SPOTIFY_SLIDER_REQUEST, 
-  FETCH_SPOTIFY_SLIDER_SUCCESS, 
-  FETCH_SPOTIFY_SLIDER_ERROR,
-  FETCH_SPOTIFY_AVERAGES_SUCCESS,
-  UPDATE_SPOTIFY_AVERAGES,
-} from '../actions/spotifySlider';
+  fetchSpotifySliderRequest, FETCH_SPOTIFY_SLIDER_REQUEST,
+  fetchSpotifyAveragesSuccess, FETCH_SPOTIFY_AVERAGES_SUCCESS,
+  updateSpotifyAverages, UPDATE_SPOTIFY_AVERAGES,
+  fetchSpotifySliderError, FETCH_SPOTIFY_SLIDER_ERROR,
+  fetchSpotifySliderSuccess, FETCH_SPOTIFY_SLIDER_SUCCESS,} 
+  from '../actions/spotifySlider';
 
 describe('Spotify Actions', () => {
   it('Should make a spotify request action.', () => {

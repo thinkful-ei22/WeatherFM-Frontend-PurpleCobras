@@ -1,17 +1,13 @@
 /* global $ expect jest */
 import {
   fetchWeather, 
-  fetchWeatherSuccess, 
-  fetchWeatherError, 
-  setWeather, 
+  fetchWeatherSuccess, FETCH_WEATHER_SUCCESS,
+  fetchWeatherError, FETCH_WEATHER_ERROR,
+  setWeather, SET_WEATHER,
   changeWeather, 
-  changeWeatherSuccess, 
-  changeWeatherError,
-  FETCH_WEATHER_SUCCESS,
-  FETCH_WEATHER_ERROR,
-  SET_WEATHER,
-  CHANGE_WEATHER_SUCCESS,
-  CHANGE_WEATHER_ERROR} from '../actions/weather';
+  changeWeatherSuccess, CHANGE_WEATHER_SUCCESS,
+  changeWeatherError, CHANGE_WEATHER_ERROR} 
+  from '../actions/weather';
 
 describe('Weather Actions', () => {
   it('Should return the weather, tempC, and tempF.', () => {

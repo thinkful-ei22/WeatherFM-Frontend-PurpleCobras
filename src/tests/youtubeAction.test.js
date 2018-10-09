@@ -1,11 +1,9 @@
 /* global $ expect jest */
 import { 
-  fetchYoutubeRequest, 
-  FETCH_YOUTUBE_REQUEST, 
-  fetchYoutubeSuccess, 
-  FETCH_YOUTUBE_SUCCESS, 
-  fetchYoutubeError, 
-  FETCH_YOUTUBE_ERROR } from '../actions/youtube';
+  fetchYoutubeRequest, FETCH_YOUTUBE_REQUEST, 
+  fetchYoutubeSuccess, FETCH_YOUTUBE_SUCCESS, 
+  fetchYoutubeError, FETCH_YOUTUBE_ERROR } 
+  from '../actions/youtube';
 
 describe('Youtube Actions', () => {
   it('Should return loading when fetching Youtube request.', () => {

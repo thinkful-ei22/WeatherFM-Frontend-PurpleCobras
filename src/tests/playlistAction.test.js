@@ -1,25 +1,18 @@
 /* global $ expect jest */
 import {
   fetchPlaylists, 
-  fetchPlaylistsSuccess, 
-  fetchPlaylistsError, 
+  fetchPlaylistsSuccess, FETCH_PLAYLISTS_SUCCESS,
+  fetchPlaylistsError, FETCH_PLAYLISTS_ERROR,
   deleteSong, 
-  deleteSongSuccess, 
-  deleteSongError, 
+  deleteSongSuccess, DELETE_SONG_SUCCESS,
+  deleteSongError, DELETE_SONG_ERROR,
   addSong, 
-  addSongSuccess, 
-  addSongError, 
+  addSongSuccess, ADD_SONG_SUCCESS,
+  addSongError, ADD_SONG_ERROR,
   changeSongs, 
-  changeSongsSuccess, 
-  changeSongsError,
-  FETCH_PLAYLISTS_SUCCESS,
-  FETCH_PLAYLISTS_ERROR,
-  DELETE_SONG_SUCCESS,
-  DELETE_SONG_ERROR,
-  ADD_SONG_SUCCESS,
-  ADD_SONG_ERROR,
-  CHANGE_SONGS_SUCCESS,
-  CHANGE_SONGS_ERROR} from '../actions/playlists';
+  changeSongsSuccess, CHANGE_SONGS_SUCCESS,
+  changeSongsError, CHANGE_SONGS_ERROR} 
+  from '../actions/playlists';
 
 describe('Playlist Actions', () => {
   it('Should fetch the playlists for a user.', () => {
