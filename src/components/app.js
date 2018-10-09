@@ -59,7 +59,7 @@ export class App extends React.Component {
 
         latitude=position.coords.latitude;
         longitude=position.coords.longitude;
-        dispatch(fetchWeather(latitude, longitude));
+        dispatch(fetchWeather(latitude, longitude, '_'));
       });
     } else {
       /* geolocation IS NOT available */

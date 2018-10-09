@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {clearAuth} from '../actions/auth';
+import {fetchWeather} from '../actions/weather';
 import {clearAuthToken} from '../local-storage';
 import '../css/header-bar.css';
 
@@ -40,6 +41,13 @@ export class HeaderBar extends React.Component {
     }
   }
 
+  changeWeather(e) {
+    e.preventDefault();
+    const location = e.target.location.value;
+    this.props.dispatch(fetchWeather('_', '_', location));
+    e.target.location.value = '';
+  }
+
   render() {
     // console.log(this.props.tempC, this.props.tempF);
     // Only render the log out button if we are logged in
@@ -61,6 +69,10 @@ export class HeaderBar extends React.Component {
       <div className="header-bar">
         {links}
         {this.tempClick()}
+        <form name="changeWeather" onSubmit={(e) => this.changeWeather(e)}>
+          <input name="location" autoComplete="off" placeholder="Wanna change your location? Enter a City or Zip"></input>
+          <button type="submit">Change location</button>
+        </form>
         {logOutButton}
       </div>
     );
@@ -72,7 +84,8 @@ export class HeaderBar extends React.Component {
 const mapStateToProps = state => ({
   loggedIn: state.auth.currentUser !== null,
   tempC: state.weather.tempC,
-  tempF: state.weather.tempF
+  tempF: state.weather.tempF,
+  error: state.weather.error
 });
 
 export default connect(mapStateToProps)(HeaderBar);
