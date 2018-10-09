@@ -115,6 +115,7 @@ export class Discover extends React.Component {
             this.changeWeather(e.target.value)
             // console.log(e.target.value)
         }>
+        <option selected="true" disabled="disabled">Select Weather</option>    
           <option value="Sunny">Sunny</option>
           <option value="Rainy">Rainy</option>
           <option value="Drizzle">Drizzle</option>
