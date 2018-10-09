@@ -2,7 +2,7 @@
 import playListReducer from '../reducers/playlists';
 import {fetchPlaylistsSuccess} from '../actions/playlists';
 
-describe ('Playlist Reducer', () => {
+describe ('Playlist Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {
     const state = playListReducer(undefined, {type: '@@UNKNOWN'});
     expect(state).toEqual({

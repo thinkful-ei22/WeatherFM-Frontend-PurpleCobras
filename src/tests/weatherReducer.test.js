@@ -2,7 +2,7 @@
 import weatherReducer from '../reducers/weather';
 import {fetchWeatherSuccess} from '../actions/weather';
 
-describe ('Spotify Reducer', () => {
+describe ('Spotify Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {
     const state = weatherReducer(undefined, {type: '@@UNKNOWN'});
     expect(state).toEqual({

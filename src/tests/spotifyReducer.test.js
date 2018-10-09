@@ -2,7 +2,7 @@
 import spotifyReducer from '../reducers/spotify';
 import {fetchSpotifySuccess} from '../actions/spotify';
 
-describe ('Spotify Reducer', () => {
+describe ('Spotify Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {
     const state = spotifyReducer(undefined, {type: '@@UNKNOWN'});
     expect(state).toEqual({

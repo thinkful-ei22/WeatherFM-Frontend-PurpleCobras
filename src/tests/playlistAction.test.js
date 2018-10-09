@@ -21,7 +21,7 @@ import {
   CHANGE_SONGS_SUCCESS,
   CHANGE_SONGS_ERROR} from '../actions/playlists';
 
-describe('playlists', () => {
+describe('Playlist Actions', () => {
   it('Should fetch the playlists for a user.', () => {
     const obj = {artist:'test'};
     const action = fetchPlaylistsSuccess(obj);

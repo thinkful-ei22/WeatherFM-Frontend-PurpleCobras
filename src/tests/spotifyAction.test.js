@@ -15,7 +15,7 @@ import {
   SYNC_SPOTIFY_SUCCESS,
   SYNC_SPOTIFY_ERROR} from '../actions/spotify';
 
-describe('Spotify', () => {
+describe('Spotify Actions', () => {
   it('Should make a spotify request action.', () => {
     const action = fetchSpotifyRequest();
     expect(action.type).toEqual(FETCH_SPOTIFY_REQUEST);

@@ -13,7 +13,7 @@ import {
   CHANGE_WEATHER_SUCCESS,
   CHANGE_WEATHER_ERROR} from '../actions/weather';
 
-describe('Weather', () => {
+describe('Weather Actions', () => {
   it('Should return the weather, tempC, and tempF.', () => {
     const str1 = '1';
     const str2 = '2';
