@@ -1,7 +1,8 @@
 import {
   FETCH_YOUTUBE_REQUEST,
   FETCH_YOUTUBE_SUCCESS,
-  FETCH_YOUTUBE_ERROR
+  FETCH_YOUTUBE_ERROR,
+  CLEAR_YOUTUBE_SUCCESS
 } from '../actions/youtube';
 
 const initialState = {
@@ -28,6 +29,11 @@ export default function reducer(state = initialState, action){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
+    });
+  } else if (action.type === CLEAR_YOUTUBE_SUCCESS){
+    return Object.assign({}, state, {
+     videoTitle: '',
+     videoURL: ''
     });
   }
   return state;
