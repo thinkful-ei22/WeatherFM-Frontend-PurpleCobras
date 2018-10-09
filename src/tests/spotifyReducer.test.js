@@ -11,7 +11,7 @@ describe ('Spotify Reducer', () => {
       averages: null
     });
   });
-  it('Should handle the fetch playlist success action', () => {
+  it('Should handle the fetch spotify success action.', () => {
     const oldState = {
       songs: [],
       error: null,
