@@ -86,7 +86,7 @@ export class Song extends React.Component {
             />
 
 
-<section>
+<section className="player">
        <table><tbody>
             <tr>
               <th>Controls</th>
