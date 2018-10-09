@@ -1,6 +1,11 @@
 /* global $ expect jest */
 import weatherReducer from '../reducers/weather';
-import {fetchWeatherSuccess, fetchWeatherError, setWeather, changeWeatherSuccess, changeWeatherError} from '../actions/weather';
+import {
+  fetchWeatherSuccess, 
+  fetchWeatherError, 
+  setWeather, 
+  changeWeatherSuccess, 
+  changeWeatherError} from '../actions/weather';
 
 describe ('Weather Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {

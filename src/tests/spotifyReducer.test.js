@@ -1,7 +1,13 @@
 /* global $ expect jest */
 import spotifyReducer from '../reducers/spotify';
-import {fetchSpotifySuccess, fetchSpotifyError} from '../actions/spotify';
-import {fetchSpotifySliderSuccess, fetchSpotifySliderError, fetchSpotifyAveragesSuccess, updateSpotifyAverages} from '../actions/spotifySlider';
+import {
+  fetchSpotifySuccess, 
+  fetchSpotifyError} from '../actions/spotify';
+import {
+  fetchSpotifySliderSuccess, 
+  fetchSpotifySliderError, 
+  fetchSpotifyAveragesSuccess, 
+  updateSpotifyAverages} from '../actions/spotifySlider';
 
 describe ('Spotify Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {
