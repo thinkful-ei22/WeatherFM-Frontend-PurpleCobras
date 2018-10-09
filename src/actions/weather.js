@@ -44,13 +44,14 @@ const storeWeather = (weather, dispatch) => {
   dispatch(setWeather(weather));
 };
 
-export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
+export const fetchWeather = (latitude, longitude, cityZip) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
 
   //console.log('latitude', latitude, 'and longitude', longitude);
   const newLat = latitude;
   const newLong = longitude;
-  return fetch(`${API_BASE_URL}/users/weather/${newLat}/${newLong}`, {
+  const newCityZip = cityZip;
+  return fetch(`${API_BASE_URL}/users/weather/${newLat}/${newLong}/${newCityZip}`, {
     method: 'GET',
     headers: {
       // auth as credentials
@@ -67,10 +68,11 @@ export const fetchWeather = (latitude, longitude) => (dispatch, getState) => {
         weather.weather,
         weather.tempC,
         weather.tempF));
-      storeWeather(weather.weather);
+      storeWeather(weather.weather, dispatch);
     })
     .catch(err => {
-      dispatch(fetchWeatherError(err));
+      console.log(err);
+      dispatch(fetchWeatherError(err.message));
     });
 };
 
