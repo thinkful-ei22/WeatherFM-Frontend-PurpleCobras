@@ -48,6 +48,17 @@ export class HeaderBar extends React.Component {
     e.target.location.value = '';
   }
 
+  errorMsg() {
+    console.log(this.props.error);
+    if(this.props.error){
+      return(
+        <div>
+          {this.props.error}
+        </div>
+      );
+    }
+  }
+
   render() {
     // console.log(this.props.tempC, this.props.tempF);
     // Only render the log out button if we are logged in
@@ -70,6 +81,9 @@ export class HeaderBar extends React.Component {
         {links}
         {this.tempClick()}
         <form name="changeWeather" onSubmit={(e) => this.changeWeather(e)}>
+          <div className='location-error'>
+            {this.errorMsg()}
+          </div>
           <input name="location" autoComplete="off" placeholder="Wanna change your location? Enter a City or Zip"></input>
           <button type="submit">Change location</button>
         </form>

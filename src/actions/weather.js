@@ -68,10 +68,11 @@ export const fetchWeather = (latitude, longitude, cityZip) => (dispatch, getStat
         weather.weather,
         weather.tempC,
         weather.tempF));
-      storeWeather(weather.weather);
+      storeWeather(weather.weather, dispatch);
     })
     .catch(err => {
-      dispatch(fetchWeatherError(err));
+      console.log(err);
+      dispatch(fetchWeatherError(err.message));
     });
 };
 

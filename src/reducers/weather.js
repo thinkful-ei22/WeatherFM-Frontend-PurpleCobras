@@ -23,16 +23,19 @@ export default function reducer(state = initialState, action) {
       tempF: action.tempF, 
     });
   } else if (action.type === FETCH_WEATHER_ERROR) {
+    console.log(action.error);
     return Object.assign({}, state, {
       error: action.error
     });
   } else if (action.type === SET_WEATHER) {
     return Object.assign({}, state, {
-      weather: action.weather
+      weather: action.weather,
+      error: null
     });
   } else if (action.type === CHANGE_WEATHER_SUCCESS) {
     return Object.assign({}, state, {
-      weather: action.newWeather
+      weather: action.newWeather,
+      error: null
     });
   } else if (action.type === CHANGE_WEATHER_ERROR ) {
     return Object.assign({}, state, {
