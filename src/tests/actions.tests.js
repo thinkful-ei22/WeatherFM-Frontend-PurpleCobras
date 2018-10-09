@@ -12,7 +12,8 @@ import {
   changeSongs, 
   changeSongsSuccess, 
   changeSongsError,
-  FETCH_PLAYLISTS_SUCCESS} from '../actions/playlists';
+  FETCH_PLAYLISTS_SUCCESS,
+  FETCH_PLAYLISTS_ERROR} from '../actions/playlists';
 
 import {
   fetchSpotify, 
@@ -39,6 +40,12 @@ describe('playlists', () => {
     const action = fetchPlaylistsSuccess();
     expect(action.type).toEqual(FETCH_PLAYLISTS_SUCCESS);
     expect(action.playlists).toEqual(str);
+  });
+  it('should return an error when fetch playlists comes back with err', () => {
+    const str = '400';
+    const action = fetchPlaylistsError();
+    expect(action.type).toEqual(FETCH_PLAYLISTS_ERROR);
+    expect(action.err).toEqual(str);
   });
 });
  
