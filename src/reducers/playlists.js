@@ -6,7 +6,8 @@ import {
   ADD_SONG_SUCCESS,
   ADD_SONG_ERROR,
   CHANGE_SONGS_SUCCESS,
-  CHANGE_SONGS_ERROR
+  CHANGE_SONGS_ERROR,
+  CLEAR_PLAYLISTS_SUCCESS
 } from '../actions/playlists';
 
 const initialState = {
@@ -57,6 +58,14 @@ export default function reducer(state = initialState, action) {
     console.log('CHANGE SONGS ERROR');
     return Object.assign({}, state, {
       error: action.error
+    });
+  }
+  else if (action.type === CLEAR_PLAYLISTS_SUCCESS) {
+    // console.log('FETCH PLAYLISTS SUCCESSFUL');
+    return Object.assign({}, state, {
+      playlists: null,
+      deleted: null,
+      error: null
     });
   }
   return state;

@@ -19,6 +19,12 @@ export const fetchYoutubeError = error => ({
   type: FETCH_YOUTUBE_ERROR,
   error
 });
+export const CLEAR_YOUTUBE_SUCCESS = 'CLEAR_YOUTUBE_SUCCESS';
+export const clearYoutubeSuccess = (videoTitle,videoURL) => ({
+  type: CLEAR_YOUTUBE_SUCCESS,
+  videoTitle,
+  videoURL
+});
 
 export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
   dispatch(fetchYoutubeRequest());

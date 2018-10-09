@@ -2,9 +2,9 @@ import React from 'react';
 import Song from './song';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchPlaylists, deleteSong } from '../actions/playlists';
+import { fetchPlaylists, deleteSong, clearPlaylistsSuccess } from '../actions/playlists';
 import { syncSpotifyPlaylist } from '../actions/spotify';
-import { fetchYoutube } from '../actions/youtube';
+import { fetchYoutube, clearYoutubeSuccess } from '../actions/youtube';
 
 import '../css/playlist.css';
 
@@ -22,6 +22,7 @@ export class Playlist extends React.Component {
       .then(() => {
         if (accessToken && this.props.playlists) {
           const weather = this.props.location.pathname.split('/')[2];
+          console.log('weather ', weather);
           const playlist = this.props.playlists[weather];
           console.log('send DATA', weather, playlist);
           this.props.dispatch(syncSpotifyPlaylist(accessToken, weather, playlist))
@@ -30,19 +31,21 @@ export class Playlist extends React.Component {
             });
         }
       });
+      
   }
+
+  componentWillUnmount(){
+    console.log('playlist unmounted');
+   this.props.dispatch(clearYoutubeSuccess())
+  }
+
+
+
    state = {
-    karaokeMode: false,
-    karaokeModeButton: 'hide',
-    currentArtist: '',
-    currentSongTitle: '',
     currentIndex: null,
     playlistName: this.props.location.pathname.split('/')[2]
   }
   
-  karaokeTitle = '';
-  checkedForLyricsSong = false;
-
   onSyncClick() {
     const URLlocation = (window.location.origin + window.location.pathname).replace(/\//g, '%2F');
     
@@ -50,76 +53,25 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
-  // dispatch(fetchYoutube(title, artist));
-  // to delete -> send in weather, artist, title, and thumbnail
-  // api/users/playlists
-  switchMode = () =>{
-    console.log('switch mode running');
-    let artist = this.state.currentArtist;
-    let title = this.state.currentSongTitle;
+  playFirstSong = () => {
+   
+    if (this.props.playlists) {
+    let currentPlaylist = this.props.playlists[this.state.playlistName];
+    //console.log(currentPlaylist);
+    let title = currentPlaylist[0].songTitle;
+        let artist = currentPlaylist[0].artist;
+        this.props.dispatch(fetchYoutube(artist, title, 'video'))
+    }
+  }
+ 
+  youtubeClick = (artist, title, index) => {
     this.setState({
-      karaokeMode: !this.state.karaokeMode
-    }, function () {
-      if (this.state.karaokeMode){
-        console.log('karaoke mode');
-        console.log(this.state.currentArtist, this.state.currentSongTitle);
-        this.props.dispatch(fetchYoutube(artist, title, 'karaoke'));
-        }
-        else {
-          console.log('video mode');
-          console.log(this.state.currentArtist, this.state.currentSongTitle);
-          this.props.dispatch(fetchYoutube(artist, title, 'video'))
-        }
+      currentIndex: index,
     })
-  }
-  checkLyricsVideo = (title) => {
-    console.log('should be ', title.toLowerCase().includes('lyrics') || title.toLowerCase().includes('lyric'));
-    if ((title.toLowerCase().includes('lyrics') 
-    || title.toLowerCase().includes('lyric'))
-    && (!title.toLowerCase().includes('lyrics in description'))
-    && (!title.toLowerCase().includes('lyrics below'))
-    && (this.karaokeTitle !== this.officialTitle)
-    )
-    {
-      console.log('there is a lyrics video');
-      if (this.state.karaokeModeButton === 'hide'){
-        this.setState({
-          karaokeModeButton: 'show'
-        })
+    this.props.dispatch(fetchYoutube(artist, title, 'video'))
       }
-    }
-    else {
-      console.log('there is not a lyrics video');
-      if (this.state.karaokeModeButton === 'show'){
-      if (this.state.karaokeMode === true){
-      this.setState({
-        karaokeMode: false,
-        karaokeModeButton: 'hide'
-      })
-    }
-    else {
-      this.setState({
-        karaokeModeButton: 'hide'
-      })
-    }
-    }
-  }
-  }
-  changeModeButton = () =>{
-    console.log('changing mode');
-    let switchButton;
-    if (this.state.karaokeMode === false){
-     switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Karaoke Mode</button>;
-
-    }
-    else {
-
-      switchButton = <button onClick={() => this.switchMode()} className={this.state.karaokeModeButton}>Switch to Video Mode</button>;
-    }
-    return switchButton;
-
-  }
-
+  
+  
   onEnd = () => {
     
     console.log('song has ended');
@@ -128,52 +80,17 @@ export class Playlist extends React.Component {
     }, () => {
       const song = this.props.playlists[this.state.playlistName][this.state.currentIndex];
       console.log(song);
-      if (this.state.karaokeMode){
-      this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'karaoke'))
-      }
-      else {
         this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'video'))
-
-      }
     })
   }
-  youtubeClick = (artist, title, index) => {
-    this.setState({
-      currentIndex: index
-    })
 
-    if (!this.state.karaokeMode){
-      this.props.dispatch(fetchYoutube(artist, title, 'karaoke'))
-      .then(() =>{
-        this.karaokeTitle = this.props.title.toLowerCase();
-        console.log(this.karaokeTitle);
-        this.checkLyricsVideo(this.karaokeTitle);
-        this.checkedForLyricsSong = true;
-      })
-      .then (this.props.dispatch(fetchYoutube(artist, title, 'video')))
-      
-      
-      }
-      else {
-       this.props.dispatch(fetchYoutube(artist, title, 'video'))
-      }
-  }
 
   render() {
     const { dispatch, url, youtube, weather } = this.props;
     const {deleteSongFromPlaylist} = this;
     const {playlistName} = this.state;
 
-    
-
-
-
-    // let pathName = this.props.location.pathname;
-    // let pathArray = pathName.split('/');
-    // let playlistName = pathArray[2];
-
     //console.log(playlistName)
-    //console.log(this.props);
 
     let currentPlaylist;
 
@@ -182,7 +99,7 @@ export class Playlist extends React.Component {
     let loopedSongs =  (playlists) => {
 
       if (playlists) {
-        currentPlaylist = playlists[playlistName];
+        currentPlaylist = playlists[this.state.playlistName];
         for (let i = 0; i < currentPlaylist.length; i++ ) {
           let title = currentPlaylist[i].songTitle;
           let artist = currentPlaylist[i].artist;
@@ -223,7 +140,12 @@ export class Playlist extends React.Component {
       }
       return songs;
     };
+
+
     let currentSong;
+    if (this.props.url === ''){
+    this.playFirstSong();
+    }
     if(this.props.urlLoading === true){
       currentSong = <div className="lds-circle"></div>;
     } else if(this.props.urlLoading === false){
@@ -235,7 +157,7 @@ export class Playlist extends React.Component {
       <div>
         <h1>{playlistName} Playlist</h1>
         {/* <Song url = {this.props.url}/> */}
-        {currentSong}        {this.changeModeButton()}
+        {currentSong}       
         <button onClick={() => this.onSyncClick()} >Creatue playing on Spotify using these songs.</button>
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}

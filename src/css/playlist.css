@@ -22,7 +22,9 @@
       transform: rotateY(3600deg);
     }
   }
-
+  .hide{
+    display: none;
+  }
   input {
     padding: 0px;
     border: 0px;

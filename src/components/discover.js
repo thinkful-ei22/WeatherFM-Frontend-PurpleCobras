@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
+import { clearYoutubeSuccess } from '../actions/youtube';
 import { addSong } from '../actions/playlists';
 import '../css/app.css';
 import Slider from './slider';
@@ -30,7 +31,10 @@ export class Discover extends React.Component {
     this.props.dispatch(fetchSpotify(this.props.weather)); 
     this.setState({changed: false});
   }
-
+  componentWillUnmount = () => {
+    console.log('discover unmounted');
+   this.props.dispatch(clearYoutubeSuccess())
+  }
   getPrevSong(){
     if (this.i > 0) {
       this.i--;
@@ -85,7 +89,7 @@ export class Discover extends React.Component {
         <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
         <div className="thumbnail">{this.thumbnail}</div>
         <div className="controls"></div>
-        <Song url={this.props.url} onEnded={()=> this.onEnded()}/>
+        <Song url={this.props.url} onEnded={()=> this.onEnded()} />
         {this.addSongToPlaylist()}  
       </div>;
       return returnHTML;

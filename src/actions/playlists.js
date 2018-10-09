@@ -12,6 +12,12 @@ export const fetchPlaylistsError = error => ({
   error
 });
 
+export const CLEAR_PLAYLISTS_SUCCESS = 'CLEAR_PLAYLISTS_SUCCESS';
+export const clearPlaylistsSuccess = playlists => ({
+  type: CLEAR_PLAYLISTS_SUCCESS,
+  playlists
+});
+
 export const fetchPlaylists = () => (dispatch, getState) =>{
   const authToken = getState().auth.authToken; 
 
