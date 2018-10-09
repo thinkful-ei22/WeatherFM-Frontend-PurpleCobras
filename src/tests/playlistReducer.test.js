@@ -1,7 +1,12 @@
 /* global $ expect jest */
 import playListReducer from '../reducers/playlists';
 import {
-  fetchPlaylistsSuccess, fetchPlaylistsError, deleteSongSuccess, deleteSongError, addSongSuccess, addSongError} from '../actions/playlists';
+  fetchPlaylistsSuccess, 
+  fetchPlaylistsError, 
+  deleteSongSuccess, 
+  deleteSongError, 
+  addSongSuccess, 
+  addSongError} from '../actions/playlists';
 
 describe ('Playlist Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {

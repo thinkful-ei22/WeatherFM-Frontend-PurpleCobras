@@ -1,72 +1,79 @@
 /* global $ expect jest */
-import playListReducer from '../reducers/playlists';
-import {
-  fetchPlaylistsSuccess, fetchPlaylistsError, deleteSongSuccess, deleteSongError, addSongSuccess, addSongError} from '../actions/playlists';
+import authReducer from '../reducers/auth';
+import { 
+  setAuthToken, 
+  clearAuth, 
+  authRequest, 
+  authSuccess, 
+  authError } from '../actions/auth';
 
-describe ('Playlist Reducers', () => {
+describe ('Auth Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {
-    const state = playListReducer(undefined, {type: '@@UNKNOWN'});
+    const state = authReducer(undefined, {type: '@@UNKNOWN'});
     expect(state).toEqual({
-      playlists: null,
-      error: null,
-      deleted: null});
+      authToken: null,
+      currentUser: null,
+      loading: false,
+      error: null
+    });
   });
-  it('Should handle the fetch playlist success action.', () => {
+  it('Should handle the set authToken action.', () => {
     const oldState = {
-      playlists: null,
-      error: null,
-      deleted: null
+      authToken: null,
+      currentUser: null,
+      loading: false,
+      error: null
     };
-    const playlist = {test: 'test'};
-    const state = playListReducer(oldState, fetchPlaylistsSuccess(playlist));
-    expect(state.playlists).toEqual(playlist);
+    const authToken = {authToken: 'akjfnaksdflnsdkf'};
+    const state = authReducer(oldState, setAuthToken(authToken));
+    expect(state.authToken).toEqual(authToken);
   });
-  it('Should handle the fetch playlist error action.', () => {
+  it('Should handle the clear auth action.', () => {
     const oldState = {
-      playlists: null,
-      error: null,
-      deleted: null
+      authToken: null,
+      currentUser: null,
+      loading: false,
+      error: null
     };
-    const error = {error: 400};
-    const state = playListReducer(oldState, fetchPlaylistsError(error));
-    expect(state.error).toEqual(error);
-  });
-
-  it('Should handle the delete song success action.', () => {
-    const oldState = {
-      playlists: null,
-      error: null,
-      deleted: null
-    };
-    const state = playListReducer(oldState, deleteSongSuccess());
-  });
-  it('Should handle the delete song error action.', () => {
-    const oldState = {
-      playlists: null,
-      error: null,
-      deleted: null
-    };
-    const error = {error: 400};
-    const state = playListReducer(oldState, deleteSongError(error));
-    expect(state.error).toEqual(error);
+    const state = authReducer(oldState, clearAuth());
+    expect(state.authToken).toEqual(null);
+    expect(state.currentUser).toEqual(null);
   });
 
-  it('Should handle the add song success action.', () => {
+  it('Should handle the auth request action.', () => {
     const oldState = {
-      playlists: null,
-      error: null,
-      deleted: null
+      authToken: null,
+      currentUser: null,
+      loading: false,
+      error: null
     };
-    const state = playListReducer(oldState, addSongSuccess());
+    const state = authReducer(oldState, authRequest());
+    expect(state.loading).toEqual(true);
+    expect(state.error).toEqual(null);
   });
-  it('Should handle the add song error action.', () => {
+  it('Should handle the auth success action.', () => {
     const oldState = {
-      playlists: null,
-      error: null,
-      deleted: null
+      authToken: null,
+      currentUser: null,
+      loading: false,
+      error: null
+    };
+    const user = {user: 'asdfojksdofasdljf'};
+    const state = authReducer(oldState, authSuccess(user));
+    expect(state.currentUser).toEqual(user);
+    expect(state.loading).toEqual(false);
+  });
+
+  it('Should handle the auth error action.', () => {
+    const oldState = {
+      authToken: null,
+      currentUser: null,
+      loading: false,
+      error: null
     };
     const error = {error: 400};
-    const state = playListReducer(oldState, addSongError(error));
+    const state = authReducer(oldState, authError(error));
     expect(state.error).toEqual(error);
+    expect(state.loading).toEqual(false);
   });
 });

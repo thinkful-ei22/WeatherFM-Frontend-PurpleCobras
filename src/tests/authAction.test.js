@@ -1,71 +1,39 @@
 /* global $ expect jest */
-import {
-  fetchPlaylists, 
-  fetchPlaylistsSuccess, 
-  fetchPlaylistsError, 
-  deleteSong, 
-  deleteSongSuccess, 
-  deleteSongError, 
-  addSong, 
-  addSongSuccess, 
-  addSongError, 
-  changeSongs, 
-  changeSongsSuccess, 
-  changeSongsError,
-  FETCH_PLAYLISTS_SUCCESS,
-  FETCH_PLAYLISTS_ERROR,
-  DELETE_SONG_SUCCESS,
-  DELETE_SONG_ERROR,
-  ADD_SONG_SUCCESS,
-  ADD_SONG_ERROR,
-  CHANGE_SONGS_SUCCESS,
-  CHANGE_SONGS_ERROR} from '../actions/playlists';
+import { 
+  setAuthToken, SET_AUTH_TOKEN, 
+  clearAuth, CLEAR_AUTH, 
+  authRequest, AUTH_REQUEST, 
+  authSuccess, AUTH_SUCCESS, 
+  authError, AUTH_ERROR} from '../actions/auth';
 
-describe('Playlist Actions', () => {
-  it('Should fetch the playlists for a user.', () => {
-    const obj = {artist:'test'};
-    const action = fetchPlaylistsSuccess(obj);
-    expect(action.type).toEqual(FETCH_PLAYLISTS_SUCCESS);
-    expect(action.playlists).toEqual(obj);
+describe('Auth Actions', () => {
+  it('Should set the auth token for a user.', () => {
+    const obj = {authToken: 'asdfsadwefawefwef'};
+    const action = setAuthToken(obj);
+    expect(action.type).toEqual(SET_AUTH_TOKEN);
+    expect(action.authToken).toEqual(obj);
   });
-  it('Should return an error when fetch playlists comes back with an error.', () => {
-    const obj = {error: 400};
-    const action = fetchPlaylistsError(obj);
-    expect(action.type).toEqual(FETCH_PLAYLISTS_ERROR);
-    expect(action.error).toEqual(obj);
+  it('Should clear the auth token for a user.', () => {
+    const action = clearAuth();
+    expect(action.type).toEqual(CLEAR_AUTH);
   });
 
-  it('Should return nothing for a successful delete for a song.', () => {
-    const action = deleteSongSuccess();
-    expect(action.type).toEqual(DELETE_SONG_SUCCESS);
+  it('Should return nothing on the auth request.', () => {
+    const action = authRequest();
+    expect(action.type).toEqual(AUTH_REQUEST);
   });
-  it('Should return an error when delete song comes back with an error.', () => {
-    const obj = {error: 400};
-    const action = deleteSongError(obj);
-    expect(action.type).toEqual(DELETE_SONG_ERROR);
-    expect(action.error).toEqual(obj);
-  });
-
-  it('Should return nothing when successfully adding a song to a playlist.', () => {
-    const action = addSongSuccess();
-    expect(action.type).toEqual(ADD_SONG_SUCCESS);
-  });
-  it('Should return an error when add song comes back with an error.', () => {
-    const obj = {error: 400};
-    const action = addSongError(obj);
-    expect(action.type).toEqual(ADD_SONG_ERROR);
-    expect(action.error).toEqual(obj);
+  it('Should return the current user on auth success.', () => {
+    const obj = {user: 'joeshmoe'};
+    const action = authSuccess(obj);
+    expect(action.type).toEqual(AUTH_SUCCESS);
+    expect(action.currentUser).toEqual(obj);
   });
 
-  it('Should return nothing when successfuly changing songs.', () => {
-    const action = changeSongsSuccess();
-    expect(action.type).toEqual(CHANGE_SONGS_SUCCESS);
-  });
-  it('Should return an error when change song comes back with an error.', () => {
-    const obj = {error: 400};
-    const action = changeSongsError(obj);
-    expect(action.type).toEqual(CHANGE_SONGS_ERROR);
-    expect(action.error).toEqual(obj);
+  it('Should return an error when auth comes back with an error.', () => {
+    const error = {error: 400};
+    const action = authError(error);
+    expect(action.type).toEqual(AUTH_ERROR);
+    expect(action.error).toEqual(error);
   });
 });
  
