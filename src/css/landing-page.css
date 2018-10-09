@@ -34,9 +34,10 @@ landingCont {
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
-  margin-top: 40%;
+  margin-top: 38%;
   line-height: 180%;
   font-family: 'PT Mono';
+  margin-bottom: 5%;
 }
 
 .landingCont h2 span {
@@ -57,11 +58,103 @@ landingCont {
   margin-left: auto;
   margin-right: auto;
   display: inline;
-  padding: 5px;
+  padding: 7px;
   font-size: 10px;
   text-transform: uppercase;
   margin-right: 20px;
   text-align: center;
   letter-spacing: 1px;
   border-radius: 5px;
+  font-family: 'PT Mono';
+  transition: all 0.5s ease-in-out;
+}
+
+.landingCont .button:hover {
+  background-color: #414141;
+  color: #fff;
+  box-shadow: 1px 1px 0px #fff;
+  cursor: crosshair;
+}
+
+/* landing page forms */
+
+.landingCont .bigCont {
+  transition: all 0.5s ease-in-out;
+}
+
+.landingCont .flex {
+  display: flex;
+  /* margin-left: 31.5%; */
+  justify-content: center;
+}
+
+.landingCont .fbox {
+  display: inline-flex;
+  margin-bottom: 4%;
+  width: 50%;
+}
+
+.landingCont button {
+  padding: 7px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'PT Mono';
+  border-radius: 5px;
+  border: 1px solid #eee;
+  box-shadow: 1px 1px 0px #777;
+  width: 30%;
+  color: #000;
+  transition: all 0.5s ease-in-out;
+}
+
+.landingCont button:hover {
+  background-color: #414141;
+  color: #fff;
+  box-shadow: 1px 1px 0px #fff;
+  cursor: crosshair;
+}
+
+.landingCont label {
+  background-color: #eee;
+  padding: 7px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'PT Mono';
+  border-radius: 5px 0px 0px 5px;
+  border-right: 1px solid #000;
+  margin-bottom: 1%;
+  position: relative;
+  width: 50%;
+}
+
+.landingCont .form-input {
+  background-color: #eee;
+  font-size: 10px;
+  border-radius: 0px 5px 5px 0px;
+  padding: 6px;
+  margin-bottom: 1.5%;
+  position: relative;
+}
+
+.landingCont .form-input input {
+  background-color: #eee;
+  font-family: 'PT Mono';
+}
+
+.landingCont .form-input label {
+  display: none;
+}
+
+.landingCont .form-error {
+  color: red;
+  position: absolute;
+  width: 100%;
+  margin-left: -50%;
+  font-size: 11px;
+  padding-top: 5px;
+  letter-spacing: 0px;
+  font-style: italic;
+  font-family: 'PT Mono';
 }

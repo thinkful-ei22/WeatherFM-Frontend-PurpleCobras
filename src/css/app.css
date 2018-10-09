@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Mandali|Ubuntu|Rubik:400,900|Bungee|PT+Mono|Montserrat:400,700,800');
 
+.animated-page-wrapper {
+  position: absolute;
+  top: 62px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* .topCont {
   background-image: linear-gradient(to bottom, #69a5e2, #F6F1EB);
   max-width: 100vw;

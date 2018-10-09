@@ -16,10 +16,10 @@ export class LandingPage extends React.Component {
 
   returnForm() {
     if (this.state.login) {
-      return <LoginForm />
+      return <div className="bigCont"><LoginForm /></div>
     }
     if (this.state.register) {
-      return <RegistrationForm />
+      return <div className="bigCont"><RegistrationForm /></div>
     }
   }
 
