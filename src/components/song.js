@@ -7,7 +7,7 @@ export class Song extends React.Component {
     super(props);
     this.state = {
       url: null,
-      playing: false,
+      playing: true,
       volume: 0.8,
       muted: false,
       played: 0
@@ -65,7 +65,7 @@ export class Song extends React.Component {
   }
 
   render(){
-    const { url, playing, volume, muted, played } = this.state;
+    const {playing, volume, muted, played } = this.state;
 
     return(
       <div className="song-container">
