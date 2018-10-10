@@ -11,7 +11,7 @@ describe ('Weather Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {
     const state = weatherReducer(undefined, {type: '@@UNKNOWN'});
     expect(state).toEqual({
-      weather: '',
+      weather: 'Sunny',
       error: null,
       tempC: null,
       tempF: null,
@@ -19,7 +19,7 @@ describe ('Weather Reducers', () => {
   });
   it('Should handle the fetch weather success action.', () => {
     const oldState = {
-      weather: '',
+      weather: 'Sunny',
       error: null,
       tempC: null,
       tempF: null,
@@ -35,7 +35,7 @@ describe ('Weather Reducers', () => {
   });
   it('Should handle the fetch weather error action.', () => {
     const oldState = {
-      weather: '',
+      weather: 'Sunny',
       error: null,
       tempC: null,
       tempF: null,
@@ -47,7 +47,7 @@ describe ('Weather Reducers', () => {
   });
   it('Should handle the set weather success action.', () => {
     const oldState = {
-      weather: '',
+      weather: 'Sunny',
       error: null,
       tempC: null,
       tempF: null,
@@ -59,7 +59,7 @@ describe ('Weather Reducers', () => {
   });
   it('Should handle the change weather success action.', () => {
     const oldState = {
-      weather: '',
+      weather: 'Sunny',
       error: null,
       tempC: null,
       tempF: null,
@@ -71,7 +71,7 @@ describe ('Weather Reducers', () => {
   });
   it('Should handle the change weather error action.', () => {
     const oldState = {
-      weather: '',
+      weather: 'Sunny',
       error: null,
       tempC: null,
       tempF: null,

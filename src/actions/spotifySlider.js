@@ -34,7 +34,6 @@ export const updateSpotifyAverages = average => ({
 
 export const fetchSpotifySlider = (sliderObj) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  // console.log("slider OBJ!!", sliderObj);
   return fetch(`${API_BASE_URL}/users/rec`, {
     method: 'POST',
     headers: {
@@ -50,18 +49,15 @@ export const fetchSpotifySlider = (sliderObj) => (dispatch, getState) => {
       return res.json();
     })
     .then(songsArr => {
-    // console.log(songsArr, 'discovered songs')
       dispatch(fetchSpotifySliderSuccess(songsArr));
     })
     .catch(err => {
-    // console.log(err)
       dispatch(fetchSpotifySliderError(err));
     });
 };
 
 export const fetchSpotifyAverages = (songIdArray) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  // console.log("song ID array", songIdArray);
   return fetch(`${API_BASE_URL}/users/rec/averages/${songIdArray[0]},${songIdArray[1]},
     ${songIdArray[2]},${songIdArray[3]},${songIdArray[4]}`, {
     method: 'GET',
@@ -77,11 +73,9 @@ export const fetchSpotifyAverages = (songIdArray) => (dispatch, getState) => {
       return res.json();
     })
     .then(averageObj => {
-    // console.log(songsArr, 'discovered songs')
       dispatch(fetchSpotifyAveragesSuccess(averageObj));
     })
     .catch(err => {
-    // console.log(err)
       dispatch(fetchSpotifySliderError(err));
     });
 };
