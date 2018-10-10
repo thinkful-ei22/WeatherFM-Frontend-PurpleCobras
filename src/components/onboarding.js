@@ -1,6 +1,6 @@
 import React from 'react';
 import requiresLogin from './requires-login';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { changeSongs } from '../actions/playlists';
 
 export class Onboarding extends React.Component {
@@ -39,7 +39,6 @@ export class Onboarding extends React.Component {
 
   deleteSong(e, title, weather) {
     e.preventDefault();
-    let state = this.state;
     let weatherArray = this.state[weather];
     for (let i = 0; i < weatherArray.length + 1; i++) {
       if (weatherArray[i].songTitle === title) {

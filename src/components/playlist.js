@@ -2,7 +2,7 @@ import React from 'react';
 import Song from './song';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchPlaylists, deleteSong, clearPlaylistsSuccess } from '../actions/playlists';
+import { fetchPlaylists, deleteSong } from '../actions/playlists';
 import { syncSpotifyPlaylist } from '../actions/spotify';
 import { fetchYoutube, clearYoutubeSuccess } from '../actions/youtube';
 import '../css/playlist.css';
@@ -84,8 +84,8 @@ export class Playlist extends React.Component {
   }
 
   render() {
-    const { dispatch, url, youtube, weather } = this.props;
-    const {deleteSongFromPlaylist, i} = this;
+    const { dispatch } = this.props;
+    const {i} = this;
     const {playlistName} = this.state;
     let currentPlaylist;
     // code to loop through user's playlist object and render each song
@@ -100,7 +100,7 @@ export class Playlist extends React.Component {
           // dispatch API call to get youtube url & set it to a variable
           songs.push(
             <div key={title}>
-              <img src={albumArt} style={{width: 100, height: 100}}></img>, {title}, by {artist},
+              <img src={albumArt} alt={title} style={{width: 100, height: 100}}></img>, {title}, by {artist},
               
               <button onClick={(e) => {
                 this.youtubeClick(artist, title, i);

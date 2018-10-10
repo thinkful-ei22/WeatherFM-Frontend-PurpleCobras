@@ -1,5 +1,5 @@
 import {
-  FETCH_SPOTIFY_REQUEST,
+  // FETCH_SPOTIFY_REQUEST,
   FETCH_SPOTIFY_SUCCESS,
   FETCH_SPOTIFY_ERROR
 } from '../actions/spotify';
