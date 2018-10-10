@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Route, withRouter, Link} from 'react-router-dom';
 import '../css/app.css';
-
+import { API_BASE_URL } from '../config';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard';
@@ -16,6 +16,13 @@ import Onboarding from './onboarding';
  
 export class App extends React.Component {
   componentDidMount(){
+    fetch(`${API_BASE_URL}/wake-up`)
+      .then(res => {
+        if (res.ok) {
+          console.log(res.status, res.statusText);
+          return this.setState({loading: false})  
+        }
+      })
     this.getLocation();
   }
 
