@@ -22,33 +22,42 @@ export class LoginForm extends React.Component {
     }
     return (
       <div>
-        <form
+        <form inline
           className="login-form"
           onSubmit={this.props.handleSubmit(values =>
             this.onSubmit(values)
           )}>
-          {error}
-          <label htmlFor="username">Username</label>
-          <Field
-            component={Input}
-            type="text"
-            name="username"
-            id="username"
-            validate={[required, nonEmpty]}
-          />
-          <label htmlFor="password">Password</label>
-          <Field
-            component={Input}
-            type="password"
-            name="password"
-            id="password"
-            validate={[required, nonEmpty]}
-          />
+          <div className="flex">
+            <div className="fbox">
+              <label htmlFor="username">Username</label>
+              <Field
+                component={Input}
+                type="text"
+                name="username"
+                id="username"
+                validate={[required, nonEmpty]}
+              />
+            </div>
+          </div>
+          <div className="flex">
+            <div className="fbox">
+              <label htmlFor="password">Password</label>
+              <Field
+                component={Input}
+                type="password"
+                name="password"
+                id="password"
+                validate={[required, nonEmpty]}
+              />
+              {error}
+            </div>
+          </div>
+
+
           <button type="submit" disabled={this.props.pristine || this.props.submitting}>
-                    Log in
+            Log in
           </button>
-          <button type="button"><Link to="/register">Register</Link></button>
-        </form>
+        </form>           
       </div>
     );
   }

@@ -24,35 +24,55 @@ export class RegistrationForm extends React.Component {
         onSubmit={this.props.handleSubmit(values =>
           this.onSubmit(values)
         )}>
-        <label htmlFor="firstName">Name</label>
-        <Field component={Input} type="text" name="firstName" />
-        <label htmlFor="username">Username</label>
-        <Field
-          component={Input}
-          type="text"
-          name="username"
-          validate={[required, nonEmpty, isTrimmed]}
-        />
-        <label htmlFor="password">Password</label>
-        <Field
-          component={Input}
-          type="password"
-          name="password"
-          validate={[required, passwordLength, isTrimmed]}
-        />
-        <label htmlFor="passwordConfirm">Confirm password</label>
-        <Field
-          component={Input}
-          type="password"
-          name="passwordConfirm"
-          validate={[required, nonEmpty, matchesPassword]}
-        />
+
+        {/* <div className="flex">
+          <div className="fbox">
+            <label htmlFor="firstName">Name</label>
+            <Field component={Input} type="text" name="firstName" />
+          </div>
+        </div> */}
+
+        <div className="flex">
+          <div className="fbox">
+            <label htmlFor="username">Username</label>
+            <Field
+              component={Input}
+              type="text"
+              name="username"
+              validate={[required, nonEmpty, isTrimmed]}
+            />
+          </div>
+        </div>
+
+        <div className="flex">
+          <div className="fbox">
+            <label htmlFor="password">Password</label>
+            <Field
+              component={Input}
+              type="password"
+              name="password"
+              validate={[required, passwordLength, isTrimmed]}
+            />
+          </div>
+        </div>
+
+        <div className="flex">
+          <div className="fbox">
+            <label htmlFor="passwordConfirm">Confirm password</label>
+            <Field
+              component={Input}
+              type="password"
+              name="passwordConfirm"
+              validate={[required, nonEmpty, matchesPassword]}
+            />
+          </div>
+        </div>
+
         <button
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
                     Register
                 </button>
-                <button type="button"><Link to="/">Login</Link></button>
             </form>
         );
     }

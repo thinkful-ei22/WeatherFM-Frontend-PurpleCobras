@@ -18,14 +18,13 @@ export default class Input extends React.Component {
       warning = (
         <div className="form-warning">{this.props.meta.warning}</div>
       );
-    }
+    } 
 
     return (
+      <div>
       <div className="form-input">
         <label htmlFor={this.props.input.name}>
           {this.props.label}
-          {error}
-          {warning}
         </label>
         <input
           {...this.props.input}
@@ -33,6 +32,9 @@ export default class Input extends React.Component {
           type={this.props.type}
           ref={input => (this.input = input)}
         />
+      </div>
+        {error}
+        {warning}
       </div>
     );
   }
