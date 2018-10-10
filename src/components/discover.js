@@ -89,7 +89,11 @@ export class Discover extends React.Component {
         <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
         <div className="thumbnail">{this.thumbnail}</div>
         <div className="controls"></div>
-        <Song url={this.props.url} onEnded={()=> this.onEnded()} />
+        <Song url={this.props.url} 
+        onEnded={()=> this.onEnded()}
+        onPrevClick={() => this.getPrevSong()}
+        onNextClick={() => this.getNextSong()}
+         />
         {this.addSongToPlaylist()}  
       </div>;
       return returnHTML;
@@ -118,8 +122,10 @@ export class Discover extends React.Component {
           onChange={e => 
             this.changeWeather(e.target.value)
             // console.log(e.target.value)
-        }>
-        <option selected="true" disabled="disabled">Select Weather</option>    
+            
+        }
+        defaultValue="">
+        <option value="" disabled="disabled">Select Weather</option>    
           <option value="Sunny">Sunny</option>
           <option value="Rainy">Rainy</option>
           <option value="Drizzle">Drizzle</option>
@@ -132,8 +138,8 @@ export class Discover extends React.Component {
 
         {this.returnSong(this.i)}
 
-        <button onClick={() => this.getPrevSong()}>Previous</button>
-        <button onClick={() => this.getNextSong()}>Next</button>
+        {/* <button onClick={() => this.getPrevSong()}>Previous</button>
+        <button onClick={() => this.getNextSong()}>Next</button> */}
         <Slider/>
       </div>
     )

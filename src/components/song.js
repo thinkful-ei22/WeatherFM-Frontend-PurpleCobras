@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import '../css/player.css';
 
 
 export class Song extends React.Component {
@@ -10,7 +11,8 @@ export class Song extends React.Component {
       playing: true,
       volume: 0.8,
       muted: false,
-      played: 0
+      played: 0,
+      volumeIcon: 'volume_up'
     }
   }
 
@@ -27,10 +29,49 @@ export class Song extends React.Component {
     this.setState({ playing: false })
   }
   setVolume = e => {
-    this.setState({ volume: parseFloat(e.target.value) })
+    this.setState({ volume: parseFloat(e.target.value), muted: false },
+    () => {
+      if (this.state.volume === 0){
+        this.setState({
+          volumeIcon: 'volume_mute'
+        })
+      }
+      else if (this.state.volume >= 0.1 && this.state.volume <= 0.5){
+        this.setState({
+          volumeIcon: 'volume_down'
+        })
+      }
+      else if (this.state.volume > 0.5){
+        this.setState({
+          volumeIcon: 'volume_up'
+        })
+      }
+    })
   }
   toggleMuted = () => {
-    this.setState({ muted: !this.state.muted })
+    this.setState({ muted: !this.state.muted },
+      () =>{
+        if (this.state.muted){
+          this.setState({
+            volumeIcon: 'volume_off'
+          })
+        }
+        else if (this.state.volume === 0){
+          this.setState({
+            volumeIcon: 'volume_mute'
+          })
+        }
+        else if (this.state.volume >= 0.1 && this.state.volume <= 0.5){
+          this.setState({
+            volumeIcon: 'volume_down'
+          })
+        }
+        else if (this.state.volume > 0.5){
+          this.setState({
+            volumeIcon: 'volume_up'
+          })
+        }
+      })
   }
 
   // seeking 
@@ -86,17 +127,16 @@ export class Song extends React.Component {
             />
 
 
-<section>
+<section className="player">
        <table><tbody>
             <tr>
-              <th>Controls</th>
-              <td>
+              
+              <td id="play">
                 {/* <button onClick={this.stop}>Stop</button> */}
-                <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
+                <button onClick={this.props.onPrevClick} className="playButtons"><i class="material-icons">skip_previous</i></button>
+                <button onClick={this.playPause} className="playButtons">{playing ? <i className="material-icons">pause</i> : <i className="material-icons">play_arrow</i>}</button>
+                <button onClick={this.props.onNextClick} className="playButtons"><i class="material-icons">skip_next</i></button>
               </td>
-            </tr>
-            <tr>
-              <th>Seek</th>
               <td>
               {/* <input type="range" name="weight" id="range_weight" value="5" min="1" max="100" /> */}
                 <input
@@ -105,22 +145,23 @@ export class Song extends React.Component {
                   onMouseDown={this.onSeekMouseDown}
                   onChange={this.onSeekChange}
                   onMouseUp={this.onSeekMouseUp}
+                  id="seek"
                 />
               </td>
             </tr>
             <tr>
-              <th>Volume</th>
+              
+            </tr>
+            <tr>
+              {/* Volume */}
+    
+              <th><button onClick={this.toggleMuted}id="volumeButton"><i className="material-icons">{this.state.volumeIcon} </i></button></th>
               <td>
-                <input type='range' min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
+                <input type='range' min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} id="volume"/>
               </td>
             </tr>
             <tr>
-              <th>
-                <label htmlFor='muted'>Muted</label>
-              </th>
-              <td>
-                <input id='muted' type='checkbox' checked={this.state.muted} onChange={this.toggleMuted} />
-              </td>
+             
             </tr>
           </tbody></table>
         </section>
