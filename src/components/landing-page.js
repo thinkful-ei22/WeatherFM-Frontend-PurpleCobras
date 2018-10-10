@@ -1,11 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-=======
-import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
->>>>>>> dc6ba37e711eb6e96e46fbf4b74275d558ef0cb4
 import LoginForm from './login-form';
 import RegistrationForm from './registration-form';
 import '../css/landing-page.css';
@@ -28,7 +23,6 @@ export class LandingPage extends React.Component {
     }
   }
 
-<<<<<<< HEAD
   // If we are logged in redirect straight to the user's dashboard
 
   render() {
@@ -60,20 +54,6 @@ export class LandingPage extends React.Component {
       </div>
     );
   }
-=======
-export function LandingPage(props) {
-  // If we are logged in redirect straight to the user's discover
-  if (props.loggedIn) {
-    return <Redirect to="/discover" />;
-  }
-
-  return (
-    <div className="home">
-      <h1>Weather FM Radio</h1>
-      <LoginForm />
-    </div>
-  );
->>>>>>> dc6ba37e711eb6e96e46fbf4b74275d558ef0cb4
 }
 
 const mapStateToProps = state => ({

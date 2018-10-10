@@ -22,7 +22,6 @@ export class App extends React.Component {
           return this.setState({loading: false})  
         }
       })
-    this.getLocation();
   }
 
   componentDidUpdate(prevProps) {

@@ -75,7 +75,6 @@ export class Discover extends React.Component {
     }
     if (this.props.url === '') {
       return returnHTML = <div className="lds-circle"></div>
-<<<<<<< HEAD
     } else if (this.props.url && this.props.spotifyList.length){
       returnHTML = 
       <div className="songTitle">
@@ -89,17 +88,6 @@ export class Discover extends React.Component {
          />
         {this.addSongToPlaylist()}  
       </div>;
-=======
-    } else if (this.props.url && this.props.spotifyList.length) {
-      returnHTML =
-        <div className="songTitle">
-          <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
-          <div className="thumbnail">{this.thumbnail}</div>
-          <div className="controls"></div>
-          <Song url={this.props.url} onEnded={() => this.onEnded()} />
-          {this.addSongToPlaylist()}
-        </div>;
->>>>>>> dc6ba37e711eb6e96e46fbf4b74275d558ef0cb4
       return returnHTML;
     }
   }
@@ -122,16 +110,11 @@ export class Discover extends React.Component {
           name="Radio"
           onChange={e =>
             this.changeWeather(e.target.value)
-<<<<<<< HEAD
             // console.log(e.target.value)
             
         }
         defaultValue="">
         <option value="" disabled="disabled">Select Weather</option>    
-=======
-          }>
-          <option selected="true" disabled="disabled">Select Weather</option>
->>>>>>> dc6ba37e711eb6e96e46fbf4b74275d558ef0cb4
           <option value="Sunny">Sunny</option>
           <option value="Rainy">Rainy</option>
           <option value="Drizzle">Drizzle</option>
@@ -142,16 +125,9 @@ export class Discover extends React.Component {
         <br /><br />
         {this.props.weather} Radio
         {this.returnSong(this.i)}
-<<<<<<< HEAD
-
-        {/* <button onClick={() => this.getPrevSong()}>Previous</button>
-        <button onClick={() => this.getNextSong()}>Next</button> */}
-        <Slider/>
-=======
         <button onClick={() => this.getPrevSong()}>Previous</button>
         <button onClick={() => this.getNextSong()}>Next</button>
         <Slider />
->>>>>>> dc6ba37e711eb6e96e46fbf4b74275d558ef0cb4
       </div>
     )
   }
