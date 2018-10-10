@@ -37,6 +37,10 @@ export class Discover extends React.Component {
 
   getNextSong() {
     this.i++;
+    if (this.i === this.props.spotifyList.length){
+      console.log(this.i);
+      this.i=0;
+    }
     this.returnSong(this.i);
   }
 
