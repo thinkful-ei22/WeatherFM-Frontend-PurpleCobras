@@ -133,9 +133,9 @@ export class Song extends React.Component {
               
               <td id="play">
                 {/* <button onClick={this.stop}>Stop</button> */}
-                <button onClick={this.props.onPrevClick} className="playButtons"><i class="material-icons">skip_previous</i></button>
+                <button onClick={this.props.onPrevClick} className="playButtons"><i className="material-icons">skip_previous</i></button>
                 <button onClick={this.playPause} className="playButtons">{playing ? <i className="material-icons">pause</i> : <i className="material-icons">play_arrow</i>}</button>
-                <button onClick={this.props.onNextClick} className="playButtons"><i class="material-icons">skip_next</i></button>
+                <button onClick={this.props.onNextClick} className="playButtons"><i className="material-icons">skip_next</i></button>
               </td>
               <td>
               {/* <input type="range" name="weight" id="range_weight" value="5" min="1" max="100" /> */}
