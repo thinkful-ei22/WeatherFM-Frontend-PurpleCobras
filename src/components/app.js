@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter, Link } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import RegistrationPage from './registration-page';
 import Discover from './discover';
 import { refreshAuthToken } from '../actions/auth';
 import PlaylistPage from './playlist-page';
-import { fetchWeather } from '../actions/weather';
+// import { fetchWeather } from '../actions/weather';
 import Playlist from './playlist';
 import Onboarding from './onboarding';
 import {wakeUp} from '../actions/wake-up';

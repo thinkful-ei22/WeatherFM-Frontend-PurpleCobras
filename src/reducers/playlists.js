@@ -29,33 +29,33 @@ export default function reducer(state = initialState, action) {
       error: action.error
     });
   } else if (action.type === DELETE_SONG_SUCCESS) {
-    console.log('DELETE SONG SUCCESSFUL');
+    // console.log('DELETE SONG SUCCESSFUL');
     return Object.assign({}, state, {
       deleted: true
     });
   } else if (action.type === DELETE_SONG_ERROR) {
-    console.log('DELETE SONG ERROR', action);
+    // console.log('DELETE SONG ERROR', action);
     return Object.assign({}, state, {
       error: action.error
     });
   } else if (action.type === ADD_SONG_SUCCESS) {
-    console.log('ADD SONG SUCCESSFUL');
+    // console.log('ADD SONG SUCCESSFUL');
     return Object.assign({}, state, {
       error: null
     });
   } else if (action.type === ADD_SONG_ERROR) {
-    console.log('ADD SONG ERROR');
+    // console.log('ADD SONG ERROR');
     return Object.assign({}, state, {
       error: action.error
     })
   } else if (action.type === CHANGE_SONGS_SUCCESS) {
-    console.log('CHANGE SONGS SUCCESS');
+    // console.log('CHANGE SONGS SUCCESS');
     return Object.assign({}, state, {
       error: null
     })
   } else if (action.type === CHANGE_SONGS_ERROR) {
     console.log(action);
-    console.log('CHANGE SONGS ERROR');
+    // console.log('CHANGE SONGS ERROR');
     return Object.assign({}, state, {
       error: action.error
     });
