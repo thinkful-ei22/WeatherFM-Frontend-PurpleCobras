@@ -20,7 +20,6 @@ const store = createStore(
     youtube: youtubeReducer,
     spotify: spotifyReducer,
   }), composeWithDevTools(
-
     applyMiddleware(thunk)
   ));
 

@@ -34,7 +34,6 @@ export class Slider extends React.Component {
         if (!this.props.averages.popularity) {
             this.props.averages.popularity = 20;
         }
-        console.log(this.props.averages)
         this.props.dispatch(fetchSpotifySlider(this.props.averages))
     }
 
