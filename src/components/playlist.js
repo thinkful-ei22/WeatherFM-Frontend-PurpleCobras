@@ -46,6 +46,7 @@ export class Playlist extends React.Component {
     playlistName: this.props.location.pathname.split('/')[2]
   }
   
+  i = 0;
   onSyncClick() {
     const URLlocation = (window.location.origin + window.location.pathname).replace(/\//g, '%2F');
     
@@ -53,41 +54,53 @@ export class Playlist extends React.Component {
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
-  playFirstSong = () => {
+  playSong = (i) => {
    
     if (this.props.playlists) {
     let currentPlaylist = this.props.playlists[this.state.playlistName];
     //console.log(currentPlaylist);
-    let title = currentPlaylist[0].songTitle;
-        let artist = currentPlaylist[0].artist;
+    let title = currentPlaylist[i].songTitle;
+        let artist = currentPlaylist[i].artist;
         this.props.dispatch(fetchYoutube(artist, title, 'video'))
     }
   }
  
   youtubeClick = (artist, title, index) => {
-    this.setState({
-      currentIndex: index,
-    })
+    this.i = index;
+
     this.props.dispatch(fetchYoutube(artist, title, 'video'))
       }
   
-  
-  onEnd = () => {
+      getPrevSong(){
+        if (this.i > 0) {
+          this.i--;
+          this.playSong(this.i);
+        }
+      }
     
+      getNextSong(){
+        this.i++;
+        this.playSong(this.i);
+      }
+  onEnd = () => {
+    this.i++;
+    if (this.i === this.props.playlists[this.state.playlistName].length){
+      console.log(this.i);
+      this.i=0;
+    }
+
     console.log('song has ended');
-    this.setState({
-      currentIndex: this.state.currentIndex+1
-    }, () => {
-      const song = this.props.playlists[this.state.playlistName][this.state.currentIndex];
+   
+      const song = this.props.playlists[this.state.playlistName][this.i];
       console.log(song);
         this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'video'))
-    })
+  
   }
 
 
   render() {
     const { dispatch, url, youtube, weather } = this.props;
-    const {deleteSongFromPlaylist} = this;
+    const {deleteSongFromPlaylist, i} = this;
     const {playlistName} = this.state;
 
     //console.log(playlistName)
@@ -144,12 +157,17 @@ export class Playlist extends React.Component {
 
     let currentSong;
     if (this.props.url === ''){
-    this.playFirstSong();
+    this.playSong(i);
     }
     if(this.props.urlLoading === true){
       currentSong = <div className="lds-circle"></div>;
     } else if(this.props.urlLoading === false){
-      currentSong = <Song url = {this.props.url} onEnded ={() => this.onEnd()}/>
+      currentSong = <Song 
+      url = {this.props.url} 
+      onEnded ={() => this.onEnd()}
+      onPrevClick={() => this.getPrevSong()}
+      onNextClick={() => this.getNextSong()}
+      />
 
     }
 
@@ -158,7 +176,7 @@ export class Playlist extends React.Component {
         <h1>{playlistName} Playlist</h1>
         {/* <Song url = {this.props.url}/> */}
         {currentSong}       
-        <button onClick={() => this.onSyncClick()} >Creatue playing on Spotify using these songs.</button>
+        <button onClick={() => this.onSyncClick()} >Create playlist on Spotify using these songs.</button>
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
       </div>
