@@ -38,13 +38,13 @@ export class Playlist extends React.Component {
   }
   
   i = 0;
-  onSyncClick() {
+  onSyncClick(){
     const URLlocation = (window.location.origin + window.location.pathname).replace(/\//g, '%2F');
     window.location = `https://accounts.spotify.com/authorize?client_id=cae7690868bd44f7b7ae0abde50e406b&redirect_uri=${URLlocation}&`
     +'response_type=token&scope=playlist-modify-public%20user-read-email&show_dialog=true&state=3gz4kd97m4';
   }
 
-  playSong = (i) => {
+  playSong(i){
     if (this.props.playlists) {
     let currentPlaylist = this.props.playlists[this.state.playlistName];
     //console.log(currentPlaylist);
@@ -54,37 +54,33 @@ export class Playlist extends React.Component {
     }
   }
  
-  youtubeClick = (artist, title, index) => {
+  youtubeClick(artist, title, index){
     this.i = index;
-
-    this.props.dispatch(fetchYoutube(artist, title, 'video'))
+    this.props.dispatch(fetchYoutube(artist, title, 'video'));
   }
   
-   getPrevSong(){
-        if (this.i > 0) {
-          this.i--;
-          this.playSong(this.i);
-        }
-      }
+  getPrevSong(){
+    if (this.i > 0){
+      this.i--;
+      this.playSong(this.i);
+    }
+  }
     
-      getNextSong(){
-        this.i++;
-        this.playSong(this.i);
-      }
+  getNextSong(){
+    this.i++;
+    this.playSong(this.i);
+  }
 
-  onEnd = () => {
+  onEnd(){
     this.i++;
     if (this.i === this.props.playlists[this.state.playlistName].length){
       console.log(this.i);
       this.i=0;
     }
-
-    console.log('song has ended');
-   
-      const song = this.props.playlists[this.state.playlistName][this.i];
-      console.log(song);
-        this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'video'))
-  
+    // console.log('song has ended');
+    const song = this.props.playlists[this.state.playlistName][this.i];
+    // console.log(song);
+    this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'video'));
   }
 
   render() {
