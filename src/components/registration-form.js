@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
 import Input from './input';
@@ -9,6 +9,7 @@ const passwordLength = length({min: 6, max: 72});
 const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
+  
   onSubmit(values) {
     const {username, password, firstName, lastName} = values;
     const user = {username, password, firstName, lastName};
@@ -18,6 +19,10 @@ export class RegistrationForm extends React.Component {
   }
 
   render() {
+    if (this.props.loggedIn) {
+      return <Redirect to="/onboarding" />;
+    }
+
     return (
       <form
         className="login-form"
