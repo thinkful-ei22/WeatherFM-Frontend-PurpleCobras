@@ -1,29 +1,21 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Route, withRouter, Link} from 'react-router-dom';
-import '../css/app.css';
-import { API_BASE_URL } from '../config';
+import { connect } from 'react-redux';
+import { Route, withRouter } from 'react-router-dom';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
-import Dashboard from './dashboard';
 import RegistrationPage from './registration-page';
 import Discover from './discover';
-import {refreshAuthToken} from '../actions/auth';
+import { refreshAuthToken } from '../actions/auth';
 import PlaylistPage from './playlist-page';
-import {fetchWeather} from '../actions/weather';
+// import { fetchWeather } from '../actions/weather';
 import Playlist from './playlist';
 import Onboarding from './onboarding';
- 
+import {wakeUp} from '../actions/wake-up';
+import '../css/app.css';
+
 export class App extends React.Component {
   componentDidMount(){
-    fetch(`${API_BASE_URL}/wake-up`)
-      .then(res => {
-        if (res.ok) {
-          console.log(res.status, res.statusText);
-          return this.setState({loading: false})  
-        }
-      })
-    this.getLocation();
+    wakeUp();
   }
 
   componentDidUpdate(prevProps) {
@@ -54,41 +46,37 @@ export class App extends React.Component {
     clearInterval(this.refreshInterval);
   }
 
-  getLocation (){
-    // console.log('geoloc running');
-    let latitude, longitude;
-    // console.log(this, '1st this');
-    const {dispatch} = this.props;
-    if ('geolocation' in navigator) {
-      /* geolocation is available */
-      navigator.geolocation.getCurrentPosition(function(position) {
-        console.log(position.coords.latitude, position.coords.longitude);
-
-        latitude=position.coords.latitude;
-        longitude=position.coords.longitude;
-        dispatch(fetchWeather(latitude, longitude, '_'));
-      });
-    } else {
-      /* geolocation IS NOT available */
-      console.log('geolocation is not available');
-    }      
-  }
+  // getLocation() {
+  //   let latitude, longitude;
+  //   const { dispatch } = this.props;
+  //   if ('geolocation' in navigator) {
+  //     /* geolocation is available */
+  //     navigator.geolocation.getCurrentPosition(function (position) {
+  //       latitude = position.coords.latitude;
+  //       longitude = position.coords.longitude;
+  //       dispatch(fetchWeather(latitude, longitude, '_'));
+  //     });
+  //   } else {
+  //     /* geolocation IS NOT available */
+  //     console.log('geolocation is not available');
+  //     alert("Location not provided; defaulting to Sunny Weather.")
+  //   }
+  // }
 
   render() {
-        return (
-            <div className="app">
-                <Route exact path="/(dashboard|discover|playlists)/" component={HeaderBar} />
-                <Route exact path="/" component={LandingPage} />
-                <Route exact path="/onboarding" component={Onboarding} />
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/discover" component={Discover} />
-                <Route exact path="/playlists" component={PlaylistPage} />
-                 <Route path="/playlist/:name" component={HeaderBar} />
-                <Route path="/playlist/:name" component={Playlist} />
-                <Route exact path="/register" component={RegistrationPage} />
-            </div>
-        );
-    }
+    return (
+      <div className="app">
+        <Route exact path="/(discover|playlists)/" component={HeaderBar} />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/onboarding" component={Onboarding} />
+        <Route exact path="/discover" component={Discover} />
+        <Route exact path="/playlists" component={PlaylistPage} />
+        <Route path="/playlist/:name" component={HeaderBar} />
+        <Route path="/playlist/:name" component={Playlist} />
+        <Route exact path="/register" component={RegistrationPage} />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({

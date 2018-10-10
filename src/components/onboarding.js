@@ -22,7 +22,7 @@ export class Onboarding extends React.Component {
     };
   }
 
-  addWeather (e, weather) {
+  addWeather(e, weather) {
     e.preventDefault();
     if (this.state[weather].length < 5) {
       this.setState({
@@ -35,30 +35,22 @@ export class Onboarding extends React.Component {
     e.target.artist.value='';
   }
 
-  // sunny, rainy, drizzle, snowy, cloudy, thunderstorm
-
-  addAllSongs (e, sunny, rainy, drizzle, snowy, cloudy, thunderstorm) {
-    console.log(sunny);
+  addAllSongs(e, sunny, rainy, drizzle, snowy, cloudy, thunderstorm) {
     e.preventDefault();
     this.props.dispatch(changeSongs(sunny, rainy, drizzle, snowy, cloudy, thunderstorm))
-    .then(() => {
+      .then(() => {
         this.setState({
-        submitted: true
+          submitted: true
+        })
       })
-    })
   }
 
-  deleteSong (e, title, weather) {
+  deleteSong(e, title, weather) {
     e.preventDefault();
-    let state = this.state;
-    console.log('deleting');
     let weatherArray = this.state[weather];
-    console.log(title);
     for (let i = 0; i < weatherArray.length + 1; i++) {
       if (weatherArray[i].songTitle === title) {
-        console.log('Found it');
         weatherArray.splice(i, 1);
-        console.log(weatherArray);
         break;
       }
     }
@@ -67,13 +59,10 @@ export class Onboarding extends React.Component {
     });
   }
 
-
   render() {
-
     let state = this.state;
-
     if (state.submitted) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/discover" />;
     }
 
     let buttonType;
@@ -85,7 +74,6 @@ export class Onboarding extends React.Component {
     }
 
     const renderSongs = (weather) => {
-      console.log(state[weather]);
       return state[weather].map(item => {
         return <li key={item.songTitle}>+ {item.songTitle} by {item.artist} <button onClick={(e) => this.deleteSong(e, item.songTitle, weather)} title="delete song">✖</button><br /></li>;
       });
@@ -179,9 +167,10 @@ export class Onboarding extends React.Component {
 
         </div>
         <br />
-        
+
       </div>
-    );}
+    );
+  }
 }
 
 export default requiresLogin()(Onboarding);

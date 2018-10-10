@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchSpotifySlider, fetchSpotifyAverages, updateSpotifyAverages  } from '../actions/spotifySlider';
+import { fetchSpotifySlider, fetchSpotifyAverages, updateSpotifyAverages } from '../actions/spotifySlider';
 import { fetchSpotify } from '../actions/spotify';
 import '../css/slider.css';
 import { fetchPlaylists } from '../actions/playlists';
@@ -18,23 +18,22 @@ export class Slider extends React.Component {
 
     componentDidMount() {
         return this.props.dispatch(fetchPlaylists())
-        .then(() => {
-            return this.getAttributeAverages();
-        })
+            .then(() => {
+                return this.getAttributeAverages();
+            })
     }
 
     handleSlider(e) {
         e.preventDefault();
         let weathPlaylist = this.props.playlists[this.props.weather];
         shuffle(weathPlaylist);
-        const ids = ["songId1", "songId2", "songId3" ]
+        const ids = ["songId1", "songId2", "songId3"]
         ids.forEach((id, i) => {
             this.props.averages[id] = weathPlaylist[i].spotifyId
         })
-        if(!this.props.averages.popularity) {
+        if (!this.props.averages.popularity) {
             this.props.averages.popularity = 20;
         }
-        console.log(this.props.averages)
         this.props.dispatch(fetchSpotifySlider(this.props.averages))
     }
 
@@ -50,7 +49,7 @@ export class Slider extends React.Component {
 
     getAttributeAverages() {
         let currentPlaylist;
-        if (this.props.playlists) {
+        if (this.props.playlists[this.props.weather]) {
             currentPlaylist = this.props.playlists[this.props.weather].slice(0, 5);
             let songIdArray = currentPlaylist.map(song => song.spotifyId);
             shuffle(songIdArray);
@@ -62,12 +61,12 @@ export class Slider extends React.Component {
     }
 
     render() {
-        if(!this.props.playlists) {
+        if (!this.props.playlists) {
             return (
                 <h2>LOADING</h2>
             )
         }
-        
+
         let sliderForm = '';
         let sliderMessage = 'Show Advanced Settings'
         if (this.state.displaySlider === true) {
@@ -81,7 +80,7 @@ export class Slider extends React.Component {
                                 min="0" max="1" step=".01"
                                 onChange={(e) => this.onChange({ danceability: e.target.value })}
                                 defaultValue={this.props.averages.danceability}
-                                 />
+                            />
                             <label htmlFor="danceability">Super Dancy: {Math.floor(this.props.averages.danceability * 100)}%</label>
                         </div>
                         <div className="energy">
@@ -112,8 +111,8 @@ export class Slider extends React.Component {
                             <label htmlFor="loudness">Softer</label>
                             <input type="range" id="loudness" name="loudness"
                                 min="-60" max="0" step="1"
-                                onChange={(e) => this.onChange({ loudness: e.target.value })} 
-                                defaultValue={this.props.averages.loudness}/>
+                                onChange={(e) => this.onChange({ loudness: e.target.value })}
+                                defaultValue={this.props.averages.loudness} />
                             <label htmlFor="loudness">Louder: {this.props.averages.loudness}dBs (-60 to 0)</label>
                         </div>
                         <div className="acousticness">
@@ -121,7 +120,7 @@ export class Slider extends React.Component {
                             <input type="range" id="acousticness" name="acousticness"
                                 min="0" max="1" step=".01"
                                 onChange={(e) => this.onChange({ acousticness: e.target.value })}
-                                defaultValue={this.props.averages.acousticness}/>
+                                defaultValue={this.props.averages.acousticness} />
                             <label htmlFor="acousticness">More Acoustic: {Math.floor(this.props.averages.acousticness * 100)}%</label>
                         </div>
                         <button type="submit">Customize!</button>

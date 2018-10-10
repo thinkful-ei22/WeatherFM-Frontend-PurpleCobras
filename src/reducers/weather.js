@@ -7,7 +7,7 @@ import {
 } from '../actions/weather';
 
 const initialState = {
-  weather: '',
+  weather: 'Sunny',
   error: null,
   tempC: null,
   tempF: null,
@@ -22,7 +22,7 @@ export default function reducer(state = initialState, action) {
       tempF: action.tempF, 
     });
   } else if (action.type === FETCH_WEATHER_ERROR) {
-    console.log(action.error);
+    // console.log(action.error);
     return Object.assign({}, state, {
       error: action.error
     });

@@ -1,6 +1,5 @@
 import jwtDecode from 'jwt-decode';
 import {SubmissionError} from 'redux-form';
-
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
@@ -41,7 +40,6 @@ const storeAuthInfo = (authToken, dispatch) => {
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user));
 };
-
 
 export const login = (username, password) => dispatch => {
   dispatch(authRequest());

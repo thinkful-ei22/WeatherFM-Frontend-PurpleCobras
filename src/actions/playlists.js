@@ -20,8 +20,6 @@ export const clearPlaylistsSuccess = playlists => ({
 
 export const fetchPlaylists = () => (dispatch, getState) =>{
   const authToken = getState().auth.authToken; 
-
-  console.log('Fetching Playlists');
   return fetch(`${API_BASE_URL}/users/playlists`, {
     method: 'GET',
     headers: {
@@ -37,7 +35,6 @@ export const fetchPlaylists = () => (dispatch, getState) =>{
 };
 
 // delete a song
-
 export const DELETE_SONG_SUCCESS = 'DELETE_SONG_SUCCESS';
 export const deleteSongSuccess = () => ({
   type: DELETE_SONG_SUCCESS,
@@ -51,8 +48,6 @@ export const deleteSongError = error => ({
 
 export const deleteSong = (weather, songTitle) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log('Deleting Song', weather);
-
   return fetch(`${API_BASE_URL}/users/playlists/${weather}/${songTitle}`, {
     method: 'DELETE',
     headers: {
@@ -68,7 +63,6 @@ export const deleteSong = (weather, songTitle) => (dispatch, getState) => {
 };
 
 // add a song
-
 export const ADD_SONG_SUCCESS = 'ADD_SONG_SUCCESS';
 export const addSongSuccess = () => ({
   type: ADD_SONG_SUCCESS
@@ -82,8 +76,6 @@ export const addSongError = error => ({
 
 export const addSong = (weather, spotifyId, artist, songTitle, thumbnail) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log('Adding song to', weather);
-
   return fetch(`${API_BASE_URL}/users/playlists`, {
     method: 'PUT',
     headers: {
@@ -118,8 +110,6 @@ export const changeSongsError = error => ({
 
 export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log('Customized Songs--------', Sunny);
-
   return fetch(`${API_BASE_URL}/users/`, {
     method: 'PUT',
     headers: {

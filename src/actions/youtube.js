@@ -29,12 +29,8 @@ export const clearYoutubeSuccess = (videoTitle,videoURL) => ({
 export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
   dispatch(fetchYoutubeRequest());
   const authToken = getState().auth.authToken;
-
   let songArtist = artist.split(' ').join('+'); 
   let songTitle = title.split(' ').join('+');
-
-  // console.log(title, artist, 'title and artist');
-
   return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}/${mode}`, {
     method: 'GET',
     headers: {
@@ -43,26 +39,17 @@ export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
     }
   })
     .then(res => {
-    //console.log(res, 'res')
       return normalizeResponseErrors(res);
     })
     .then(res => {
-    // console.log(res, 'res')
-
       return res.json();
     })
     .then(videoInfo => {
-      // console.log(videoInfo);
       let videoTitle = videoInfo.videoTitle;
       let videoURL = videoInfo.videoURL;
-      //console.log(videoTitle, 'videoTitle');
-      // console.log(videoURL, 'videoURL');
-      // console.log(videoURL, 'url in action')
       dispatch(fetchYoutubeSuccess(videoTitle, videoURL));
     })
     .catch(err => {
-
-    // console.log(err)
       dispatch(fetchYoutubeError(err));
     });
 };

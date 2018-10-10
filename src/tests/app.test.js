@@ -4,6 +4,8 @@ import {App} from '../components/app';
 
 describe('<App/>', () => {
   it('should render without crashing', () => {
-    const wrapper = shallow(<App />);
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ok: true}));
+    const wrapper = shallow(
+    <App />);
   });
 });

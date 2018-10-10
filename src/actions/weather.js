@@ -1,5 +1,4 @@
 import {saveWeather} from '../local-storage';
-
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
@@ -35,19 +34,14 @@ export const changeWeatherError = error => ({
   error
 });
 
-
 // store weather in local storage
-
 const storeWeather = (weather, dispatch) => {
-  // console.log(weather);
   saveWeather(weather);
   dispatch(setWeather(weather));
 };
 
 export const fetchWeather = (latitude, longitude, cityZip) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-
-  //console.log('latitude', latitude, 'and longitude', longitude);
   const newLat = latitude;
   const newLong = longitude;
   const newCityZip = cityZip;
@@ -61,9 +55,7 @@ export const fetchWeather = (latitude, longitude, cityZip) => (dispatch, getStat
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then((weather) => {
-      // console.log(weather, typeof weather, weather.weather);
-      
+    .then((weather) => {      
       dispatch(fetchWeatherSuccess(
         weather.weather,
         weather.tempC,
@@ -79,8 +71,6 @@ export const fetchWeather = (latitude, longitude, cityZip) => (dispatch, getStat
 export const changeWeather = (weather) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   let newWeather = weather;
-
-  console.log(newWeather);
   // need to fix the endpoint/refactor
   return fetch(`${API_BASE_URL}/users`, {
     method: 'GET',
@@ -90,7 +80,7 @@ export const changeWeather = (weather) => (dispatch, getState) => {
     }
   })
     .then(() => dispatch(changeWeatherSuccess(newWeather)))
-    .then(({newWeather}) => storeWeather(newWeather))
+    .then(({newWeather}) => storeWeather(newWeather, dispatch))
     .catch(err => {
       dispatch(changeWeatherError(err));
     });

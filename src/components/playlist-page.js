@@ -1,21 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists } from '../actions/playlists';
 import HeaderBar from './header-bar';
 
 export class PlaylistPage extends React.Component {
   componentDidMount() {
-    // console.log('Component Mounted');
     this.props.dispatch(fetchPlaylists());
   }
 
   render() {
-    // console.log(this.props.playlists);
     let userPlaylists;
     userPlaylists = this.props.playlists;
-
     let links = [];
     let userPlaylistArray;
     if (this.props.playlists) {
@@ -29,8 +26,6 @@ export class PlaylistPage extends React.Component {
       return links;
     }
 
-    console.log(userPlaylistArray);
-
     return (
       <div>
         <HeaderBar />
@@ -43,7 +38,7 @@ export class PlaylistPage extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const {currentUser} = state.auth;
+  const { currentUser } = state.auth;
   return {
     username: state.auth.currentUser.username,
     name: `${currentUser.firstName}`,
