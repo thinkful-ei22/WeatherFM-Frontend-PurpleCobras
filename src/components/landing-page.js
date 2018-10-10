@@ -39,14 +39,14 @@ export class LandingPage extends React.Component {
         
         <div className="section1">
 
-          <div className="buttons">
-            <div className="button" onClick={() => {
+          <div className="buttonns">
+            <div className="buttonn" onClick={() => {
               this.setState({
                 login: !this.state.login,
                 register: false
               })
             }}>login to weather FM</div>
-            <div className="button" onClick={() => {
+            <div className="buttonn" onClick={() => {
               this.setState({
                 register: !this.state.register,
                 login: false

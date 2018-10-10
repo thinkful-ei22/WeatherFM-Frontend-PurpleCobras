@@ -201,14 +201,14 @@ landingCont {
   background-color: #fff;
 }
 
-.section1 .buttons {
+.section1 .buttonns {
   position: absolute;
   text-align: left;
   left: 2%;
   margin-top: 2%;
 }
 
-.section1 .button {
+.section1 .buttonn {
   background-color: #fff;
   margin-left: auto;
   margin-right: auto;
@@ -224,7 +224,7 @@ landingCont {
   transition: all 0.5s ease-in-out;
 }
 
-.section1 .button:hover {
+.section1 .buttonn:hover {
   background-color: #414141;
   color: #fff;
   box-shadow: 1px 1px 0px #fff;
@@ -259,6 +259,99 @@ landingCont {
 
 .section2 .formCont {
   position: relative;
-  margin-top: 65%;
+  top: 50%;
+  transform: translateY(-50%);
   text-align: center;
+}
+
+.section2 .flex {
+  display: flex;
+  justify-content: center;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.section2 .fbox {
+  display: inline-flex;
+  margin-bottom: 5%;
+  width: 80%;
+}
+
+.section2 button {
+  padding: 7px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'PT Mono';
+  border-radius: 5px;
+  border: 1px solid #eee;
+  box-shadow: 1px 1px 0px #777;
+  width: 30%;
+  color: #000;
+  transition: all 0.5s ease-in-out;
+}
+
+.section2 button:hover {
+  background-color: #414141;
+  color: #fff;
+  box-shadow: 1px 1px 0px #fff;
+  cursor: crosshair;
+}
+
+.section2 label {
+  background-color: #eee;
+  padding: 7px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'PT Mono';
+  border-radius: 5px 0px 0px 5px;
+  border-right: 1px solid #000;
+  margin-bottom: 1%;
+  position: relative;
+  width: 46%;
+}
+
+.section2 .form-input {
+  background-color: #eee;
+  font-size: 10px;
+  border-radius: 0px 5px 5px 0px;
+  padding: 6px;
+  margin-bottom: 1.5%;
+  position: relative;
+  width: 100%
+}
+
+.section2 .form-input input {
+  background-color: #eee;
+  font-family: 'PT Mono';
+}
+
+.section2 .form-input label {
+  display: none;
+}
+
+.section2 .form-error {
+  color: red;
+  position: absolute;
+  width: 100%;
+  margin-left: -50%;
+  font-size: 11px;
+  padding-top: 4px;
+  letter-spacing: 0px;
+  font-style: italic;
+  font-family: 'PT Mono';
+}
+
+.section2 .form-error2 {
+  color: red;
+  position: absolute;
+  /* width: 100%; */
+  margin-left: 14%;
+  margin-top: -18%;
+  font-size: 13px;
+  padding-top: 5px;
+  letter-spacing: 0px;
+  font-style: italic;
+  font-family: 'PT Mono';
 }

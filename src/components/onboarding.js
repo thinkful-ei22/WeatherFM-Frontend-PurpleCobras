@@ -2,6 +2,7 @@ import React from 'react';
 import requiresLogin from './requires-login';
 import {Link, Redirect} from 'react-router-dom';
 import {changeSongs} from '../actions/playlists';
+import '../css/onboarding.css';
 
 export class Onboarding extends React.Component {
   constructor(props) {
@@ -82,44 +83,55 @@ export class Onboarding extends React.Component {
       <div>
         <h1>Onboarding Page</h1>
 
-        <h3>Add Sunny Tracks</h3>
-        <ul>{renderSongs('sunny')}</ul><br /><br />
+        <div className="addSongsBox">
+        <div className="trackBox">
+          <h3>Add Sunny Tracks</h3>
+          <ul>{renderSongs('sunny')}</ul><br /><br />
 
-        <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'sunny')}>
-          <label htmlFor="song">Song Title:</label>
-          <input name="song"></input>
-          <label htmlFor="artist"> Artist Name:</label>
-          <input name="artist"></input><br /><br />
+          <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'sunny')}>
+            <label htmlFor="song">Song Title:</label>
+            <input name="song"></input>
+            <label htmlFor="artist"> Artist Name:</label>
+            <input name="artist"></input><br /><br />
 
-          <button type="submit">Add a Song</button>
-              
-        </form><br />
+            <button type="submit">Add a Song</button>
+                
+          </form>
+        </div>
+        
 
-        <h3>Add Rainy Tracks</h3>
-        <ul>{renderSongs('rainy')}</ul><br /><br />
+        <div className="trackBox">
+          <h3>Add Rainy Tracks</h3>
+          <ul>{renderSongs('rainy')}</ul><br /><br />
 
-        <form name="addWeather2" onSubmit={(e) => this.addWeather(e, 'rainy')}>
-          <label htmlFor="song">Song Title:</label>
-          <input name="song"></input>
-          <label htmlFor="artist"> Artist Name:</label>
-          <input name="artist"></input><br /><br />
+          <form name="addWeather2" onSubmit={(e) => this.addWeather(e, 'rainy')}>
+            <label htmlFor="song">Song Title:</label>
+            <input name="song"></input>
+            <label htmlFor="artist"> Artist Name:</label>
+            <input name="artist"></input><br /><br />
 
-          <button type="submit">Add a Song</button>
-              
-        </form><br />
+            <button type="submit">Add a Song</button>
+                
+          </form>
+        </div>
+        
+        
 
-        <h3>Add Drizzle Tracks</h3>
-        <ul>{renderSongs('drizzle')}</ul><br /><br />
+        <div className="trackBox">
+          <h3>Add Drizzle Tracks</h3>
+          <ul>{renderSongs('drizzle')}</ul><br /><br />
 
-        <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'drizzle')}>
-          <label htmlFor="song">Song Title:</label>
-          <input name="song"></input>
-          <label htmlFor="artist"> Artist Name:</label>
-          <input name="artist"></input><br /><br />
+          <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'drizzle')}>
+            <label htmlFor="song">Song Title:</label>
+            <input name="song"></input>
+            <label htmlFor="artist"> Artist Name:</label>
+            <input name="artist"></input><br /><br />
 
-          <button type="submit">Add a Song</button>
-              
-        </form><br />
+            <button type="submit">Add a Song</button>
+                
+          </form>
+        </div>
+        </div>
 
         <h3>Add Snowy Tracks</h3>
         <ul>{renderSongs('snowy')}</ul><br /><br />
