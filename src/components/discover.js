@@ -1,6 +1,6 @@
 import React from 'react';
 import Song from './song';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchSpotify } from '../actions/spotify';
 import { fetchYoutube } from '../actions/youtube';
@@ -16,110 +16,98 @@ export class Discover extends React.Component {
     super(props);
     this.state = {
       changed: false,
-      // karaokeMode: false,
-      // karaokeModeButton: 'hide'
     }
   }
-  // checkedForLyricsSong = false;
 
-  thumbnail="";
-  // karaokeTitle = '';
-  // officialTitle = '';
-  i=0;
+  thumbnail = "";
+  i = 0;
   componentDidMount = () => {
-
-    this.props.dispatch(fetchSpotify(this.props.weather)); 
-    this.setState({changed: false});
+    this.props.dispatch(fetchSpotify(this.props.weather));
+    this.setState({ changed: false });
   }
   componentWillUnmount = () => {
-    console.log('discover unmounted');
-   this.props.dispatch(clearYoutubeSuccess())
+    this.props.dispatch(clearYoutubeSuccess())
   }
-  getPrevSong(){
+  getPrevSong() {
     if (this.i > 0) {
       this.i--;
       this.returnSong(this.i);
     }
   }
 
-  getNextSong(){
+  getNextSong() {
     this.i++;
     this.returnSong(this.i);
   }
 
-  onEnded(){
+  onEnded() {
     this.getNextSong();
   }
 
-  addSongToPlaylist(){
-    return(
-      <button onClick={(e) =>{
-        //  console.log(this.props.spotifyList[this.i]);
-          this.props.dispatch(addSong(
-            this.props.weather,
-            this.props.spotifyList[this.i].spotifyId, 
-            this.props.spotifyList[this.i].artist, 
-            this.props.spotifyList[this.i].songTitle, 
-            this.props.spotifyList[this.i].thumbnail
-          ))
-        }}>
-          Add to Playlist 
+  addSongToPlaylist() {
+    return (
+      <button onClick={(e) => {
+        this.props.dispatch(addSong(
+          this.props.weather,
+          this.props.spotifyList[this.i].spotifyId,
+          this.props.spotifyList[this.i].artist,
+          this.props.spotifyList[this.i].songTitle,
+          this.props.spotifyList[this.i].thumbnail
+        ))
+      }}>
+        Add to Playlist
       </button>
     );
   }
 
-  returnSong(index){
+  returnSong(index) {
     this.i = index;
     //set returnHTML to empty string 
     let returnHTML = '';
     //if spotifyList has a length
-    if(this.props.spotifyList.length){
-     this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
-     this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
+    if (this.props.spotifyList.length) {
+      this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} /></div>;
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
     }
 
-    if(!this.props.spotifyList.length && this.props.url !== ''){
+    if (!this.props.spotifyList.length && this.props.url !== '') {
       return returnHTML = <h3>COULDNT FIND ANYTHING TRY CHANGING SLIDERS</h3>
     }
-    if(this.props.url === '') {
+    if (this.props.url === '') {
       return returnHTML = <div className="lds-circle"></div>
-    } else if (this.props.url && this.props.spotifyList.length){
-      returnHTML = 
-      <div className="songTitle">
-        <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
-        <div className="thumbnail">{this.thumbnail}</div>
-        <div className="controls"></div>
-        <Song url={this.props.url} onEnded={()=> this.onEnded()} />
-        {this.addSongToPlaylist()}  
-      </div>;
+    } else if (this.props.url && this.props.spotifyList.length) {
+      returnHTML =
+        <div className="songTitle">
+          <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+          <div className="thumbnail">{this.thumbnail}</div>
+          <div className="controls"></div>
+          <Song url={this.props.url} onEnded={() => this.onEnded()} />
+          {this.addSongToPlaylist()}
+        </div>;
       return returnHTML;
-    } 
+    }
   }
 
-  changeWeather(newWeather){
-    //console.log(newWeather);
+  changeWeather(newWeather) {
     this.props.dispatch(changeWeather(newWeather))
-    .then(this.props.dispatch(fetchSpotify(this.props.weather)))
-    .then(this.returnSong(0))
-
-    .catch(err => {
-      console.log(err);
-    });
+      .then(this.props.dispatch(fetchSpotify(this.props.weather)))
+      .then(this.returnSong(0))
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
     return (
       <div className="discover">
-   Right now it is {this.props.weather}! <br />
+        Right now it is {this.props.weather}! <br />
         <label htmlFor="Radio">Change the station: </label>
-        <select 
+        <select
           name="Radio"
-          // value={this.props.weather} 
-          onChange={e => 
+          onChange={e =>
             this.changeWeather(e.target.value)
-            // console.log(e.target.value)
-        }>
-        <option selected="true" disabled="disabled">Select Weather</option>    
+          }>
+          <option selected="true" disabled="disabled">Select Weather</option>
           <option value="Sunny">Sunny</option>
           <option value="Rainy">Rainy</option>
           <option value="Drizzle">Drizzle</option>
@@ -129,28 +117,25 @@ export class Discover extends React.Component {
         </select>
         <br /><br />
         {this.props.weather} Radio
-
         {this.returnSong(this.i)}
-
         <button onClick={() => this.getPrevSong()}>Previous</button>
         <button onClick={() => this.getNextSong()}>Next</button>
-        <Slider/>
+        <Slider />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  const {currentUser} = state.auth;
+  const { currentUser } = state.auth;
   return {
-      username: state.auth.currentUser.username,
-      name: `${currentUser.firstName}`,
-      protectedData: state.protectedData.data,
-      weather: state.weather.weather,
-      spotifyList: state.spotify.songs,
-      title: state.youtube.videoTitle,
-      url: state.youtube.videoURL,
-      changed: state.weather.changed,
+    username: state.auth.currentUser.username,
+    name: `${currentUser.firstName}`,
+    weather: state.weather.weather,
+    spotifyList: state.spotify.songs,
+    title: state.youtube.videoTitle,
+    url: state.youtube.videoURL,
+    changed: state.weather.changed,
   };
 };
 

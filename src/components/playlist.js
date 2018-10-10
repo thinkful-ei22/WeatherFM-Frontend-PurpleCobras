@@ -5,7 +5,6 @@ import requiresLogin from './requires-login';
 import { fetchPlaylists, deleteSong, clearPlaylistsSuccess } from '../actions/playlists';
 import { syncSpotifyPlaylist } from '../actions/spotify';
 import { fetchYoutube, clearYoutubeSuccess } from '../actions/youtube';
-
 import '../css/playlist.css';
 
 // send '{title} + {artist}' as 'song
@@ -28,6 +27,7 @@ export class Playlist extends React.Component {
           this.props.dispatch(syncSpotifyPlaylist(accessToken, weather, playlist))
             .then(() => {
               window.location = (window.location.origin + window.location.pathname);
+              alert("Successfully Added Playlist!")
             });
         }
       });
@@ -158,7 +158,7 @@ export class Playlist extends React.Component {
         <h1>{playlistName} Playlist</h1>
         {/* <Song url = {this.props.url}/> */}
         {currentSong}       
-        <button onClick={() => this.onSyncClick()} >Creatue playing on Spotify using these songs.</button>
+        <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button>
         {loopedSongs(this.props.playlists)}
         {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
       </div>

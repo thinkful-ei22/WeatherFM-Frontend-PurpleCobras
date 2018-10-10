@@ -50,7 +50,7 @@ export class Slider extends React.Component {
 
     getAttributeAverages() {
         let currentPlaylist;
-        if (this.props.playlists) {
+        if (this.props.playlists[this.props.weather]) {
             currentPlaylist = this.props.playlists[this.props.weather].slice(0, 5);
             let songIdArray = currentPlaylist.map(song => song.spotifyId);
             shuffle(songIdArray);

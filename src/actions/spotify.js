@@ -1,5 +1,5 @@
-import {API_BASE_URL} from '../config';
-import {normalizeResponseErrors} from './utils';
+import { API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
 
 export const FETCH_SPOTIFY_REQUEST = 'FETCH_SPOTIFY_REQUEST';
 export const fetchSpotifyRequest = loading => ({
@@ -21,9 +21,6 @@ export const fetchSpotifyError = error => ({
 
 export const fetchSpotify = (weather) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-
-  // console.log(weather);
-
   return fetch(`${API_BASE_URL}/users/rec/${weather}`, {
     method: 'GET',
     headers: {
@@ -38,11 +35,9 @@ export const fetchSpotify = (weather) => (dispatch, getState) => {
       return res.json();
     })
     .then(songsArr => {
-    // console.log(songsArr, 'discovered songs')
       dispatch(fetchSpotifySuccess(songsArr));
     })
     .catch(err => {
-    // console.log(err)
       dispatch(fetchSpotifyError(err));
     });
 };
@@ -67,13 +62,10 @@ export const syncSpotifyError = error => ({
 });
 
 export const syncSpotifyPlaylist = (accessToken, weather, playlist) => (dispatch) => {
-
   dispatch(syncSpotifyRequest());
-
   const songIds = playlist.map(song => {
     return `spotify:track:${song.spotifyId}`;
   });
-
   return fetch('https://api.spotify.com/v1/me', {
     method: 'GET',
     headers: {
