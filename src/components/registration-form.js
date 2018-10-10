@@ -19,9 +19,6 @@ export class RegistrationForm extends React.Component {
   }
 
   render() {
-    if (this.props.loggedIn) {
-      return <Redirect to="/onboarding" />;
-    }
 
     return (
       <form

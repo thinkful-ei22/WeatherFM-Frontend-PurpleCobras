@@ -35,27 +35,62 @@ export class LandingPage extends React.Component {
   }
 
     return (
-      <div className="landingCont">  
-        <div className="image"></div>
-        <div className="buttons">
-          <div className="button" onClick={() => {
-            this.setState({
-              login: !this.state.login,
-              register: false
-            })
-          }}>login to weather FM</div>
-          <div className="button" onClick={() => {
-            this.setState({
-              register: !this.state.register,
-              login: false
-            })
-          }}>register with us</div>
+      <div className="cont">
+        
+        <div className="section1">
+
+          <div className="buttonns">
+            <div className="buttonn" onClick={() => {
+              this.setState({
+                login: !this.state.login,
+                register: false
+              })
+            }}>login to weather FM</div>
+            <div className="buttonn" onClick={() => {
+              this.setState({
+                register: !this.state.register,
+                login: false
+              })
+            }}>register with us</div>
+          </div>
+
         </div>
-        <div className="info">
+
+        <div className="section2">
+          <div className="wordCont">
             <h2><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h2>
-            {this.returnForm()}
+            <div className="formCont">
+              {this.returnForm()}
+            </div>
+          </div>
         </div>
+
       </div>
+      // <div className="landingCont">  
+      //   <div className="image">
+        
+      //   <div className="buttons">
+      //     <div className="button" onClick={() => {
+      //       this.setState({
+      //         login: !this.state.login,
+      //         register: false
+      //       })
+      //     }}>login to weather FM</div>
+      //     <div className="button" onClick={() => {
+      //       this.setState({
+      //         register: !this.state.register,
+      //         login: false
+      //       })
+      //     }}>register with us</div>
+      //   </div>
+
+      //   </div>
+        
+      //   <div className="info">
+      //       <h2><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h2>
+      //       {this.returnForm()}
+      //   </div>
+      // </div>
     );
   }
 }
