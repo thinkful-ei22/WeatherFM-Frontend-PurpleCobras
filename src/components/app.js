@@ -65,7 +65,7 @@ export class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/(dashboard|discover|playlists)/" component={HeaderBar} />
+        <Route exact path="/(discover|playlists)/" component={HeaderBar} />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/onboarding" component={Onboarding} />
         <Route exact path="/discover" component={Discover} />

@@ -27,7 +27,6 @@ export class HeaderBar extends React.Component {
       navigator.geolocation.getCurrentPosition(function (position) {
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
-        //console.log(this, ' <THIS');
         dispatch(fetchWeather(latitude, longitude));
       });
     } else {
@@ -95,13 +94,6 @@ export class HeaderBar extends React.Component {
       <div className="header-bar">
         {links}
         {this.tempClick()}
-        {/* <form name="changeWeather" onSubmit={(e) => this.changeWeather(e)}>
-          <div className='location-error'>
-            {this.errorMsg()}
-          </div>
-          <input name="location" autoComplete="off" placeholder="Wanna change your location? Enter a City or Zip"></input>
-          <button type="submit">Change location</button>
-        </form> */}
         {logOutButton}
       </div>
     );

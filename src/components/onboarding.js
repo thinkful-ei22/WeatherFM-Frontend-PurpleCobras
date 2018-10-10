@@ -52,7 +52,6 @@ export class Onboarding extends React.Component {
     });
   }
 
-
   render() {
     let state = this.state;
     if (state.submitted) {
@@ -152,7 +151,7 @@ export class Onboarding extends React.Component {
           this.state.thunderstorm
         )}>
           <button type="submit">Add Songs</button>
-          <button type="submit">Skip (Go to Dashboard)</button>
+          <button type="submit">Skip (Go to Discover)</button>
         </form><br />
       </div>
     );
