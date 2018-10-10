@@ -7,7 +7,7 @@ import {
 } from '../actions/weather';
 
 const initialState = {
-  weather: '',
+  weather: 'Sunny',
   error: null,
   tempC: null,
   tempF: null,
