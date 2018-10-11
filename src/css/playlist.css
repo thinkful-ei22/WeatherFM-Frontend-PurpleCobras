@@ -32,3 +32,13 @@
     border-radius: 5px;
     width: 100%;
   }
+
+.playlistHeaders {
+  width: 100%;
+  border-bottom: 1px solid #000;
+  height: 4%;
+}
+
+.songCont {
+  background-color: red;
+}

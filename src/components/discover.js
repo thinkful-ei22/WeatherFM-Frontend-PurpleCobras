@@ -37,6 +37,10 @@ export class Discover extends React.Component {
 
   getNextSong() {
     this.i++;
+    if (this.i === this.props.spotifyList.length){
+      console.log(this.i);
+      this.i=0;
+    }
     this.returnSong(this.i);
   }
 
@@ -78,14 +82,14 @@ export class Discover extends React.Component {
     } else if (this.props.url && this.props.spotifyList.length){
       returnHTML = 
       <div className="songTitle">
+        <Song url={this.props.url} 
+          onEnded={()=> this.onEnded()}
+          onPrevClick={() => this.getPrevSong()}
+          onNextClick={() => this.getNextSong()}
+         />
         <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
         <div className="thumbnail">{this.thumbnail}</div>
         <div className="controls"></div>
-        <Song url={this.props.url} 
-        onEnded={()=> this.onEnded()}
-        onPrevClick={() => this.getPrevSong()}
-        onNextClick={() => this.getNextSong()}
-         />
         {this.addSongToPlaylist()}  
       </div>;
       return returnHTML;

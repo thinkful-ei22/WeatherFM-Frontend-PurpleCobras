@@ -68,6 +68,10 @@ export class Playlist extends React.Component {
     
   getNextSong(){
     this.i++;
+    if (this.i === this.props.playlists[this.state.playlistName].length){
+      console.log(this.i);
+      this.i=0;
+    }
     this.playSong(this.i);
   }
 
@@ -99,6 +103,7 @@ export class Playlist extends React.Component {
           let albumArt = currentPlaylist[i].thumbnail;
           // dispatch API call to get youtube url & set it to a variable
           songs.push(
+            
             <div key={title}>
               <img src={albumArt} alt={title} style={{width: 100, height: 100}}></img>, {title}, by {artist},
               
@@ -137,18 +142,23 @@ export class Playlist extends React.Component {
       />
     }
 
+
+
     return (
       <div>
         <h1>{playlistName} Playlist</h1>
-        {/* <Song url = {this.props.url}/> */}
-        {currentSong}       
+        <div className="songCont">
+          {currentSong}  
+        </div>     
         <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button>
+        <div className="playlistHeaders">hello</div>
         {loopedSongs(this.props.playlists)}
-        {/* <Song url = "https://www.youtube.com/watch?v=9egDNv987DU"/> */}
       </div>
     );
   }
 }
+
+
 
 const mapStateToProps = state => {
   const {currentUser} = state.auth;
