@@ -70,13 +70,6 @@ export default function reducer(state = initialState, action) {
       error: null,
     });
   }
-  else if (action.type === CLEAR_INVALID) {
-    // console.log('FETCH PLAYLISTS SUCCESSFUL');
-    return Object.assign({}, state, {
-      invalid: null,
-      error: null
-    });
-  }
   else if (action.type === CLEAR_PLAYLISTS_SUCCESS) {
     // console.log('FETCH PLAYLISTS SUCCESSFUL');
     return Object.assign({}, state, {

@@ -114,10 +114,6 @@ export const changeSongsInvalid = invalid => ({
   invalid
 });
 
-export const CLEAR_INVALID = 'CLEAR_INVALID';
-export const clearInvalid = () => ({
-  type: CLEAR_INVALID
-});
 
 export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;

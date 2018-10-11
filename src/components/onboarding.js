@@ -2,7 +2,7 @@ import React from 'react';
 import requiresLogin from './requires-login';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-import {changeSongs, clearInvalid} from '../actions/playlists';
+import {changeSongs} from '../actions/playlists';
 import '../css/onboarding.css';
 import OnboardingForm from './onboarding-form';
 
@@ -68,7 +68,6 @@ export class Onboarding extends React.Component {
     } else {
       return 'black';
     }
-    this.props.dispatch(clearInvalid());
   }
 
   render() {
