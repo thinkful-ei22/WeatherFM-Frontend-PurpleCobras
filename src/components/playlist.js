@@ -68,6 +68,10 @@ export class Playlist extends React.Component {
     
   getNextSong(){
     this.i++;
+    if (this.i === this.props.playlists[this.state.playlistName].length){
+      console.log(this.i);
+      this.i=0;
+    }
     this.playSong(this.i);
   }
 
