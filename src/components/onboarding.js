@@ -2,7 +2,7 @@ import React from 'react';
 import requiresLogin from './requires-login';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-import {changeSongs} from '../actions/playlists';
+import {changeSongs, clearInvalid} from '../actions/playlists';
 import '../css/onboarding.css';
 import OnboardingForm from './onboarding-form';
 
@@ -60,6 +60,17 @@ export class Onboarding extends React.Component {
     });
   }
 
+  highlight(songTitle){
+    if(this.props.invalid){
+      // console.log(this.props.invalid.map(song => song.songTitle === songTitle));
+      const [arr] = this.props.invalid.map(song => song.songTitle === songTitle);
+      return arr ? 'red': 'black';
+    } else {
+      return 'black';
+    }
+    this.props.dispatch(clearInvalid());
+  }
+
   render() {
     let state = this.state;
     if (state.submitted && !this.props.invalid) {
@@ -74,18 +85,16 @@ export class Onboarding extends React.Component {
       buttonType = <button type="submit">Add Songs</button>;
     }
 
+
     const renderSongs = (weather) => {
       
       return state[weather].map(item => {
         return <li style={{
-          color: this.props.invalid.map(song => {
-            if (song.songTitle === item.songTitle) {
-              return true;
-            }
-          })? 'red' : 'black'}} key={item.songTitle}>+ {item.songTitle} by {item.artist} 
+          color: this.highlight(item.songTitle)}} key={item.songTitle}>+ {item.songTitle} by {item.artist} 
           <button onClick={(e) => this.deleteSong(e, item.songTitle, weather)} title="delete song">✖</button><br />
         </li>;
       });
+      //unreachable code
       this.setState({
         deleted: false,
       });
@@ -117,7 +126,9 @@ export class Onboarding extends React.Component {
               
 
             </form>
-            <span className="error">{this.props.invalid? 'Oops, some of the songs came back incorrect.' : ''}</span>
+
+            <span className="error">{this.props.invalid? 'Highlighted songs returned without a match. Please re-enter.' : ''}</span>
+
             <div className="lists">
               <div className="listTitle" style={{marginTop: 15}}>Sunny</div>
               <ul>{renderSongs('sunny')}</ul>

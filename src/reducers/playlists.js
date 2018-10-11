@@ -8,7 +8,8 @@ import {
   CHANGE_SONGS_SUCCESS,
   CHANGE_SONGS_ERROR,
   CLEAR_PLAYLISTS_SUCCESS,
-  CHANGE_SONGS_INVALID
+  CHANGE_SONGS_INVALID,
+  CLEAR_INVALID
 } from '../actions/playlists';
 
 const initialState = {
@@ -67,6 +68,13 @@ export default function reducer(state = initialState, action) {
     return Object.assign({}, state, {
       invalid: action.invalid,
       error: null,
+    });
+  }
+  else if (action.type === CLEAR_INVALID) {
+    // console.log('FETCH PLAYLISTS SUCCESSFUL');
+    return Object.assign({}, state, {
+      invalid: null,
+      error: null
     });
   }
   else if (action.type === CLEAR_PLAYLISTS_SUCCESS) {
