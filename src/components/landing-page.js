@@ -46,7 +46,7 @@ export class LandingPage extends React.Component {
                 register: false
               })
             }}>login to weather FM</div>
-            <div className="buttonn" onClick={() => {
+            <div className="buttonn register" onClick={() => {
               this.setState({
                 register: !this.state.register,
                 login: false
