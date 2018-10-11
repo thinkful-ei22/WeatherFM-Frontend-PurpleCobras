@@ -16,7 +16,7 @@ class OnboardingForm extends React.Component {
 
         <button type="submit">Add a Song</button>
       </div>
-    )
+    );
   }
 }
 
