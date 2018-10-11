@@ -75,13 +75,23 @@ export class Onboarding extends React.Component {
     }
 
     const renderSongs = (weather) => {
+      
       return state[weather].map(item => {
-        return <li key={item.songTitle}>+ {item.songTitle} by {item.artist} <button onClick={(e) => this.deleteSong(e, item.songTitle, weather)} title="delete song">✖</button><br /></li>;
+        return <li style={{
+          color: this.props.invalid.map(song => {
+            if (song.songTitle === item.songTitle) {
+              return true;
+            }
+          })? 'red' : 'black'}} key={item.songTitle}>+ {item.songTitle} by {item.artist} 
+          <button onClick={(e) => this.deleteSong(e, item.songTitle, weather)} title="delete song">✖</button><br />
+        </li>;
       });
       this.setState({
         deleted: false,
       });
     };
+
+    
 
     return (
       <div className="onboardingCont">
@@ -104,9 +114,10 @@ export class Onboarding extends React.Component {
             )}>
 
               {buttonType}
+              
 
             </form>
-            
+            <span className="error">{this.props.invalid? 'Oops, some of the songs came back incorrect.' : ''}</span>
             <div className="lists">
               <div className="listTitle" style={{marginTop: 15}}>Sunny</div>
               <ul>{renderSongs('sunny')}</ul>

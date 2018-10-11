@@ -133,7 +133,6 @@ export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) 
   })
     .then(res => res.json())
     .then(res => {
-      console.log(res);
       if(res[0].message){
         console.log('Bad response');
         dispatch(changeSongsInvalid(res));
