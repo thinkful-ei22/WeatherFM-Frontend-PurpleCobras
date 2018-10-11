@@ -109,7 +109,7 @@ export class HeaderBar extends React.Component {
           <div className="flexx"><Link to={'/discover'}>Discover</Link></div>
           <div className="dropdown">
             <div onClick={() => this.dropDown()} className="dropbtn">Playlists</div>
-            <div id="myDropdown" class="dropdown-content">
+            <div id="myDropdown" className="dropdown-content">
               <Link to="/playlist/Sunny">Sunny Playlist</Link>
               <Link to="/playlist/Rainy">Rainy Playlist</Link>
               <Link to="/playlist/Drizzle">Drizzle Playlist</Link>
