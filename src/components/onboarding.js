@@ -41,8 +41,8 @@ export class Onboarding extends React.Component {
       .then(() => {
         this.setState({
           submitted: true
-        })
-      })
+        });
+      });
   }
 
   deleteSong(e, title, weather) {
@@ -67,10 +67,10 @@ export class Onboarding extends React.Component {
 
     let buttonType;
     if (state.skip) {
-      buttonType = <button type="submit">Skip (Go to Dashboard)</button>
+      buttonType = <button type="submit">Skip (Go to Dashboard)</button>;
     } 
     if (state.addSongs) {
-      buttonType = <button type="submit">Add Songs</button>
+      buttonType = <button type="submit">Add Songs</button>;
     }
 
     const renderSongs = (weather) => {
@@ -86,84 +86,84 @@ export class Onboarding extends React.Component {
       <div className="onboardingCont">
 
         <div className="gridCont">
-        <div className="gridItem item1">
+          <div className="gridItem item1">
           
-          <div className="instructions">
+            <div className="instructions">
             welcome to our app! please input your personal songs for the weather - or don't and we'll do it for you.
-          </div>
+            </div>
 
-          <form onSubmit={e => this.addAllSongs(
-            e,
-            this.state.sunny, 
-            this.state.rainy, 
-            this.state.drizzle, 
-            this.state.snowy, 
-            this.state.cloudy, 
-            this.state.thunderstorm
-          )}>
+            <form onSubmit={e => this.addAllSongs(
+              e,
+              this.state.sunny, 
+              this.state.rainy, 
+              this.state.drizzle, 
+              this.state.snowy, 
+              this.state.cloudy, 
+              this.state.thunderstorm
+            )}>
 
-          {buttonType}
+              {buttonType}
 
-          </form>
+            </form>
             
-          <div className="lists">
-            <div className="listTitle" style={{marginTop: 15}}>Sunny</div>
-            <ul>{renderSongs('sunny')}</ul>
-            <div className="listTitle">Rainy</div>
-            <ul>{renderSongs('rainy')}</ul>
-            <div className="listTitle">Drizzle</div>
-            <ul>{renderSongs('drizzle')}</ul>
-            <div className="listTitle">Snowy</div>
-            <ul>{renderSongs('snowy')}</ul>
-            <div className="listTitle">Cloudy</div>
-            <ul>{renderSongs('cloudy')}</ul>
-            <div className="listTitle">Thunderstorm</div>
-            <ul>{renderSongs('thunderstorm')}</ul>
+            <div className="lists">
+              <div className="listTitle" style={{marginTop: 15}}>Sunny</div>
+              <ul>{renderSongs('sunny')}</ul>
+              <div className="listTitle">Rainy</div>
+              <ul>{renderSongs('rainy')}</ul>
+              <div className="listTitle">Drizzle</div>
+              <ul>{renderSongs('drizzle')}</ul>
+              <div className="listTitle">Snowy</div>
+              <ul>{renderSongs('snowy')}</ul>
+              <div className="listTitle">Cloudy</div>
+              <ul>{renderSongs('cloudy')}</ul>
+              <div className="listTitle">Thunderstorm</div>
+              <ul>{renderSongs('thunderstorm')}</ul>
+            </div>
+
           </div>
 
-        </div>
+          <div className="gridItem">
+            <h3>Sunny Tracks</h3>
+            <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'sunny')}>
+              <OnboardingForm />
+            </form>
+          </div>
 
-        <div className="gridItem">
-          <h3>Sunny Tracks</h3>
-          <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'sunny')}>
-            <OnboardingForm />
-          </form>
-        </div>
+          <div className="gridItem">
+            <h3>Rainy Tracks</h3>
+            <form name="addWeather2" onSubmit={(e) => this.addWeather(e, 'rainy')}>
+              <OnboardingForm />      
+            </form>
+          </div>
 
-        <div className="gridItem">
-          <h3>Rainy Tracks</h3>
-          <form name="addWeather2" onSubmit={(e) => this.addWeather(e, 'rainy')}>
-            <OnboardingForm />      
-          </form>
-        </div>
+          <div className="gridItem">
+            <h3>Drizzle Tracks</h3>
+            <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'drizzle')}>
+              <OnboardingForm />
+            </form>
+          </div>
 
-        <div className="gridItem">
-          <h3>Drizzle Tracks</h3>
-          <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'drizzle')}>
-            <OnboardingForm />
-          </form>
-        </div>
+          <div className="gridItem">
+            <h3>Snowy Tracks</h3>
+            <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'snowy')}>
+              <OnboardingForm />  
+            </form>
+          </div>
 
-        <div className="gridItem">
-          <h3>Snowy Tracks</h3>
-          <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'snowy')}>
-            <OnboardingForm />  
-          </form>
-        </div>
+          <div className="gridItem">
+            <h3>Cloudy Tracks</h3>
+            <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'cloudy')}>
+              <OnboardingForm />
+            </form>
+          </div>
 
-        <div className="gridItem">
-          <h3>Cloudy Tracks</h3>
-          <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'cloudy')}>
-            <OnboardingForm />
-          </form>
-        </div>
-
-        <div className="gridItem">
-          <h3>Thunderstorm Tracks</h3>
-          <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'thunderstorm')}>
-            <OnboardingForm />
-          </form>
-        </div>
+          <div className="gridItem">
+            <h3>Thunderstorm Tracks</h3>
+            <form name="addWeather" onSubmit={(e) => this.addWeather(e, 'thunderstorm')}>
+              <OnboardingForm />
+            </form>
+          </div>
 
         </div>
         <br />

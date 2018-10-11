@@ -108,6 +108,12 @@ export const changeSongsError = error => ({
   error
 });
 
+export const CHANGE_SONGS_INVALID = 'CHANGE_SONGS_INVALID';
+export const changeSongsInvalid = invalid => ({
+  type: CHANGE_SONGS_INVALID,
+  invalid
+});
+
 export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/users/`, {
@@ -126,7 +132,16 @@ export const changeSongs = (Sunny, Rainy, Drizzle, Snowy, Cloudy, Thunderstorm) 
     })
   })
     .then(res => res.json())
-    .then(() => dispatch(changeSongsSuccess()))
+    .then(res => {
+      console.log(res);
+      if(res[0].message){
+        console.log('Bad response');
+        dispatch(changeSongsInvalid(res));
+      }else{
+        console.log('Ok');
+        dispatch(changeSongsSuccess());
+      }
+    })
     .catch((err) => {
       dispatch(changeSongsError(err));
     });

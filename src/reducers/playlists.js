@@ -7,13 +7,15 @@ import {
   ADD_SONG_ERROR,
   CHANGE_SONGS_SUCCESS,
   CHANGE_SONGS_ERROR,
-  CLEAR_PLAYLISTS_SUCCESS
+  CLEAR_PLAYLISTS_SUCCESS,
+  CHANGE_SONGS_INVALID
 } from '../actions/playlists';
 
 const initialState = {
   playlists: null,
   error: null,
-  deleted: null
+  deleted: null,
+  invalid: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -47,17 +49,23 @@ export default function reducer(state = initialState, action) {
     // console.log('ADD SONG ERROR');
     return Object.assign({}, state, {
       error: action.error
-    })
+    });
   } else if (action.type === CHANGE_SONGS_SUCCESS) {
     // console.log('CHANGE SONGS SUCCESS');
     return Object.assign({}, state, {
       error: null
-    })
+    });
   } else if (action.type === CHANGE_SONGS_ERROR) {
     console.log(action);
     // console.log('CHANGE SONGS ERROR');
     return Object.assign({}, state, {
       error: action.error
+    });
+  }
+  else if (action.type === CHANGE_SONGS_INVALID) {
+    return Object.assign({}, state, {
+      invalid: action.invalid,
+      error: null,
     });
   }
   else if (action.type === CLEAR_PLAYLISTS_SUCCESS) {
