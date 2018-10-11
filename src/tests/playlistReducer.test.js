@@ -6,7 +6,10 @@ import {
   deleteSongSuccess, 
   deleteSongError, 
   addSongSuccess, 
-  addSongError} from '../actions/playlists';
+  addSongError,
+  changeSongsSuccess,
+  changeSongsError,
+  changeSongsInvalid,} from '../actions/playlists';
 
 describe ('Playlist Reducers', () => {
   it('Should set the initial state when nothing is passed in.', () => {
@@ -14,13 +17,15 @@ describe ('Playlist Reducers', () => {
     expect(state).toEqual({
       playlists: null,
       error: null,
-      deleted: null});
+      deleted: null,
+      invalid: null});
   });
   it('Should handle the fetch playlist success action.', () => {
     const oldState = {
       playlists: null,
       error: null,
-      deleted: null
+      deleted: null,
+      invalid: null
     };
     const playlist = {test: 'test'};
     const state = playListReducer(oldState, fetchPlaylistsSuccess(playlist));
@@ -30,7 +35,8 @@ describe ('Playlist Reducers', () => {
     const oldState = {
       playlists: null,
       error: null,
-      deleted: null
+      deleted: null,
+      invalid: null
     };
     const error = {error: 400};
     const state = playListReducer(oldState, fetchPlaylistsError(error));
@@ -41,7 +47,8 @@ describe ('Playlist Reducers', () => {
     const oldState = {
       playlists: null,
       error: null,
-      deleted: null
+      deleted: null,
+      invalid: null
     };
     const state = playListReducer(oldState, deleteSongSuccess());
   });
@@ -49,7 +56,8 @@ describe ('Playlist Reducers', () => {
     const oldState = {
       playlists: null,
       error: null,
-      deleted: null
+      deleted: null,
+      invalid: null
     };
     const error = {error: 400};
     const state = playListReducer(oldState, deleteSongError(error));
@@ -60,7 +68,8 @@ describe ('Playlist Reducers', () => {
     const oldState = {
       playlists: null,
       error: null,
-      deleted: null
+      deleted: null,
+      invalid: null
     };
     const state = playListReducer(oldState, addSongSuccess());
   });
@@ -68,10 +77,45 @@ describe ('Playlist Reducers', () => {
     const oldState = {
       playlists: null,
       error: null,
-      deleted: null
+      deleted: null,
+      invalid: null
     };
     const error = {error: 400};
     const state = playListReducer(oldState, addSongError(error));
     expect(state.error).toEqual(error);
+  });
+  it('Should handle the change song success action.', () => {
+    const oldState = {
+      playlists: null,
+      error: null,
+      deleted: null,
+      invalid: null
+    };
+    const state = playListReducer(oldState, changeSongsSuccess());
+    expect(state.error).toEqual(null);
+    expect(state.invalid).toEqual(null);
+  });
+  it('Should handle the change song error action.', () => {
+    const oldState = {
+      playlists: null,
+      error: null,
+      deleted: null,
+      invalid: null
+    };
+    const error = {error: 400};
+    const state = playListReducer(oldState, changeSongsError(error));
+    expect(state.error).toEqual(error);
+  });
+  it('Should handle the change song error action.', () => {
+    const oldState = {
+      playlists: null,
+      error: null,
+      deleted: null,
+      invalid: null
+    };
+    const invalid = {message: 'invalid'};
+    const state = playListReducer(oldState, changeSongsInvalid(invalid));
+    expect(state.invalid).toEqual(invalid);
+    expect(state.error).toEqual(null);
   });
 });

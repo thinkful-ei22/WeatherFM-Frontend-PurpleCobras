@@ -9,7 +9,6 @@ import {
   CHANGE_SONGS_ERROR,
   CLEAR_PLAYLISTS_SUCCESS,
   CHANGE_SONGS_INVALID,
-  CLEAR_INVALID
 } from '../actions/playlists';
 
 const initialState = {
