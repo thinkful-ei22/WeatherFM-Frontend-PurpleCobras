@@ -110,12 +110,12 @@ export class HeaderBar extends React.Component {
           <div className="dropdown">
             <div onClick={() => this.dropDown()} className="dropbtn">Playlists</div>
             <div id="myDropdown" class="dropdown-content">
-              <Link to="/playlist/Sunny">Sunny Playlist</Link>
-              <Link to="/playlist/Rainy">Rainy Playlist</Link>
-              <Link to="/playlist/Drizzle">Drizzle Playlist</Link>
-              <Link to="/playlist/Snowy">Snowy Playlist</Link>
-              <Link to="/playlist/Cloudy">Cloudy Playlist</Link>
-              <Link to="/playlist/Thunderstorm">Thunderstorm Playlist</Link>
+              <Link to="/playlist/Sunny" onClick>Sunny Playlist</Link>
+              <Link to="/playlist/Rainy" onClick>Rainy Playlist</Link>
+              <Link to="/playlist/Drizzle" onClick>Drizzle Playlist</Link>
+              <Link to="/playlist/Snowy" onClick>Snowy Playlist</Link>
+              <Link to="/playlist/Cloudy" onClick>Cloudy Playlist</Link>
+              <Link to="/playlist/Thunderstorm" onClick>Thunderstorm Playlist</Link>
             </div>
           </div>
           {/* <Link to={'/playlists'}>Playlist Page</Link> */}

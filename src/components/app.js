@@ -71,8 +71,8 @@ export class App extends React.Component {
         <Route exact path="/onboarding" component={Onboarding} />
         <Route exact path="/discover" component={Discover} />
         <Route exact path="/playlists" component={PlaylistPage} />
-        <Route path="/playlist/:name" component={HeaderBar} />
-        <Route path="/playlist/:name" component={Playlist} />
+        <Route exact path="/playlist/:name" component={HeaderBar} />
+        <Route exact path="/playlist/:name" component={Playlist} />
         <Route exact path="/register" component={RegistrationPage} />
       </div>
     );
