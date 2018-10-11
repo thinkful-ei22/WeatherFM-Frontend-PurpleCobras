@@ -1,3 +1,9 @@
+.player {
+  width: 100%;
+  margin: auto;
+  display: inline-block;
+}
+
 .playButtons{
   width: 30%  !important;
   margin-right: 5px;

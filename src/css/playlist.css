@@ -35,10 +35,86 @@
 
 .playlistHeaders {
   width: 100%;
-  border-bottom: 1px solid #000;
+  /* border-bottom: 1px solid #000; */
   height: 4%;
 }
 
-.songCont {
-  /* background-color: red; */
+/* .songBG {
+  background-image: url(https://images.unsplash.com/photo-1505064750047-f810f700e6d3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7a40edb691c9f912649153574b4c620a&auto=format&fit=crop&w=2550&q=80);
+  background-size: cover;
+  width: 100vw;
+  height: 88.1vh;
+} */
+
+.songGrid {
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  max-height: 100vh;
+  max-width: 100vw;
+  background-color: none;
+  padding-left: 6.5%;
+  padding-top: 4%;
+  grid-column-gap: 190px;
+}
+
+.songGrid .gridItem {
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #777;
+  padding: 0px;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.song-container {
+  margin: auto;
+  padding: 20px;
+  background-color: #eee;
+  border: 1px solid #fff;
+  opacity: 1;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.controls {
+  margin: auto;
+}
+
+.playlistList {
+  max-height: 53vh;
+  overflow: auto;
+}
+
+.songGrid .gridItem h2 {
+  font-family: 'PT Mono';
+  font-size: 16px;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #eee;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.oneSong .imageTD {
+  width: 100px;
+  padding: 10px;
+}
+
+.oneSong .wordsTd {
+  width: 200px;
+  padding: 10px;
+  line-height: 150%;
+  text-align: justify;
+}
+
+.oneSong {
+  font-family: arial;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.oneSong img {
+  width: 70px!important;
+  height: 70px!important;
+  border-radius: 50%;
 }

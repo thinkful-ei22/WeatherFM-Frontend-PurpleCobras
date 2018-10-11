@@ -110,12 +110,13 @@ export class Song extends React.Component {
 
     return(
       <div className="song-container">
-  <ReactPlayer
+      <ReactPlayer
               ref={this.ref}
-              width='40%'
-              height='100%'
+              width='100%'
+              height='200px'
               url={this.props.url} 
               playing={playing}
+              style={{margin: 'auto'}}
               volume={volume}
               controls={true}
               muted={muted}
@@ -128,7 +129,7 @@ export class Song extends React.Component {
 
 
 <section className="player">
-       <table><tbody>
+       <table className="controls"><tbody>
             <tr>
               
               <td id="play">

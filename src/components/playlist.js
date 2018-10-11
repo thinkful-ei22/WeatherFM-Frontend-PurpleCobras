@@ -88,6 +88,7 @@ export class Playlist extends React.Component {
   }
 
   render() {
+
     const { dispatch } = this.props;
     const {i} = this;
     const {playlistName} = this.state;
@@ -104,9 +105,18 @@ export class Playlist extends React.Component {
           // dispatch API call to get youtube url & set it to a variable
           songs.push(
             
-            <div key={title}>
-              <img src={albumArt} alt={title} style={{width: 100, height: 100}}></img>, {title}, by {artist},
+            <div className="oneSong" key={title}>
               
+              <table>
+                <tr>
+                  <td className="imageTd"><img src={albumArt} alt={title} style={{width: 100, height: 100}}></img></td>
+                  <td className="wordsTd">
+                    {title}<br />
+                    {artist}
+                  </td>
+                </tr>
+              </table>
+                            
               <button onClick={(e) => {
                 this.youtubeClick(artist, title, i);
                 this.setState({
@@ -134,7 +144,7 @@ export class Playlist extends React.Component {
     if (this.props.urlLoading === true){
       currentSong = <div className="lds-circle"></div>;
     } else if(this.props.urlLoading === false){
-      currentSong = <Song 
+      currentSong = <Song
       url = {this.props.url} 
       onEnded ={() => this.onEnd()}
       onPrevClick={() => this.getPrevSong()}
@@ -145,14 +155,22 @@ export class Playlist extends React.Component {
 
 
     return (
-      <div>
-        <h1>{playlistName} Playlist</h1>
-        <div className="songCont">
-          {currentSong}  
+      <div className="songBG">
+
+        <div className="songGrid">
+          <div className="gridItem">
+            <h2>{playlistName} Playlist</h2>
+            {currentSong}
+          </div>
+
+          <div className="gridItem">
+            <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button>
+            <div className="playlistHeaders">hello</div>
+            <div className="playlistList">
+              {loopedSongs(this.props.playlists)}
+            </div>
+          </div>
         </div>     
-        <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button>
-        <div className="playlistHeaders">hello</div>
-        {loopedSongs(this.props.playlists)}
       </div>
     );
   }
@@ -184,3 +202,17 @@ export default requiresLogin()(connect(mapStateToProps)(Playlist));
 //   {songTitle: 'DKLA', artist: 'Troye Sivan', albumArt: 'http://placehold.it/100x100', id: 3333},
 //   {songTitle: 'Sweet Disposition', artist: 'The Temper Trap', albumArt: 'http://placehold.it/100x100', id: 2222},
 // ];
+
+
+
+{/* <div className="songGridItem">
+            <h1 style={{textAlign: 'center'}}>{playlistName} Playlist</h1>
+            {currentSong}  
+          </div>
+
+          <div className="songGridItem">
+            <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button>
+            <div className="playlistHeaders">hello</div>
+            {loopedSongs(this.props.playlists)}
+          </div>
+        </div>      */}
