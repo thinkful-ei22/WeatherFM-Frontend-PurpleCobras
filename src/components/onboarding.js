@@ -1,5 +1,6 @@
 import React from 'react';
 import requiresLogin from './requires-login';
+import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {changeSongs} from '../actions/playlists';
 import '../css/onboarding.css';
@@ -61,7 +62,7 @@ export class Onboarding extends React.Component {
 
   render() {
     let state = this.state;
-    if (state.submitted) {
+    if (state.submitted && !this.props.invalid) {
       return <Redirect to="/discover" />;
     }
 
@@ -173,4 +174,8 @@ export class Onboarding extends React.Component {
   }
 }
 
-export default requiresLogin()(Onboarding);
+const mapStateToProps = (state) => ({
+  invalid: state.playlists.invalid
+});
+
+export default connect(mapStateToProps)(requiresLogin()(Onboarding));
