@@ -26,12 +26,12 @@ export const clearYoutubeSuccess = (videoTitle,videoURL) => ({
   videoURL
 });
 
-export const fetchYoutube = (title, artist, mode) => (dispatch, getState) => {
+export const fetchYoutube = (title, artist) => (dispatch, getState) => {
   dispatch(fetchYoutubeRequest());
   const authToken = getState().auth.authToken;
   let songArtist = artist.split(' ').join('+'); 
   let songTitle = title.split(' ').join('+');
-  return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}/${mode}`, {
+  return fetch(`${API_BASE_URL}/users/youtube/${songArtist}/${songTitle}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${authToken}`,

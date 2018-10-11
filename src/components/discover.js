@@ -71,7 +71,7 @@ export class Discover extends React.Component {
     //if spotifyList has a length
     if (this.props.spotifyList.length) {
       this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} alt={this.props.spotifyList[index].songTitle}/></div>;
-      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
     }
 
     if (!this.props.spotifyList.length && this.props.url !== '') {
