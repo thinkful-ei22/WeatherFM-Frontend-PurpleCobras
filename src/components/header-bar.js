@@ -75,7 +75,28 @@ export class HeaderBar extends React.Component {
     }
   }
 
+  /* When the user clicks on the button, 
+  toggle between hiding and showing the dropdown content */
+  dropDown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
   render() {
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
     // Only render the log out button if we are logged in
     let logOutButton;
     let links;
@@ -85,8 +106,19 @@ export class HeaderBar extends React.Component {
       );
       links = (
         <div className="links">
-          <Link to={'/discover'}>Discover</Link>
-          <Link to={'/playlists'}>Playlist Page</Link>
+          <div className="flexx"><Link to={'/discover'}>Discover</Link></div>
+          <div className="dropdown">
+            <div onClick={() => this.dropDown()} className="dropbtn">Playlists</div>
+            <div id="myDropdown" class="dropdown-content">
+              <Link to="/playlist/Sunny">Sunny Playlist</Link>
+              <Link to="/playlist/Rainy">Rainy Playlist</Link>
+              <Link to="/playlist/Drizzle">Drizzle Playlist</Link>
+              <Link to="/playlist/Snowy">Snowy Playlist</Link>
+              <Link to="/playlist/Cloudy">Cloudy Playlist</Link>
+              <Link to="/playlist/Thunderstorm">Thunderstorm Playlist</Link>
+            </div>
+          </div>
+          {/* <Link to={'/playlists'}>Playlist Page</Link> */}
         </div>
       );
     }
