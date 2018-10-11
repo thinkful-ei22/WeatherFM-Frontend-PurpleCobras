@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists } from '../actions/playlists';
 import HeaderBar from './header-bar';
+import '../css/playlist-page.css';
 
 export class PlaylistPage extends React.Component {
   componentDidMount() {
@@ -11,28 +12,39 @@ export class PlaylistPage extends React.Component {
   }
 
   render() {
-    let userPlaylists;
-    userPlaylists = this.props.playlists;
-    let links = [];
-    let userPlaylistArray;
-    if (this.props.playlists) {
-      userPlaylistArray = Object.keys(userPlaylists);
-      let i = 0;
-      userPlaylistArray.map(() => {
-        let name = userPlaylistArray[i];
-        links.push(<Link key={name} to={`/playlist/${name}`} className="playlistLink" component={name}> {name} Playlist <br /> </Link>);
-        i++;
-      });
-      return links;
-    }
+    // let userPlaylists;
+    // userPlaylists = this.props.playlists;
+    // let links = [];
+    // let userPlaylistArray;
+    // if (this.props.playlists) {
+    //   userPlaylistArray = Object.keys(userPlaylists);
+    //   let i = 0;
+    //   userPlaylistArray.map(() => {
+    //     let name = userPlaylistArray[i];
+    //     links.push(
+    //       <Link key={name} to={`/playlist/${name}`} className="playlistLink" component={name}>
+    //         <div className="flex-item">{name}</div>
+    //       </Link>);
+    //     i++;
+    //   });
+    //   return links;
+    // }
 
     return (
-      <div>
-        <HeaderBar />
-        <div>
-          {links}
+      <div className="flex-container">
+
+        <div className="flex-item">
+          <div className="left">
+            <div className="text">Sunny Playlist</div>
+          </div>
         </div>
+
+        <div className=""></div>
+
+       <div className="img"></div>
+
       </div>
+
     );
   }
 }
