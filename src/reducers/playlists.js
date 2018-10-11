@@ -53,6 +53,7 @@ export default function reducer(state = initialState, action) {
   } else if (action.type === CHANGE_SONGS_SUCCESS) {
     // console.log('CHANGE SONGS SUCCESS');
     return Object.assign({}, state, {
+      invalid: null,
       error: null
     });
   } else if (action.type === CHANGE_SONGS_ERROR) {
