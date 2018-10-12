@@ -27,7 +27,7 @@ export class HeaderBar extends React.Component {
       navigator.geolocation.getCurrentPosition(function (position) {
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
-        dispatch(fetchWeather(latitude, longitude));
+        dispatch(fetchWeather(latitude, longitude, '_'));
       });
     } else {
       /* geolocation IS NOT available */
@@ -116,6 +116,7 @@ export class HeaderBar extends React.Component {
               <Link to="/playlist/Snowy" onClick>Snowy Playlist</Link>
               <Link to="/playlist/Cloudy" onClick>Cloudy Playlist</Link>
               <Link to="/playlist/Thunderstorm" onClick>Thunderstorm Playlist</Link>
+
             </div>
           </div>
           {/* <Link to={'/playlists'}>Playlist Page</Link> */}

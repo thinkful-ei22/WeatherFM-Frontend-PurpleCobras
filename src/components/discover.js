@@ -58,7 +58,7 @@ export class Discover extends React.Component {
           this.props.spotifyList[this.i].songTitle,
           this.props.spotifyList[this.i].thumbnail
         ))
-      }}>
+      }} className="addToPlaylist">
         Add to Playlist
       </button>
     );
@@ -71,7 +71,7 @@ export class Discover extends React.Component {
     //if spotifyList has a length
     if (this.props.spotifyList.length) {
       this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} alt={this.props.spotifyList[index].songTitle}/></div>;
-      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist, 'video'))
+      this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
     }
 
     if (!this.props.spotifyList.length && this.props.url !== '') {
@@ -82,13 +82,14 @@ export class Discover extends React.Component {
     } else if (this.props.url && this.props.spotifyList.length){
       returnHTML = 
       <div className="songTitle">
+           <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+        <div className="thumbnail">{this.thumbnail}</div>
         <Song url={this.props.url} 
           onEnded={()=> this.onEnded()}
           onPrevClick={() => this.getPrevSong()}
           onNextClick={() => this.getNextSong()}
          />
-        <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
-        <div className="thumbnail">{this.thumbnail}</div>
+   
         <div className="controls"></div>
         {this.addSongToPlaylist()}  
       </div>;
@@ -108,8 +109,10 @@ export class Discover extends React.Component {
   render() {
     return (
       <div className="discover">
-        Right now it is {this.props.weather}! <br />
+       <span> Right now it is {this.props.weather}! <br /> </span>
+       <div className="radio-changer">
         <label htmlFor="Radio">Change the station: </label>
+      
         <select
           name="Radio"
           onChange={e =>
@@ -126,11 +129,11 @@ export class Discover extends React.Component {
           <option value="Cloudy">Cloudy</option>
           <option value="Thunderstorm">Thunderstorm</option>
         </select>
+        </div>
         <br /><br />
-        {this.props.weather} Radio
+        <span className="radio-name">{this.props.weather} Radio</span>
         {this.returnSong(this.i)}
-        <button onClick={() => this.getPrevSong()}>Previous</button>
-        <button onClick={() => this.getNextSong()}>Next</button>
+       
         <Slider />
       </div>
     )

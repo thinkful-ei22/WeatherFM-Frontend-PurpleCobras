@@ -50,13 +50,13 @@ export class Playlist extends React.Component {
     //console.log(currentPlaylist);
     let title = currentPlaylist[i].songTitle;
         let artist = currentPlaylist[i].artist;
-        this.props.dispatch(fetchYoutube(artist, title, 'video'))
+        this.props.dispatch(fetchYoutube(artist, title));
     }
   }
  
   youtubeClick(artist, title, index){
     this.i = index;
-    this.props.dispatch(fetchYoutube(artist, title, 'video'));
+    this.props.dispatch(fetchYoutube(artist, title));
   }
   
   getPrevSong(){
@@ -84,7 +84,7 @@ export class Playlist extends React.Component {
     // console.log('song has ended');
     const song = this.props.playlists[this.state.playlistName][this.i];
     // console.log(song);
-    this.props.dispatch(fetchYoutube(song.artist, song.songTitle, 'video'));
+    this.props.dispatch(fetchYoutube(song.artist, song.songTitle));
   }
 
   render() {
