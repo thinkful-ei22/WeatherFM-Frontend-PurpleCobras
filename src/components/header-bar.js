@@ -109,13 +109,13 @@ export class HeaderBar extends React.Component {
           <div className="flexx"><Link to={'/discover'}>Discover</Link></div>
           <div className="dropdown">
             <div onClick={() => this.dropDown()} className="dropbtn">Playlists</div>
-            <div id="myDropdown" class="dropdown-content">
-              <Link to="/playlist/Sunny" onClick>Sunny Playlist</Link>
-              <Link to="/playlist/Rainy" onClick>Rainy Playlist</Link>
-              <Link to="/playlist/Drizzle" onClick>Drizzle Playlist</Link>
-              <Link to="/playlist/Snowy" onClick>Snowy Playlist</Link>
-              <Link to="/playlist/Cloudy" onClick>Cloudy Playlist</Link>
-              <Link to="/playlist/Thunderstorm" onClick>Thunderstorm Playlist</Link>
+            <div id="myDropdown" className="dropdown-content">
+              <Link to="/playlist/Sunny" onClick={() => this.window.location.reload()}>Sunny Playlist</Link>
+              <Link to="/playlist/Rainy" onClick={() => this.window.location.reload()}>Rainy Playlist</Link>
+              <Link to="/playlist/Drizzle" onClick={() => this.window.location.reload()}>Drizzle Playlist</Link>
+              <Link to="/playlist/Snowy" onClick={() => this.window.location.reload()}>Snowy Playlist</Link>
+              <Link to="/playlist/Cloudy" onClick={() => this.window.location.reload()}>Cloudy Playlist</Link>
+              <Link to="/playlist/Thunderstorm" onClick={() => this.window.location.reload()}>Thunderstorm Playlist</Link>
 
             </div>
           </div>

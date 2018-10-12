@@ -10,17 +10,18 @@
 
 .temperature {
   display: inline-block;
-  padding: 10px;
+  padding: 8px;
   border: 0px;
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: 5px;
-  width: 3%;
+  width: 5%;
   right: 11%;
   position: absolute;
-  font-family: 'Montserrat';
+  font-family: 'PT Mono';
   cursor: pointer;
   text-align: center;
+  margin-right: 5px;
 }
 
 .temperature:hover{
@@ -56,6 +57,7 @@
   text-transform: capitalize;
   letter-spacing: 1px;
   font-family: 'PT Mono';
+  color: #000;
 }
 
 dropdown {
