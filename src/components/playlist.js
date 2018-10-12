@@ -159,7 +159,7 @@ export class Playlist extends React.Component {
 
     let nowPlaying;
     if (this.state.showTitle) {
-      nowPlaying = <div>Now Playling: {this.state.currentSongTitle}</div>
+      nowPlaying = <div>Now Playing: {this.state.currentSongTitle}</div>
     }
 
 

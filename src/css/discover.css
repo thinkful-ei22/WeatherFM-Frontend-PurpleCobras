@@ -9,10 +9,26 @@
   position: relative;
   width: 80%;
   left: 14%;
+  padding: 30px 0px;
+  font-family: 'PT Mono';
+  font-size: 12px;
 }
+
+.discover select {
+  border: none;
+  border-radius: none;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #777;
+  font-family: 'PT Mono';
+  box-shadow: none;
+}
+
 .radio-name{
   bottom: 20px;
-  left: 34% !important;
+  /* left: 34% !important; */
+  font-family: 'PT Mono';
 }
 .songTitle h1 {
   font-size: 25px;
@@ -29,10 +45,13 @@
   text-align: center;
 }
 
-.song-container{
-  width: 100%;
+.song-container {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
 }
-.discover #play{
+.discover #play {
 position: relative;
 left: 28%;
 width: 99%;
@@ -44,26 +63,53 @@ width: 99%;
 .discover #seek, .discover #volume{
   display: none;
 }
-.controls button{
-  width: 100%;
+
+.controls {
+  display: flex;
+  padding-bottom: 2%;
 }
+
+.controls button {
+  width: 100%;
+  display: inline-flex;
+  transition: all 0.5s ease-in-out;
+  margin: 1%;
+}
+
 .discover button {
   display: inline-block;
   padding: 10px;
   border: 0px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  background-color: #eee;
+  box-shadow: 1px 1px 0px #eee;
   border-radius: 5px;
   width: 50%;
-  font-family: 'Montserrat';
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'PT Mono';
+  margin-bottom: 2%;
+  transition: all 0.5s ease-in-out;
 }
+
+.discover button:hover {
+  /* color: #000; */
+  background-color: #777;
+}
+
 .addToPlaylist, .slider button{
 position: relative;
-left: 24%;
 margin-bottom: 5px;
-
 }
-.thumbnail{
+
+.addSong button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.thumbnail {
   display: none;
 }
 
@@ -115,6 +161,11 @@ border-radius: 50%;
 background: red;
 animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
+
+.discover #seek {
+  width: 350%;
+}
+
 @keyframes lds-circle {
 0%, 100% {
   animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
@@ -144,6 +195,8 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
   .addToPlaylist, .slider button {
     left: 23%;
+    display: inline-flex;
+    transition: all 0.5s ease-in-out;
   }
 }
 /* iPhone 6/7/8 */
@@ -759,9 +812,9 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
    left: 0%;
    }
    
-     .discover #volumeButton{
+.discover #volumeButton{
    left: 0%;
- }
+}
  .discover #seek, .discover #volume{
   display: block;
 }
@@ -775,17 +828,21 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 
  
  .addToPlaylist, .slider button {
-   left: 25%;
-   font-size: 16px
+   left: 0%;
+   font-size: 14px
  }
  .addToPlaylist{
    bottom: 22px;
  }
- .slider{
+ .slider {
    bottom: 50px;
  }
  .slider button {
    bottom: 66px;
+ }
+ .slider label {
+  font-size: 14px;
+  padding: 15px;
  }
 }
 

@@ -1,36 +1,64 @@
 .slider label {
     display: inline
 }
+
+form.slider .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2%;
+}
+
 form.slider button {
-    display: inline;
     position: relative;
     top: 10px;
-    left: 4%;
-    width: 45%;
+    width: 25%;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
 }
 .slider {
-    width: 800px;
+    width: 80%;
+    text-align: center;
+    line-height: 180%;
 }
+
+.slider input {
+    margin: 0px 10px;
+}
+
+.slider .inputSingle {
+    margin-bottom: 2%;
+}
+
 .slider label{
-    font-size: 10px;
+    font-size: 10px!important;
+    text-transform: uppercase;
+    font-family: 'PT Mono';
+    letter-spacing: 1px;
+    background-color: #eee;
 }
 .dancy input{
-    width: 57%;
+    width: 50%;
 }
 .energy input {
-    width: 56%;
+    width: 50%;
 }
 .popularity input {
-    width: 56%;
+    width: 50%;
 }
 .valence input {
-    width: 75%;
+    width: 50%;
 }
 .volume input {
-    width: 54%;
+    width: 50%;
 }
 .acousticness input {
-    width: 51%;
+    width: 50%;
 }
 /* S5 */
 @media all and (min-width: 321px) and (max-width: 360px) {
@@ -334,25 +362,25 @@ form.slider button {
         font-size: 21px;
     }
     .dancy input{
-        width: 78%;
+        width: 50%;
     }
     .energy input {
-        width: 77%;
+        width: 50%;
     }
     .popularity input {
-        width: 76%;
+        width: 50%;
     }
     .valence input {
-        width: 87%;
+        width: 50%;
     }
     .volume input {
-        width: 76%;
+        width: 50%;
     }
     .acousticness input {
-        width: 74%;
+        width: 50%;
     }
     form.slider button {        
-        left: 5%;
+        left: 0%;
     }
 }
 /* iPad Pro landscape */

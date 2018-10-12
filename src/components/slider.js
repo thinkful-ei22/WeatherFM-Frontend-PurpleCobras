@@ -75,7 +75,7 @@ export class Slider extends React.Component {
                 <div>
 
                   <form onSubmit={(e) => this.handleSlider(e)} className="slider">
-                    <div className="dancy">
+                    <div className="dancy inputSingle">
                       <label htmlFor="danceability">Not Dancy</label>
                       <input type="range" id="danceability" name="danceability"
                         min="0" max="1" step=".01"
@@ -84,7 +84,7 @@ export class Slider extends React.Component {
                       />
                       <label htmlFor="danceability">Super Dancy: {Math.floor(this.props.averages.danceability * 100)}%</label>
                     </div>
-                    <div className="energy">
+                    <div className="energy inputSingle">
                       <label htmlFor="energy">Low Energy</label>
                       <input type="range" id="energy" name="energy"
                         min="0" max="1" step=".01"
@@ -92,7 +92,7 @@ export class Slider extends React.Component {
                         defaultValue={this.props.averages.energy} />
                       <label htmlFor="energy">High Energy: {Math.floor(this.props.averages.energy * 100)}%</label>
                     </div>
-                    <div className="popularity">
+                    <div className="popularity inputSingle">
                       <label htmlFor="popularity">Less Popular</label>
                       <input type="range" id="popularity" name="popularity"
                         min="10" max="80" step="1"
@@ -100,7 +100,7 @@ export class Slider extends React.Component {
                         defaultValue={this.props.averages.popularity} />
                       <label htmlFor="popularity">More Popular: {this.props.averages.popularity}%</label>
                     </div>
-                    <div className="valence">
+                    <div className="valence inputSingle">
                       <label htmlFor="valence">Sad</label>
                       <input type="range" id="valence" name="valence"
                         min="0" max="1" step=".01"
@@ -108,7 +108,7 @@ export class Slider extends React.Component {
                         defaultValue={this.props.averages.valence} />
                       <label htmlFor="valence">Happy: {Math.floor(this.props.averages.valence * 100)}%</label>
                     </div>
-                    <div className="volume">
+                    <div className="volume inputSingle">
                       <label htmlFor="loudness">Softer</label>
                       <input type="range" id="loudness" name="loudness"
                         min="-60" max="0" step="1"
@@ -116,7 +116,7 @@ export class Slider extends React.Component {
                         defaultValue={this.props.averages.loudness} />
                       <label htmlFor="loudness">Louder: {Math.floor(this.props.averages.loudness)}dBs (-60 to 0)</label>
                     </div>
-                    <div className="acousticness">
+                    <div className="acousticness inputSingle">
                       <label htmlFor="acousticness">Less Acoustic</label>
                       <input type="range" id="acousticness" name="acousticness"
                         min="0" max="1" step=".01"
@@ -124,8 +124,10 @@ export class Slider extends React.Component {
                         defaultValue={this.props.averages.acousticness} />
                       <label htmlFor="acousticness">More Acoustic: {Math.floor(this.props.averages.acousticness * 100)}%</label>
                     </div>
-                    <button type="submit">Customize!</button>
-                    <button onClick={() => this.resetSettings()}>Reset to Weather Settings</button>
+                    <div className="buttons">
+                      <button type="submit">Customize!</button>
+                      <button onClick={() => this.resetSettings()}>Reset to Weather Settings</button>
+                    </div>
                   </form>
                 </div>;
 
