@@ -30,7 +30,7 @@ Regardless of a users location or the current weather, they can access all of th
 (https://files.slack.com/files-pri/T02D02A55-FDEKU3C6S/screen_shot_2018-10-12_at_3.14.13_pm.png)
 
 ### Registration
-(https://files.slack.com/files-pri/T02D02A55-FDDER13J9/screen_shot_2018-10-12_at_3.19.27_pm.png)
+<img width="1244" alt="screen_shot_2018-10-12_at_3 19 27_pm" src="https://user-images.githubusercontent.com/38081935/46889877-e538a880-ce19-11e8-9ec2-2bcc6681706b.png">
 
 ## Target Audience
 Anyone looking to find music that reflects nature's mood.
