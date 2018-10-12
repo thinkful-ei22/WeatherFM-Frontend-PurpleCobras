@@ -39,4 +39,6 @@ a:hover {
 
 button:hover {
   cursor: crosshair;
+  background-color: #777;
+  color: #fff;
 }

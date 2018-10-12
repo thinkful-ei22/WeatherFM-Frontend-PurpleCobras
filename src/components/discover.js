@@ -70,7 +70,8 @@ export class Discover extends React.Component {
     let returnHTML = '';
     //if spotifyList has a length
     if (this.props.spotifyList.length) {
-      this.thumbnail = <div className="thumbnailBorder"><img src={this.props.spotifyList[this.i].thumbnail} alt={this.props.spotifyList[index].songTitle}/></div>;
+      this.thumbnail = <div className="thumbnailBorder"></div>;
+      // <img src={this.props.spotifyList[this.i].thumbnail} alt={this.props.spotifyList[index].songTitle}/>
       this.props.dispatch(fetchYoutube(this.props.spotifyList[index].songTitle, this.props.spotifyList[index].artist))
     }
 
@@ -91,7 +92,7 @@ export class Discover extends React.Component {
          />
    
         <div className="controls"></div>
-        {this.addSongToPlaylist()}  
+        <div className="addSong">{this.addSongToPlaylist()}  </div>
       </div>;
       return returnHTML;
     }
@@ -130,7 +131,9 @@ export class Discover extends React.Component {
           <option value="Thunderstorm">Thunderstorm</option>
         </select>
         </div>
+
         <br /><br />
+
         <span className="radio-name">{this.props.weather} Radio</span>
         {this.returnSong(this.i)}
        
