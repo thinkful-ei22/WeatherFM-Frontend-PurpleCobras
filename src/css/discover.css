@@ -200,8 +200,22 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
  /* iPhone 6/7/8 Plus */
 
  @media all and (min-width: 412px) and (max-width: 414px) {
+  .discover span{
+    left: 29%;
+  }
+  .radio-changer{
+    left: 19%;
+  }
+  .radio-name{
+    left: 37% !important;
+    bottom: 30px;
+  }
+  .songTitle{
+    position: relative;
+    bottom: 20px;
+  }
   .songTitle h1 {
-    font-size: 21px;
+    font-size: 15px;
   }
   .thumbnail{
     display: block;
@@ -209,13 +223,25 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
   .thumbnail img{
     position: relative;
-    left: 106%;
+    left: 112%;
+    bottom: 10px;
+  }
+  .song-container{
+    position: relative;
+    bottom: 15px;
   }
   .discover #play{
     left: 52%;
     }
       .discover #volumeButton{
     left: 52%;
+  }
+  .addToPlaylist{
+    bottom: 15px;
+  }
+  .slider{
+    position: relative;
+    bottom: 35px;
   }
  }
  /* iphone 5/SE landscape */
