@@ -221,6 +221,7 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     display: block;
     width: 30%;
   }
+  
   .thumbnail img{
     position: relative;
     left: 112%;
