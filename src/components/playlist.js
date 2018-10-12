@@ -109,8 +109,10 @@ export class Playlist extends React.Component {
           songs.push(
             // <img src={albumArt} alt={title} style={{width: 100, height: 100}}></img>
             <div className="songTable" key={title}>
-              
-              <table><tr>
+
+            <table> <tablebody>
+                
+                <tr>
 
                 <td className="artistSong">{title}</td>
 
@@ -131,7 +133,8 @@ export class Playlist extends React.Component {
                 Delete Song
                 </button></td>
               
-              </tr></table>
+                </tr>
+              </tablebody></table>
             </div>
           );
         }
@@ -168,7 +171,7 @@ export class Playlist extends React.Component {
         </div>     
 
         <div className="playlistHeaders">{playlistName} Playlist <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button></div>
-        {loopedSongs(this.props.playlists)}
+        <table className="centerTable"> <tablebody>{loopedSongs(this.props.playlists)}</tablebody></table>
       </div>
     );
   }

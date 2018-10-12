@@ -69,8 +69,10 @@
 }
 
 .songTable {
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 10px;
+  width: auto;
 }
 
 .songTable .artistSong {
@@ -118,4 +120,9 @@
   width: 87%;
   font-family: 'PT Mono';
   font-size: 12px;
+}
+
+.centerTable {
+  margin-left: auto;
+  margin-right: auto;
 }
