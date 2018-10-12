@@ -19,10 +19,10 @@ export class HeaderBar extends React.Component {
     this.tempClick();
   }
 
-  getLocation = () => {
+  getLocation(){
     let latitude, longitude;
     const { dispatch } = this.props;
-    if ("geolocation" in navigator) {
+    if ('geolocation' in navigator) {
       /* geolocation is available */
       navigator.geolocation.getCurrentPosition(function (position) {
         latitude = position.coords.latitude;
@@ -31,7 +31,7 @@ export class HeaderBar extends React.Component {
       });
     } else {
       /* geolocation IS NOT available */
-      alert("Location not provided; defaulting to Sunny Weather.")
+      alert('Location not provided; defaulting to Sunny Weather.');
     }
   }
 
@@ -78,7 +78,7 @@ export class HeaderBar extends React.Component {
   /* When the user clicks on the button, 
   toggle between hiding and showing the dropdown content */
   dropDown() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById('myDropdown').classList.toggle('show');
   }
 
   render() {
@@ -86,7 +86,7 @@ export class HeaderBar extends React.Component {
     window.onclick = function(event) {
       if (!event.target.matches('.dropbtn')) {
 
-        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var dropdowns = document.getElementsByClassName('dropdown-content');
         var i;
         for (i = 0; i < dropdowns.length; i++) {
           var openDropdown = dropdowns[i];
@@ -95,7 +95,7 @@ export class HeaderBar extends React.Component {
           }
         }
       }
-    }
+    };
 
     // Only render the log out button if we are logged in
     let logOutButton;
