@@ -18,19 +18,19 @@ Regardless of a users location or the current weather, they can access all of th
 
 ## Screenshots
 ### Discover Page
-![](https://files.slack.com/files-pri/T02D02A55-FDEAR1TE3/screen_shot_2018-10-12_at_3.14.22_pm.png)
+(https://files.slack.com/files-pri/T02D02A55-FDEAR1TE3/screen_shot_2018-10-12_at_3.14.22_pm.png)
 
 ### Playlist Page
-![](https://files.slack.com/files-pri/T02D02A55-FDD6C0HDH/screen_shot_2018-10-12_at_3.14.34_pm.png)
+(https://files.slack.com/files-pri/T02D02A55-FDD6C0HDH/screen_shot_2018-10-12_at_3.14.34_pm.png)
 
 ### On-Boarding
-![](https://files.slack.com/files-pri/T02D02A55-FDCLMUN2V/screen_shot_2018-10-12_at_3.15.12_pm.png)
+(https://files.slack.com/files-pri/T02D02A55-FDCLMUN2V/screen_shot_2018-10-12_at_3.15.12_pm.png)
 
 ### Custom Discover Settings
-![](https://files.slack.com/files-pri/T02D02A55-FDEKU3C6S/screen_shot_2018-10-12_at_3.14.13_pm.png)
+(https://files.slack.com/files-pri/T02D02A55-FDEKU3C6S/screen_shot_2018-10-12_at_3.14.13_pm.png)
 
 ### Registration
-![](https://files.slack.com/files-pri/T02D02A55-FDDER13J9/screen_shot_2018-10-12_at_3.19.27_pm.png)
+(https://files.slack.com/files-pri/T02D02A55-FDDER13J9/screen_shot_2018-10-12_at_3.19.27_pm.png)
 
 ## Target Audience
 Anyone looking to find music that reflects nature's mood.
