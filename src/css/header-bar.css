@@ -57,6 +57,7 @@
   text-transform: capitalize;
   letter-spacing: 1px;
   font-family: 'PT Mono';
+  color: #000;
 }
 
 dropdown {
