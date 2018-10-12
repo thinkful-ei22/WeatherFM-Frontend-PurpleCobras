@@ -112,7 +112,7 @@ export class Song extends React.Component {
       <div className="song-container">
   <ReactPlayer
               ref={this.ref}
-              width='40%'
+              width='100%'
               height='100%'
               url={this.props.url} 
               playing={playing}
