@@ -32,3 +32,13 @@
   }
 
 }
+
+a:hover {
+  cursor: crosshair;
+}
+
+button:hover {
+  cursor: crosshair;
+  background-color: #777;
+  color: #fff;
+}

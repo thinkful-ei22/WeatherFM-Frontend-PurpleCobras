@@ -12,7 +12,9 @@ export class Playlist extends React.Component {
     super(props);
     this.state = {
       currentIndex: null,
-      playlistName: this.props.location.pathname.split('/')[2]
+      playlistName: this.props.location.pathname.split('/')[2],
+      showTitle: false,
+      currentSongTitle: ''
     }
   }
   
@@ -88,6 +90,8 @@ export class Playlist extends React.Component {
   }
 
   render() {
+    console.log(this.state.currentSongTitle);
+
     const { dispatch } = this.props;
     const {i} = this;
     const {playlistName} = this.state;
@@ -105,8 +109,10 @@ export class Playlist extends React.Component {
           songs.push(
             // <img src={albumArt} alt={title} style={{width: 100, height: 100}}></img>
             <div className="songTable" key={title}>
-              
-              <table><tr>
+
+            <table> <tablebody>
+                
+                <tr>
 
                 <td className="artistSong">{title}</td>
 
@@ -116,7 +122,8 @@ export class Playlist extends React.Component {
                   this.youtubeClick(artist, title, i);
                   this.setState({
                     currentArtist: artist,
-                    currentSongTitle: title
+                    currentSongTitle: title,
+                    showTitle: true
                   })
                 }}>Play</button></td>
                 
@@ -126,7 +133,8 @@ export class Playlist extends React.Component {
                 Delete Song
                 </button></td>
               
-              </tr></table>
+                </tr>
+              </tablebody></table>
             </div>
           );
         }
@@ -149,16 +157,21 @@ export class Playlist extends React.Component {
       />
     }
 
+    let nowPlaying;
+    if (this.state.showTitle) {
+      nowPlaying = <div>Now Playing: {this.state.currentSongTitle}</div>
+    }
 
 
     return (
       <div className="playlistCont">
+        <div className="nowPlaying">{nowPlaying}</div>
         <div className="songCont">
           {currentSong}  
         </div>     
 
         <div className="playlistHeaders">{playlistName} Playlist <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button></div>
-        {loopedSongs(this.props.playlists)}
+        <table className="centerTable"> <tablebody>{loopedSongs(this.props.playlists)}</tablebody></table>
       </div>
     );
   }
