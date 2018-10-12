@@ -61,7 +61,7 @@
 }
 
 .playlistCont {
-  margin-top: 5%;
+  margin: 3%;
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -125,4 +125,5 @@
 .centerTable {
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
