@@ -113,7 +113,7 @@ export class Slider extends React.Component {
                         min="-60" max="0" step="1"
                         onChange={(e) => this.onChange({ loudness: e.target.value })}
                         defaultValue={this.props.averages.loudness} />
-                      <label htmlFor="loudness">Louder: {this.props.averages.loudness}dBs (-60 to 0)</label>
+                      <label htmlFor="loudness">Louder: {Math.floor(this.props.averages.loudness)}dBs (-60 to 0)</label>
                     </div>
                     <div className="acousticness">
                       <label htmlFor="acousticness">Less Acoustic</label>
@@ -126,7 +126,6 @@ export class Slider extends React.Component {
                     <button type="submit">Customize!</button>
                     <button onClick={() => this.resetSettings()}>Reset to Weather Settings</button>
                   </form>
-
                 </div>;
 
     }
