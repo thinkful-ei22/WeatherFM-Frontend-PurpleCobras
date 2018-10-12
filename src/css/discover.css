@@ -443,16 +443,16 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
   .thumbnail{
     display: block;
-    width: 30%;
+    width: 20%;
   }
   .thumbnail img {
     position: relative;
     bottom: 15px;
-    left: 115%
+    left: 194%
   }
   .songTitle{
     position: relative; 
-    bottom: 30px;
+    bottom: 20px;
   }
   .song-container{
     position: relative;
@@ -460,6 +460,9 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
    .songTitle h1 {
      font-size: 31px;
+   }
+   .song-container iframe {
+     height: 300px;
    }
    .discover span {
    left: 31%;
@@ -489,7 +492,7 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
    top: 0px;
  }
  .slider button {
-   bottom: 30px;
+   bottom: 20px;
  }
 }
  /* iPhone X landscape */
@@ -604,7 +607,7 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   .thumbnail img {
     position: relative;
     bottom: 10px;
-    left: 385% !important; 
+    left: 395% !important; 
   }
   .songTitle{
     position: relative; 
@@ -618,7 +621,7 @@ animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
      font-size: 30px !important;
    }
    .song-container iframe{
-    height: 165px !important;
+    height: 205px !important;
   }
    .discover span {
    left: 38% !important;

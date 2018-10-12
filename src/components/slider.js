@@ -73,6 +73,7 @@ export class Slider extends React.Component {
       sliderMessage = 'Hide Advanced Settings';
       sliderForm =
                 <div>
+
                   <form onSubmit={(e) => this.handleSlider(e)} className="slider">
                     <div className="dancy">
                       <label htmlFor="danceability">Not Dancy</label>
