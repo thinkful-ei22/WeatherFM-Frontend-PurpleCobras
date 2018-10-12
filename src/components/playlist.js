@@ -12,7 +12,9 @@ export class Playlist extends React.Component {
     super(props);
     this.state = {
       currentIndex: null,
-      playlistName: this.props.location.pathname.split('/')[2]
+      playlistName: this.props.location.pathname.split('/')[2],
+      showTitle: false,
+      currentSongTitle: ''
     }
   }
   
@@ -88,6 +90,8 @@ export class Playlist extends React.Component {
   }
 
   render() {
+    console.log(this.state.currentSongTitle);
+
     const { dispatch } = this.props;
     const {i} = this;
     const {playlistName} = this.state;
@@ -116,7 +120,8 @@ export class Playlist extends React.Component {
                   this.youtubeClick(artist, title, i);
                   this.setState({
                     currentArtist: artist,
-                    currentSongTitle: title
+                    currentSongTitle: title,
+                    showTitle: true
                   })
                 }}>Play</button></td>
                 
@@ -149,10 +154,15 @@ export class Playlist extends React.Component {
       />
     }
 
+    let nowPlaying;
+    if (this.state.showTitle) {
+      nowPlaying = <div>Now Playling: {this.state.currentSongTitle}</div>
+    }
 
 
     return (
       <div className="playlistCont">
+        <div className="nowPlaying">{nowPlaying}</div>
         <div className="songCont">
           {currentSong}  
         </div>     

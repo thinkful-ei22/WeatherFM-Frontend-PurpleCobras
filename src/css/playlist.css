@@ -111,3 +111,11 @@
 .playlistCont #seek {
   width: 400%;
 }
+
+.nowPlaying {
+  padding: 15px;
+  text-align: right;
+  width: 87%;
+  font-family: 'PT Mono';
+  font-size: 12px;
+}
