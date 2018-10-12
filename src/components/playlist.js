@@ -103,23 +103,30 @@ export class Playlist extends React.Component {
           let albumArt = currentPlaylist[i].thumbnail;
           // dispatch API call to get youtube url & set it to a variable
           songs.push(
-            
-            <div key={title}>
-              <img src={albumArt} alt={title} style={{width: 100, height: 100}}></img>, {title}, by {artist},
+            // <img src={albumArt} alt={title} style={{width: 100, height: 100}}></img>
+            <div className="songTable" key={title}>
               
-              <button onClick={(e) => {
-                this.youtubeClick(artist, title, i);
-                this.setState({
-                  currentArtist: artist,
-                  currentSongTitle: title
-                })
-              }}>Play</button>
-              <button onClick={(e) => {
-                dispatch(deleteSong(playlistName, title, artist, albumArt));
-              }}>
-              Delete Song
-              </button>
-              <hr />
+              <table><tr>
+
+                <td className="artistSong">{title}</td>
+
+                <td className="artistSong">{artist}</td>
+                
+                <td className="button"><button onClick={(e) => {
+                  this.youtubeClick(artist, title, i);
+                  this.setState({
+                    currentArtist: artist,
+                    currentSongTitle: title
+                  })
+                }}>Play</button></td>
+                
+                <td className="button"><button onClick={(e) => {
+                  dispatch(deleteSong(playlistName, title, artist, albumArt));
+                }}>
+                Delete Song
+                </button></td>
+              
+              </tr></table>
             </div>
           );
         }
@@ -145,13 +152,12 @@ export class Playlist extends React.Component {
 
 
     return (
-      <div>
-        <h1>{playlistName} Playlist</h1>
+      <div className="playlistCont">
         <div className="songCont">
           {currentSong}  
         </div>     
-        <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button>
-        <div className="playlistHeaders">hello</div>
+
+        <div className="playlistHeaders">{playlistName} Playlist <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button></div>
         {loopedSongs(this.props.playlists)}
       </div>
     );
@@ -175,12 +181,3 @@ const mapStateToProps = state => {
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Playlist));
-
-// { Sunny: [song, song, song], Cloudy: [song, song, song] }
-// [ {name: Sunny, songs: [song, song, song]}, {name: Cloudy, songs: [song, song, song]} ]
-
-// let playlist = [
-//   {songTitle: 'Circle', artist: 'Eden', albumArt: 'http://placehold.it/100x100', id: 1111},
-//   {songTitle: 'DKLA', artist: 'Troye Sivan', albumArt: 'http://placehold.it/100x100', id: 3333},
-//   {songTitle: 'Sweet Disposition', artist: 'The Temper Trap', albumArt: 'http://placehold.it/100x100', id: 2222},
-// ];

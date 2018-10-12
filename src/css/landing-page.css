@@ -240,7 +240,7 @@ landingCont {
   right: 6%;
 }
 .section2 h2 {
-  font-size: 14px;
+  font-size: 20px;
   font-family: 'PT Mono';
   margin-left: auto;
   margin-right: auto;
@@ -268,9 +268,10 @@ landingCont {
 
 .section2 .formCont {
   position: relative;
-  top: 40%;
+  top: 45%!important;
   transform: translateY(-50%);
   text-align: center;
+  margin-left: 5%;
 }
 
 .section2 .flex {
@@ -295,7 +296,7 @@ landingCont {
   border-radius: 5px;
   border: 1px solid #eee;
   box-shadow: 1px 1px 0px #777;
-  width: 100%;
+  width: 90%;
   color: #000;
   transition: all 0.5s ease-in-out;
   position: relative;
@@ -328,7 +329,7 @@ landingCont {
   background-color: #eee;
   font-size: 10px;
   border-radius: 0px 5px 5px 0px;
-  padding: 6px;
+  padding: 5.5px;
   margin-bottom: 1.5%;
   position: relative;
   width: 100%
@@ -919,9 +920,10 @@ left: 4.5%;
 }
 /* Desktop */
 @media all and (min-width: 1025px) and (max-width: 1280px) {
-  .section1 .buttonns {
-    flex-direction: row;
-    left: 1%;
+
+    .section1 .buttonns {
+      flex-direction: row;
+      left: 1%;
     }
     .section1 .buttonn {
       margin-right: 38px;
