@@ -19,7 +19,7 @@ export class Song extends React.Component {
   playPause = () => {
     this.setState({ playing: !this.state.playing })
   }
-
+ 
   onPlay = () => {
     //console.log('onPlay')
     this.setState({ playing: true })
