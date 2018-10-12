@@ -7,32 +7,32 @@ import '../css/landing-page.css';
 
 export class LandingPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       login: false,
       register: false
-    }
+    };
   }
 
   returnForm() {
     if (this.state.login) {
-      return <div className="bigCont"><LoginForm /></div>
+      return <div className="bigCont"><LoginForm /></div>;
     }
     if (this.state.register) {
-      return <div className="bigCont"><RegistrationForm /></div>
+      return <div className="bigCont"><RegistrationForm /></div>;
     }
   }
 
   // If we are logged in redirect straight to the user's dashboard
 
   render() {
-  if (this.props.loggedIn && this.state.login) {
-    return <Redirect to="/discover" />;
-  }
+    if (this.props.loggedIn && this.state.login) {
+      return <Redirect to="/discover" />;
+    }
 
-  if (this.props.loggedIn && this.state.register) {
-    return <Redirect to="/onboarding" />;
-  }
+    if (this.props.loggedIn && this.state.register) {
+      return <Redirect to="/onboarding" />;
+    }
 
     return (
       <div className="cont">
@@ -44,13 +44,13 @@ export class LandingPage extends React.Component {
               this.setState({
                 login: !this.state.login,
                 register: false
-              })
+              });
             }}>login to weather FM</div>
             <div className="buttonn register" onClick={() => {
               this.setState({
                 register: !this.state.register,
                 login: false
-              })
+              });
             }}>register with us</div>
           </div>
 

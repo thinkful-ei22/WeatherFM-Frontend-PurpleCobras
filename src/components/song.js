@@ -110,27 +110,26 @@ export class Song extends React.Component {
 
     return(
       <div className="song-container">
-  <ReactPlayer
-              ref={this.ref}
-              width='100%'
-              height='100%'
-              url={this.props.url} 
-              playing={playing}
-              volume={volume}
-              controls={true}
-              muted={muted}
-              onPlay={this.onPlay}
-              onPause={this.onPause}
-              onSeek={e => console.log('onSeek', e)}
-              onEnded={this.props.onEnded}
-              onProgress={this.onProgress}
-            />
+        <ReactPlayer
+          ref={this.ref}
+          width='100%'
+          height='100%'
+          url={this.props.url} 
+          playing={playing}
+          volume={volume}
+          controls={true}
+          muted={muted}
+          onPlay={this.onPlay}
+          onPause={this.onPause}
+          onSeek={e => console.log('onSeek', e)}
+          onEnded={this.props.onEnded}
+          onProgress={this.onProgress}
+        />
 
 
-<section className="player">
-       <table><tbody>
+        <section className="player">
+          <table><tbody>
             <tr>
-              
               <td id="play">
                 {/* <button onClick={this.stop}>Stop</button> */}
                 <button onClick={this.props.onPrevClick} className="playButtons"><i className="material-icons">skip_previous</i></button>
@@ -165,7 +164,7 @@ export class Song extends React.Component {
             </tr>
           </tbody></table>
         </section>
-</div>
+      </div>
     )
   }
 }

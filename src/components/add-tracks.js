@@ -86,5 +86,5 @@ export function AddSong (props) {
         />
       </p>
     </div>
-  )
+  );
 }

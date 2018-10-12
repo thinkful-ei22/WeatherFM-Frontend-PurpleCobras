@@ -41,7 +41,7 @@ export class PlaylistPage extends React.Component {
 
         <div className=""></div>
 
-       <div className="img"></div>
+        <div className="img"></div>
 
       </div>
 
