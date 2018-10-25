@@ -60,7 +60,7 @@ export class RegistrationForm extends React.Component {
 
         <div className="flex">
           <div className="fbox">
-            <label htmlFor="passwordConfirm">Confirm password</label>
+            <label htmlFor="passwordConfirm">Confirm pw</label>
             <Field
               component={Input}
               type="password"
