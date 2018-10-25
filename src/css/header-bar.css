@@ -10,17 +10,18 @@
 
 .temperature {
   display: inline-block;
-  padding: 8px;
+  padding: 10px;
   border: 0px;
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: 5px;
-  width: 50px;
+  margin: 0 1% 0;
   /* right: 11%;
   position: absolute; */
   font-family: 'PT Mono';
   cursor: pointer;
   text-align: center;
+  height: 11px;
 }
 
 .temperature:hover{
@@ -34,7 +35,6 @@
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: 5px;
-  width: 8%;
   margin: 0 1% 0 auto;
   /* right: 3%;
   position: absolute; */
