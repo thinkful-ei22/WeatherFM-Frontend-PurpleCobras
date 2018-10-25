@@ -3,7 +3,7 @@ import React from 'react';
 class OnboardingForm extends React.Component {
   render() {
     return (
-      <div>
+      <section>
         <div className="fbox">
           <label htmlFor="song">Title:</label>
           <input name="song"></input>
@@ -15,7 +15,7 @@ class OnboardingForm extends React.Component {
         </div>
 
         <button type="submit">Add a Song</button>
-      </div>
+      </section>
     );
   }
 }

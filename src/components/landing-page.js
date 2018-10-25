@@ -37,7 +37,7 @@ export class LandingPage extends React.Component {
     return (
       <div className="cont">
         
-        <div className="section1">
+        <section role="region" className="section1">
 
           <div className="buttonns">
             <div className="buttonn" onClick={() => {
@@ -54,16 +54,16 @@ export class LandingPage extends React.Component {
             }}>register with us</div>
           </div>
 
-        </div>
+        </section>
 
-        <div className="section2">
+        <section role="region" className="section2">
           <div className="wordCont">
             <h2><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h2>
             <div className="formCont">
               {this.returnForm()}
             </div>
           </div>
-        </div>
+        </section>
 
       </div>
       // <div className="landingCont">  

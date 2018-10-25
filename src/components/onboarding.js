@@ -102,7 +102,7 @@ export class Onboarding extends React.Component {
     
 
     return (
-      <div className="onboardingCont">
+      <section role="region" className="onboardingCont">
 
         <div className="gridCont">
           <div className="gridItem item1">
@@ -120,10 +120,7 @@ export class Onboarding extends React.Component {
               this.state.cloudy, 
               this.state.thunderstorm
             )}>
-
               {buttonType}
-              
-
             </form>
 
             <span className="error">{this.props.invalid? 'Highlighted songs returned without a match. Please re-enter.' : ''}</span>
@@ -190,7 +187,7 @@ export class Onboarding extends React.Component {
         </div>
         <br />
 
-      </div>
+      </section>
     );
   }
 }

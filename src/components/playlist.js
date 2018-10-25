@@ -164,7 +164,7 @@ export class Playlist extends React.Component {
 
 
     return (
-      <div className="playlistCont">
+      <section role="region" className="playlistCont">
         <div className="nowPlaying">{nowPlaying}</div>
         <div className="songCont">
           {currentSong}  
@@ -172,7 +172,7 @@ export class Playlist extends React.Component {
 
         <div className="playlistHeaders">{playlistName} Playlist <button onClick={() => this.onSyncClick()} >Export playlist to Spotify</button></div>
         <table className="centerTable"> <tablebody>{loopedSongs(this.props.playlists)}</tablebody></table>
-      </div>
+      </section>
     );
   }
 }
