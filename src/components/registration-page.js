@@ -11,7 +11,7 @@ export function RegistrationPage(props) {
     return <Redirect to="/onboarding" />;
   }
   return (
-    <section role="region" className="home">
+    <section className="home">
       <h2>Register for Weather FM</h2>
       <RegistrationForm />
     </section>

@@ -20,7 +20,7 @@ export class LoginForm extends React.Component {
       );
     }
     return (
-      <section role="region">
+      <section>
         <form inline
           className="login-form"
           onSubmit={this.props.handleSubmit(values =>

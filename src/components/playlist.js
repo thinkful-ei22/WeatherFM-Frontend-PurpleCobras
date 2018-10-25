@@ -164,7 +164,7 @@ export class Playlist extends React.Component {
 
 
     return (
-      <section role="region" className="playlistCont">
+      <section className="playlistCont">
         <div className="nowPlaying">{nowPlaying}</div>
         <div className="songCont">
           {currentSong}  

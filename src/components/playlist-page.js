@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchPlaylists } from '../actions/playlists';
-import HeaderBar from './header-bar';
+// import HeaderBar from './header-bar';
 import '../css/playlist-page.css';
 
 export class PlaylistPage extends React.Component {

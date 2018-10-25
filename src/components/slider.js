@@ -133,7 +133,7 @@ export class Slider extends React.Component {
 
     }
     return (
-      <section role="region" className="slider">
+      <section className="slider">
         <button onClick={() => this.toggleSliderDisplay()}>{sliderMessage}</button>
         {sliderForm}
       </section>

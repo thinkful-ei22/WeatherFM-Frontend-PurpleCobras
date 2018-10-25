@@ -37,26 +37,26 @@ export class LandingPage extends React.Component {
     return (
       <div className="cont">
         
-        <section role="region" className="section1">
+        <section className="section1">
 
           <div className="buttonns">
-            <div className="buttonn" onClick={() => {
+            <button className="buttonn" onClick={() => {
               this.setState({
                 login: !this.state.login,
                 register: false
               });
-            }}>login to weather FM</div>
-            <div className="buttonn register" onClick={() => {
+            }}>login to weather FM</button>
+            <button className="buttonn register" onClick={() => {
               this.setState({
                 register: !this.state.register,
                 login: false
               });
-            }}>register with us</div>
+            }}>register with us</button>
           </div>
 
         </section>
 
-        <section role="region" className="section2">
+        <section className="section2">
           <div className="wordCont">
             <h2><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h2>
             <div className="formCont">
