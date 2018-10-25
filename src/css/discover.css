@@ -57,7 +57,7 @@
 .discover #play {
 /* position: relative;
 left: 28%; */
-width: 99%;
+width: 200px;
 margin: 0 auto 0 auto;
 }
 /* .discover #volumeButton{
@@ -102,7 +102,7 @@ margin: 0 auto 0 auto;
 }
 
 .addToPlaylist, .slider button{
-position: relative;
+/* position: relative; */
 margin-bottom: 5px;
 }
 
@@ -110,6 +110,7 @@ margin-bottom: 5px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5px;
   width: 50%;
 }
 
@@ -138,7 +139,7 @@ margin-bottom: 5px;
   border-radius: 50%;
 }
 .slider{
-  width: 80%;
+  width: 90%;
   margin: 0 auto 0 auto;
 }
 .player {

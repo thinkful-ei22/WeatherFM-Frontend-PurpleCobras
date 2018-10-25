@@ -10,9 +10,9 @@ form.slider .buttons {
 }
 
 form.slider button {
-    position: relative;
-    top: 10px;
-    width: 25%;
+    /* position: relative;
+    top: 10px; */
+    /* width: 25%; */
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
