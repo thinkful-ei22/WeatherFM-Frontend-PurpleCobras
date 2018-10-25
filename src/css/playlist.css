@@ -82,6 +82,7 @@
   margin-right: auto;
   padding-top: 10px;
   width: auto;
+  
 }
 
 .songTable .artistSong {
@@ -95,11 +96,6 @@
   padding-left: 10px;
 }
 
-.songTable .button {
-  width: 150px;
-  text-align: right;
-}
-
 .songTable button {
   padding: 8px;
   border-radius: 5px;
@@ -109,7 +105,7 @@
   box-shadow: 1px 1px 1px #777;
   border: 1px solid #777;
   transition: all 0.5s ease-in-out;
-
+  text-align: right;
 }
 
 .songTable button:hover {

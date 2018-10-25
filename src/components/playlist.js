@@ -90,7 +90,6 @@ export class Playlist extends React.Component {
   }
 
   render() {
-    console.log(this.state.currentSongTitle);
 
     const { dispatch } = this.props;
     const {i} = this;
@@ -130,7 +129,7 @@ export class Playlist extends React.Component {
                 <td className="button"><button onClick={(e) => {
                   dispatch(deleteSong(playlistName, title, artist, albumArt));
                 }}>
-                Delete Song
+                Delete
                 </button></td>
               
                 </tr>
@@ -158,9 +157,9 @@ export class Playlist extends React.Component {
     }
 
     let nowPlaying;
-    if (this.state.showTitle) {
-      nowPlaying = <div>Now Playing: {this.state.currentSongTitle}</div>
-    }
+    // if (this.state.showTitle) {
+    //   nowPlaying = <div>Now Playing: {this.state.currentSongTitle}</div>
+    // }
 
 
     return (
