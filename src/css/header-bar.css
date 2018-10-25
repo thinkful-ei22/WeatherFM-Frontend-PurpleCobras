@@ -16,12 +16,11 @@
   box-shadow: none;
   border-radius: 5px;
   width: 5%;
-  right: 11%;
-  position: absolute;
+  /* right: 11%;
+  position: absolute; */
   font-family: 'PT Mono';
   cursor: pointer;
   text-align: center;
-  margin-right: 5px;
 }
 
 .temperature:hover{
@@ -36,9 +35,9 @@
   box-shadow: none;
   border-radius: 5px;
   width: 8%;
-
-  right: 3%;
-  position: absolute;
+  margin: 0 1% 0 auto;
+  /* right: 3%;
+  position: absolute; */
   font-family: 'PT Mono';
 }
 
