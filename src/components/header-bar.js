@@ -124,11 +124,11 @@ export class HeaderBar extends React.Component {
       );
     }
     return (
-      <div className="header-bar">
+      <header className="header-bar">
         {links}
         {this.tempClick()}
         {logOutButton}
-      </div>
+      </header>
     );
   }
 }

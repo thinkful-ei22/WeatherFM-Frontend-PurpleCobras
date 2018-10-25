@@ -109,7 +109,7 @@ export class Discover extends React.Component {
 
   render() {
     return (
-      <div className="discover">
+      <section className="discover">
        <span> Right now it is {this.props.weather}! <br /> </span>
        <div className="radio-changer">
         <label htmlFor="Radio">Change the station: </label>
@@ -138,7 +138,7 @@ export class Discover extends React.Component {
         {this.returnSong(this.i)}
        
         <Slider />
-      </div>
+      </section>
     )
   }
 }

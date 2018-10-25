@@ -11,10 +11,10 @@ export function RegistrationPage(props) {
     return <Redirect to="/onboarding" />;
   }
   return (
-    <div className="home">
+    <section className="home">
       <h2>Register for Weather FM</h2>
       <RegistrationForm />
-    </div>
+    </section>
   );
 
 }

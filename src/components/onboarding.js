@@ -1,7 +1,7 @@
 import React from 'react';
 import requiresLogin from './requires-login';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {changeSongs} from '../actions/playlists';
 import '../css/onboarding.css';
 import OnboardingForm from './onboarding-form';
@@ -102,7 +102,7 @@ export class Onboarding extends React.Component {
     
 
     return (
-      <div className="onboardingCont">
+      <section className="onboardingCont">
 
         <div className="gridCont">
           <div className="gridItem item1">
@@ -120,10 +120,7 @@ export class Onboarding extends React.Component {
               this.state.cloudy, 
               this.state.thunderstorm
             )}>
-
               {buttonType}
-              
-
             </form>
 
             <span className="error">{this.props.invalid? 'Highlighted songs returned without a match. Please re-enter.' : ''}</span>
@@ -190,7 +187,7 @@ export class Onboarding extends React.Component {
         </div>
         <br />
 
-      </div>
+      </section>
     );
   }
 }

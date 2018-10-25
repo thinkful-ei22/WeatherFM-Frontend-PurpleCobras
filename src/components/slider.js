@@ -133,10 +133,10 @@ export class Slider extends React.Component {
 
     }
     return (
-      <div className="slider">
+      <section className="slider">
         <button onClick={() => this.toggleSliderDisplay()}>{sliderMessage}</button>
         {sliderForm}
-      </div>
+      </section>
     );
   }
 }
