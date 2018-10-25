@@ -136,8 +136,9 @@ export class Song extends React.Component {
                 <button onClick={this.playPause} className="playButtons">{playing ? <i className="material-icons">pause</i> : <i className="material-icons">play_arrow</i>}</button>
                 <button onClick={this.props.onNextClick} className="playButtons"><i className="material-icons">skip_next</i></button>
               </td>
-              <td>
-              {/* <input type="range" name="weight" id="range_weight" value="5" min="1" max="100" /> */}
+
+              {/* <td>
+              <input type="range" name="weight" id="range_weight" value="5" min="1" max="100" />
                 <input
                   type='range' min={0} max={1} step='any'
                   value={played}
@@ -146,19 +147,22 @@ export class Song extends React.Component {
                   onMouseUp={this.onSeekMouseUp}
                   id="seek"
                 />
-              </td>
+              </td> */}
+
             </tr>
             <tr>
               
             </tr>
-            <tr>
-              {/* Volume */}
+
+            {/* <tr>
+              
     
               <th><button onClick={this.toggleMuted}id="volumeButton"><i className="material-icons">{this.state.volumeIcon} </i></button></th>
               <td>
                 <input type='range' min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} id="volume"/>
               </td>
-            </tr>
+            </tr> */}
+
             <tr>
              
             </tr>

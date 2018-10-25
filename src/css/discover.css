@@ -13,7 +13,9 @@
   font-family: 'PT Mono';
   font-size: 12px;
 }
-
+.right-now {
+  font-family: 'PT Mono';
+}
 .discover select {
   border: none;
   border-radius: none;
@@ -27,6 +29,7 @@
 
 .radio-name{
   bottom: 20px;
+  margin-bottom: 20px;
   /* left: 34% !important; */
   font-family: 'PT Mono';
 }
@@ -38,7 +41,7 @@
   font-family: 'Montserrat';
   letter-spacing: 0px;
   font-weight: 700;
-  margin-top: 0;
+  margin-top: 20px;
   max-width: 55%;
   margin-left: auto;
   margin-right: auto;
@@ -52,17 +55,18 @@
   height: 100%;
 }
 .discover #play {
-position: relative;
-left: 28%;
+/* position: relative;
+left: 28%; */
 width: 99%;
+margin: 0 auto 0 auto;
 }
-.discover #volumeButton{
+/* .discover #volumeButton{
   position: relative;
   left: 28%;
 }
 .discover #seek, .discover #volume{
   display: none;
-}
+} */
 
 .controls {
   display: flex;
@@ -134,9 +138,17 @@ margin-bottom: 5px;
   border-radius: 50%;
 }
 .slider{
-  width: 100%;
+  width: 80%;
+  margin: 0 auto 0 auto;
 }
-
+.player {
+  margin: 0 auto 0 auto;
+  display: block
+}
+.player table {
+  margin: 0 auto 0 auto;
+  width: 200px;
+}
 
 /* Loading spinner */
 
