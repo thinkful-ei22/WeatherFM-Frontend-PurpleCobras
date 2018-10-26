@@ -58,7 +58,7 @@ export class LandingPage extends React.Component {
 
         <section className="section2">
           <div className="wordCont">
-            <h2><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h2>
+            <h1><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h1>
             <div className="formCont">
               {this.returnForm()}
             </div>
@@ -66,31 +66,6 @@ export class LandingPage extends React.Component {
         </section>
 
       </div>
-      // <div className="landingCont">  
-      //   <div className="image">
-        
-      //   <div className="buttons">
-      //     <div className="button" onClick={() => {
-      //       this.setState({
-      //         login: !this.state.login,
-      //         register: false
-      //       })
-      //     }}>login to weather FM</div>
-      //     <div className="button" onClick={() => {
-      //       this.setState({
-      //         register: !this.state.register,
-      //         login: false
-      //       })
-      //     }}>register with us</div>
-      //   </div>
-
-      //   </div>
-        
-      //   <div className="info">
-      //       <h2><span>Weather FM</span> ® is a mood-music app that <span>personalizes</span> the way you experience weather.</h2>
-      //       {this.returnForm()}
-      //   </div>
-      // </div>
     );
   }
 }

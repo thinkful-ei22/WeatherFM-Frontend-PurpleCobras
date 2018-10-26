@@ -28,7 +28,7 @@ landingCont {
   text-align: center;
 }
 
-.landingCont h2 {
+.landingCont h1 {
   font-size: 35px;
   /* max-width: 70%; */
   margin-left: auto;
@@ -40,7 +40,7 @@ landingCont {
   margin-bottom: 5%;
 }
 
-.landingCont h2 span {
+.landingCont h1 span {
   border-bottom: 1px solid red;
   padding-bottom: 5px;
 }
@@ -235,7 +235,7 @@ landingCont {
   position: relative;
   right: 0%;
 }
-.section2 h2 {
+.section2 h1 {
   font-size: 20px;
   font-family: 'PT Mono';
   margin-left: auto;
@@ -247,7 +247,7 @@ landingCont {
   line-height: 180%;
 }
 
-.section2 h2 span {
+.section2 h1 span {
   border-bottom: 1px solid red;
   padding-bottom: 5px;
 }
@@ -371,7 +371,7 @@ landingCont {
   }
 }
 @media only screen and (min-width: 460px) {
-  .section2 h2 {
+  .section2 h1 {
     margin-top: 10%;
   }
   .section2 .formCont {
@@ -402,7 +402,7 @@ landingCont {
   .section2 {
     width: 50vw;
   }
-  .section2 h2 {
+  .section2 h1 {
     font-size: 17px;
   }
   .section2 .formCont {
@@ -417,13 +417,13 @@ landingCont {
 }
 
 @media only screen and (min-width: 620px) {
-  .section2 h2 {
+  .section2 h1 {
     font-size: 20px;
   }
 }
 
 @media only screen and (min-width: 780px) {
-  .section2 h2 {
+  .section2 h1 {
     font-size: 20px;
     padding-bottom: 5%;
   }

@@ -31,7 +31,7 @@ export class PlaylistPage extends React.Component {
     // }
 
     return (
-      <div className="flex-container">
+      <section className="flex-container">
 
         <div className="flex-item">
           <div className="left">
@@ -43,7 +43,7 @@ export class PlaylistPage extends React.Component {
 
         <div className="img"></div>
 
-      </div>
+      </section>
 
     );
   }

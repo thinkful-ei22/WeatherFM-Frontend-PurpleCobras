@@ -68,9 +68,9 @@ export class HeaderBar extends React.Component {
   errorMsg() {
     if (this.props.error) {
       return (
-        <div>
+        <article>
           {this.props.error}
-        </div>
+        </article>
       );
     }
   }

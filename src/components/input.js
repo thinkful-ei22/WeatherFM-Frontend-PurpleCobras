@@ -21,7 +21,7 @@ export default class Input extends React.Component {
     } 
 
     return (
-      <div>
+      <article>
         <div className="form-input">
           <label htmlFor={this.props.input.name}>
             {this.props.label}
@@ -35,7 +35,7 @@ export default class Input extends React.Component {
         </div>
         {error}
         {warning}
-      </div>
+      </article>
     );
   }
 }

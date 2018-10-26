@@ -65,7 +65,7 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
+      <main className="app">
         <Route exact path="/(discover|playlists)/" component={HeaderBar} />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/onboarding" component={Onboarding} />
@@ -74,7 +74,7 @@ export class App extends React.Component {
         <Route exact path="/playlist/:name" component={HeaderBar} />
         <Route exact path="/playlist/:name" component={Playlist} />
         <Route exact path="/register" component={RegistrationPage} />
-      </div>
+      </main>
     );
   }
 }
