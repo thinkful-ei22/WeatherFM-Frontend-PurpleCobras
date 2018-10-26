@@ -18,16 +18,16 @@ Regardless of a users location or the current weather, they can access all of th
 
 ## Screenshots
 ### Discover Page
-<img width="1270" alt="screen_shot_2018-10-12_at_3 14 22_pm" src="https://user-images.githubusercontent.com/38081935/46890019-51b3a780-ce1a-11e8-8ee2-7797e578654d.png">
+(https://files.slack.com/files-pri/T02D02A55-FDEAR1TE3/screen_shot_2018-10-12_at_3.14.22_pm.png)
 
 ### Playlist Page
-<img width="1261" alt="screen_shot_2018-10-12_at_3 14 34_pm" src="https://user-images.githubusercontent.com/38081935/46890001-45c7e580-ce1a-11e8-8706-e3c753f5b652.png">
+(https://files.slack.com/files-pri/T02D02A55-FDD6C0HDH/screen_shot_2018-10-12_at_3.14.34_pm.png)
 
 ### On-Boarding
-<img width="1268" alt="screen_shot_2018-10-12_at_3 15 12_pm" src="https://user-images.githubusercontent.com/38081935/46889970-321c7f00-ce1a-11e8-8426-0d8b5ee1a434.png">
+(https://files.slack.com/files-pri/T02D02A55-FDCLMUN2V/screen_shot_2018-10-12_at_3.15.12_pm.png)
 
 ### Custom Discover Settings
-<img width="1222" alt="screen_shot_2018-10-12_at_3 14 13_pm" src="https://user-images.githubusercontent.com/38081935/46890036-5f692d00-ce1a-11e8-9d0d-688adc45e222.png">
+(https://files.slack.com/files-pri/T02D02A55-FDEKU3C6S/screen_shot_2018-10-12_at_3.14.13_pm.png)
 
 ### Registration
 <img width="1244" alt="screen_shot_2018-10-12_at_3 19 27_pm" src="https://user-images.githubusercontent.com/38081935/46889877-e538a880-ce19-11e8-9ec2-2bcc6681706b.png">
