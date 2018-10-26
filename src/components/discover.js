@@ -83,7 +83,7 @@ export class Discover extends React.Component {
     } else if (this.props.url && this.props.spotifyList.length){
       returnHTML = 
       <div className="songTitle">
-           <h1>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h1>
+           <h3>{this.props.spotifyList[index].songTitle} by {this.props.spotifyList[index].artist}</h3>
         <div className="thumbnail">{this.thumbnail}</div>
         <Song url={this.props.url} 
           onEnded={()=> this.onEnded()}
@@ -134,7 +134,7 @@ export class Discover extends React.Component {
 
         <br /><br />
 
-        <span className="radio-name">{this.props.weather} Radio</span>
+        <h2 className="radio-name">{this.props.weather} Radio</h2>
         {this.returnSong(this.i)}
        
         <Slider />
