@@ -35,6 +35,9 @@ Regardless of a users location or the current weather, they can access all of th
 ## Target Audience
 Anyone looking to find music that reflects nature's mood.
 
+## Server Repo
+https://github.com/thinkful-ei22/WeatherFM-Backend-PurpleCobras
+
 ## Tech Stack
 WeatherFM uses React.js, Enzyme/Jest for the client, and Node.js, MongoDB, Mongoose, Mocha/Chai for the backend.  WeatherFM also utilizes, Spotify, Youtube and OpenWeather's external APIs. 
 
