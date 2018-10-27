@@ -5,6 +5,13 @@ A playlist app that generates mood music based on the weather in your area â˜€ï¸
 ## Link to deployed version on Heroku:
 https://weatherfm-client.herokuapp.com/
 
+```
+Demo Account
+
+Username: demo
+password: demopassword
+```
+
 ## Features
 
 ### Discover
@@ -18,19 +25,19 @@ Regardless of a users location or the current weather, they can access all of th
 
 ## Screenshots
 ### Discover Page
-(https://files.slack.com/files-pri/T02D02A55-FDEAR1TE3/screen_shot_2018-10-12_at_3.14.22_pm.png)
+![Discover Page](./screenshots/Discover.png)
 
 ### Playlist Page
-(https://files.slack.com/files-pri/T02D02A55-FDD6C0HDH/screen_shot_2018-10-12_at_3.14.34_pm.png)
+![Playlist Page](./screenshots/Playlist.png)
 
 ### On-Boarding
-(https://files.slack.com/files-pri/T02D02A55-FDCLMUN2V/screen_shot_2018-10-12_at_3.15.12_pm.png)
+![On-boarding Page](./screenshots/Onboarding.png)
 
 ### Custom Discover Settings
-(https://files.slack.com/files-pri/T02D02A55-FDEKU3C6S/screen_shot_2018-10-12_at_3.14.13_pm.png)
+![Slider Page](./screenshots/Slider.png)
 
 ### Registration
-<img width="1244" alt="screen_shot_2018-10-12_at_3 19 27_pm" src="https://user-images.githubusercontent.com/38081935/46889877-e538a880-ce19-11e8-9ec2-2bcc6681706b.png">
+![Landing Page](./screenshots/LandingPage.png)
 
 ## Target Audience
 Anyone looking to find music that reflects nature's mood.
